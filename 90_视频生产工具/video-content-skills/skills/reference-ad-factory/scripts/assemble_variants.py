@@ -11,6 +11,8 @@ import time
 from pathlib import Path
 from typing import Any
 
+from PIL import Image, ImageDraw, ImageFont
+
 
 def load(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
@@ -55,6 +57,99 @@ def write_ass(path: Path, scenes: list[dict[str, Any]], width: int, height: int)
         lines.append(f"Dialogue: 0,{stamp(cursor)},{stamp(end)},Caption,,0,0,0,,{ass_text(scene['caption'])}")
         cursor = end
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def ffmpeg_filter_names() -> set[str]:
+    result = subprocess.run(["ffmpeg", "-hide_banner", "-filters"], capture_output=True, text=True, check=True)
+    names: set[str] = set()
+    for line in (result.stdout + result.stderr).splitlines():
+        fields = line.split()
+        if len(fields) >= 2 and 2 <= len(fields[0]) <= 4 and set(fields[0]) <= set(".TSCAVN|-"):
+            names.add(fields[1])
+    return names
+
+
+def select_caption_backend(filter_names: set[str]) -> str:
+    if "ass" in filter_names:
+        return "ass"
+    if "overlay" in filter_names:
+        return "png-overlay"
+    raise RuntimeError("FFmpeg needs either the ass or overlay filter for captions")
+
+
+def _font(size: int) -> ImageFont.FreeTypeFont:
+    candidates = [
+        Path("/System/Library/Fonts/Supplemental/Arial Bold.ttf"),
+        Path("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"),
+    ]
+    for candidate in candidates:
+        if candidate.is_file():
+            return ImageFont.truetype(str(candidate), size=size)
+    return ImageFont.load_default(size=size)
+
+
+def _wrap(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.ImageFont, max_width: int) -> list[str]:
+    words = text.split()
+    lines: list[str] = []
+    current = ""
+    for word in words:
+        candidate = f"{current} {word}".strip()
+        if current and draw.textlength(candidate, font=font) > max_width:
+            lines.append(current)
+            current = word
+        else:
+            current = candidate
+    if current:
+        lines.append(current)
+    return lines or [""]
+
+
+def _draw_centered_block(
+    draw: ImageDraw.ImageDraw,
+    lines: list[str],
+    font: ImageFont.ImageFont,
+    width: int,
+    center_y: int,
+    fill: tuple[int, int, int, int],
+    background: tuple[int, int, int, int],
+    spacing: int,
+) -> None:
+    boxes = [draw.textbbox((0, 0), line, font=font, stroke_width=2) for line in lines]
+    line_heights = [box[3] - box[1] for box in boxes]
+    block_height = sum(line_heights) + spacing * (len(lines) - 1)
+    block_width = max(draw.textlength(line, font=font) for line in lines)
+    x0 = int((width - block_width) / 2) - 28
+    y0 = int(center_y - block_height / 2) - 22
+    x1 = int((width + block_width) / 2) + 28
+    y1 = int(center_y + block_height / 2) + 22
+    draw.rounded_rectangle((x0, y0, x1, y1), radius=20, fill=background)
+    cursor = int(center_y - block_height / 2)
+    for line, line_height in zip(lines, line_heights):
+        line_width = draw.textlength(line, font=font)
+        draw.text(
+            ((width - line_width) / 2, cursor), line, font=font, fill=fill,
+            stroke_width=2, stroke_fill=(20, 20, 20, 255),
+        )
+        cursor += line_height + spacing
+
+
+def write_caption_png(path: Path, title: str, caption: str, width: int, height: int) -> None:
+    image = Image.new("RGBA", (width, height), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(image)
+    title_font = _font(max(42, int(width * 0.065)))
+    caption_font = _font(max(34, int(width * 0.046)))
+    title_lines = _wrap(draw, title.upper(), title_font, int(width * 0.82))
+    caption_lines = _wrap(draw, caption, caption_font, int(width * 0.82))
+    _draw_centered_block(
+        draw, title_lines, title_font, width, int(height * 0.105),
+        (255, 216, 0, 255), (12, 12, 12, 205), 10,
+    )
+    _draw_centered_block(
+        draw, caption_lines, caption_font, width, int(height * 0.795),
+        (255, 255, 255, 255), (12, 12, 12, 205), 8,
+    )
+    path.parent.mkdir(parents=True, exist_ok=True)
+    image.save(path)
 
 
 def atempo_chain(factor: float) -> str:
@@ -110,25 +205,44 @@ def assemble_variant(manifest: dict[str, Any], project: Path, variant: dict[str,
         return {"variant_id": variant["variant_id"], "output": str(output), "status": "reused", "seconds": 0}
     work = project / "04_postproduction/phase2/work"
     work.mkdir(parents=True, exist_ok=True)
+    caption_backend = select_caption_backend(ffmpeg_filter_names())
     ass_path = work / f"{variant['variant_id']}.ass"
-    write_ass(ass_path, variant["scenes"], width, height)
+    if caption_backend == "ass":
+        write_ass(ass_path, variant["scenes"], width, height)
 
     inputs: list[str] = []
     filters: list[str] = []
     assets = manifest["assets"]
+    input_count = 0
     for index, scene in enumerate(variant["scenes"]):
         clip = resolve(project, assets[scene["asset"]])
+        clip_index = input_count
         inputs.extend(["-i", str(clip)])
+        input_count += 1
+        overlay_index: int | None = None
+        if caption_backend == "png-overlay":
+            overlay_path = work / f"{variant['variant_id']}-scene-{index + 1:02d}.png"
+            write_caption_png(overlay_path, scene["title"], scene["caption"], width, height)
+            overlay_index = input_count
+            inputs.extend(["-loop", "1", "-framerate", str(fps), "-i", str(overlay_path)])
+            input_count += 1
         start = float(scene.get("source_start_seconds", 0))
         duration = float(scene["duration_seconds"])
         filters.append(
-            f"[{index}:v]trim=start={start}:duration={duration},setpts=PTS-STARTPTS,"
+            f"[{clip_index}:v]trim=start={start}:duration={duration},setpts=PTS-STARTPTS,"
             f"scale={width}:{height}:force_original_aspect_ratio=decrease,"
-            f"pad={width}:{height}:(ow-iw)/2:(oh-ih)/2,setsar=1,fps={fps},format=yuv420p[v{index}]"
+            f"pad={width}:{height}:(ow-iw)/2:(oh-ih)/2,setsar=1,fps={fps},format=yuv420p[rawv{index}]"
         )
+        if overlay_index is not None:
+            filters.append(
+                f"[{overlay_index}:v]format=rgba[overlay{index}];"
+                f"[rawv{index}][overlay{index}]overlay=0:0:format=auto:shortest=1[v{index}]"
+            )
+        else:
+            filters.append(f"[rawv{index}]null[v{index}]")
         if scene.get("use_source_audio") and has_audio(clip):
             filters.append(
-                f"[{index}:a]atrim=start={start}:duration={duration},asetpts=PTS-STARTPTS,"
+                f"[{clip_index}:a]atrim=start={start}:duration={duration},asetpts=PTS-STARTPTS,"
                 f"aresample=48000,aformat=sample_fmts=fltp:sample_rates=48000:channel_layouts=stereo,"
                 f"apad=whole_dur={duration}[a{index}]"
             )
@@ -136,14 +250,17 @@ def assemble_variant(manifest: dict[str, Any], project: Path, variant: dict[str,
             filters.append(f"anullsrc=r=48000:cl=stereo,atrim=duration={duration},asetpts=PTS-STARTPTS[a{index}]")
     labels = "".join(f"[v{index}][a{index}]" for index in range(len(variant["scenes"])))
     filters.append(f"{labels}concat=n={len(variant['scenes'])}:v=1:a=1[basev][basea]")
-    escaped_ass = str(ass_path).replace("\\", "\\\\").replace(":", "\\:").replace("'", "\\'")
-    filters.append(f"[basev]ass=filename='{escaped_ass}'[outv]")
+    if caption_backend == "ass":
+        escaped_ass = str(ass_path).replace("\\", "\\\\").replace(":", "\\:").replace("'", "\\'")
+        filters.append(f"[basev]ass=filename='{escaped_ass}'[outv]")
+    else:
+        filters.append("[basev]null[outv]")
 
     total_duration = float(variant["duration_seconds"])
     voice = variant.get("voiceover_path")
     if voice:
         voice_path = resolve(project, voice)
-        voice_index = len(variant["scenes"])
+        voice_index = input_count
         inputs.extend(["-i", str(voice_path)])
         target = float(variant["voiceover_target_seconds"])
         factor = probe_duration(voice_path) / target
