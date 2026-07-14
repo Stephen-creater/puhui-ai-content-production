@@ -231,7 +231,8 @@ def concat_variant(project: dict[str, Any], root: Path, variant: int, force: boo
     if output.exists() and not force:
         return output
     output.parent.mkdir(parents=True, exist_ok=True)
-    clips = [task_paths(root, variant, scene["id"])[1] for scene in project["scenes"]]
+    variant_scenes = scenes_for_variant(project, variant)
+    clips = [task_paths(root, variant, scene["id"])[1] for scene in variant_scenes]
     missing = [str(path) for path in clips if not path.exists()]
     if missing:
         raise RuntimeError(f"cannot assemble variant {variant}; missing clips: {missing}")
@@ -240,7 +241,7 @@ def concat_variant(project: dict[str, Any], root: Path, variant: int, force: boo
     fps = int(project.get("fps", 24))
     inputs: list[str] = []
     filters: list[str] = []
-    for index, (clip, scene) in enumerate(zip(clips, project["scenes"], strict=True)):
+    for index, (clip, scene) in enumerate(zip(clips, variant_scenes, strict=True)):
         inputs.extend(["-i", str(clip)])
         duration = float(scene["duration_seconds"])
         filters.append(
@@ -280,7 +281,7 @@ def concat_variant(project: dict[str, Any], root: Path, variant: int, force: boo
 def planned_tasks(project: dict[str, Any], root: Path, force: bool) -> list[dict[str, Any]]:
     tasks: list[dict[str, Any]] = []
     for variant in range(1, int(project["variants"]) + 1):
-        for scene in project["scenes"]:
+        for scene in scenes_for_variant(project, variant):
             keyframe, clip = task_paths(root, variant, int(scene["id"]))
             tasks.append({
                 "variant": variant,
@@ -291,6 +292,29 @@ def planned_tasks(project: dict[str, Any], root: Path, force: bool) -> list[dict
                 "needs_clip": force or not clip.exists(),
             })
     return tasks
+
+
+def scenes_for_variant(project: dict[str, Any], variant: int) -> list[dict[str, Any]]:
+    if "variant_scenes" not in project:
+        return project["scenes"]
+    for item in project["variant_scenes"]:
+        if int(item["variant"]) == int(variant):
+            return item["scenes"]
+    raise ValueError(f"missing scene plan for variant {variant}")
+
+
+def scene_for_task(project: dict[str, Any], task: dict[str, Any]) -> dict[str, Any]:
+    for scene in scenes_for_variant(project, int(task["variant"])):
+        if int(scene["id"]) == int(task["scene"]):
+            return scene
+    raise ValueError(f"missing scene {task['scene']} for variant {task['variant']}")
+
+
+def expected_variant_durations(project: dict[str, Any]) -> dict[str, float]:
+    return {
+        f"variant-{variant:02d}": sum(float(scene["duration_seconds"]) for scene in scenes_for_variant(project, variant))
+        for variant in range(1, int(project["variants"]) + 1)
+    }
 
 
 def main() -> int:
@@ -310,17 +334,17 @@ def main() -> int:
     if not project_path.is_file():
         parser.error(f"missing {project_path}")
     project = load_json(project_path)
-    for scene in project.get("scenes", []):
-        resolved_references = []
-        for value in scene.get("reference_images", []):
-            if value.startswith(("http://", "https://", "data:")) or Path(value).is_absolute():
-                resolved_references.append(value)
-            else:
-                resolved_references.append(str((root / value).resolve()))
-        if resolved_references:
-            scene["reference_images"] = resolved_references
+    for variant in range(1, int(project["variants"]) + 1):
+        for scene in scenes_for_variant(project, variant):
+            resolved_references = []
+            for value in scene.get("reference_images", []):
+                if value.startswith(("http://", "https://", "data:")) or Path(value).is_absolute():
+                    resolved_references.append(value)
+                else:
+                    resolved_references.append(str((root / value).resolve()))
+            if resolved_references:
+                scene["reference_images"] = resolved_references
     tasks = planned_tasks(project, root, args.force)
-    scenes = {int(scene["id"]): scene for scene in project["scenes"]}
     keyframes_needed = sum(task["needs_keyframe"] for task in tasks)
     clips_needed = 0 if args.keyframes_only else sum(task["needs_clip"] for task in tasks)
     generated_seconds = 0
@@ -328,7 +352,7 @@ def main() -> int:
     for task in tasks:
         if not task["needs_clip"] or args.keyframes_only:
             continue
-        scene = scenes[task["scene"]]
+        scene = scene_for_task(project, task)
         generated_seconds += int(scene.get("generation_duration_seconds", scene["duration_seconds"]))
         audio_setting = scene.get("generate_audio", project.get("generate_audio", False))
         if audio_setting is True or str(audio_setting).lower() in {"1", "true", "on", "yes"}:
@@ -352,7 +376,7 @@ def main() -> int:
         "pricing_status": "not_exposed_by_provider_model_catalog",
         "asset_bank": bool(project.get("asset_bank")),
         "final_videos": 0 if project.get("asset_bank") else project["variants"],
-        "expected_duration_seconds": sum(scene["duration_seconds"] for scene in project["scenes"]),
+        "expected_duration_seconds_by_variant": expected_variant_durations(project),
     }
     print(json.dumps(summary, ensure_ascii=False, indent=2))
     if not args.execute:
@@ -378,7 +402,7 @@ def main() -> int:
         clip = Path(task["clip"])
         keyframe.parent.mkdir(parents=True, exist_ok=True)
         clip.parent.mkdir(parents=True, exist_ok=True)
-        scene = scenes[task["scene"]]
+        scene = scene_for_task(project, task)
         attempts = args.retries + 1
         last_error = None
         for attempt in range(1, attempts + 1):
@@ -428,7 +452,7 @@ def main() -> int:
         outputs = [
             str(task_paths(root, variant, int(scene["id"]))[1])
             for variant in range(1, int(project["variants"]) + 1)
-            for scene in project["scenes"]
+            for scene in scenes_for_variant(project, variant)
         ]
         status["outputs"] = outputs
         status["updated_at"] = utc_now()

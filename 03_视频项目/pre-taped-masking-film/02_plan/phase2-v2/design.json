@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "objective": "Replace the rejected phase-2 batch with natural-speed scene voice, exact captions, and 25 unique visual assets.",
+  "baseline": {
+    "name": "v2",
+    "voice_wpm_range": [
+      170,
+      236
+    ],
+    "voice_timing": "natural per-scene audio padded with silence"
+  },
+  "rejected_batch": {
+    "source_voice_seconds_range": [
+      18.4,
+      20.4
+    ],
+    "forced_target_seconds": 27.8,
+    "atempo_range": [
+      0.662,
+      0.734
+    ],
+    "final_wpm_range": [
+      129,
+      151
+    ],
+    "scenes": 41,
+    "unique_assets": 10
+  },
+  "production": {
+    "variants": [
+      {
+        "variant_id": "variant-01",
+        "strategy": "pain-result",
+        "name": "Cleanup cost",
+        "setting": "modern white kitchen",
+        "scene_count": 5,
+        "duration_seconds": 21.5
+      },
+      {
+        "variant_id": "variant-02",
+        "strategy": "efficiency",
+        "name": "Job speed",
+        "setting": "open-plan apartment",
+        "scene_count": 5,
+        "duration_seconds": 21.5
+      },
+      {
+        "variant_id": "variant-03",
+        "strategy": "product-structure",
+        "name": "Integrated structure",
+        "setting": "workshop and blue-gray kitchenette",
+        "scene_count": 5,
+        "duration_seconds": 21.5
+      },
+      {
+        "variant_id": "variant-04",
+        "strategy": "professional-recommendation",
+        "name": "Painter recommendation",
+        "setting": "townhouse built-in shelving",
+        "scene_count": 5,
+        "duration_seconds": 21.5
+      },
+      {
+        "variant_id": "variant-05",
+        "strategy": "before-after",
+        "name": "Before and after",
+        "setting": "bright bathroom vanity",
+        "scene_count": 5,
+        "duration_seconds": 21.5
+      }
+    ],
+    "total_keyframes": 25,
+    "total_video_jobs": 25,
+    "total_paid_video_seconds": 125,
+    "total_scene_voice_jobs": 25
+  }
+}
+
