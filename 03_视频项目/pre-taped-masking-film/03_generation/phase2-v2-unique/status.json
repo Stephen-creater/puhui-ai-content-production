@@ -1,0 +1,282 @@
+{
+  "schema_version": 1,
+  "tasks": {
+    "v01-s02": {
+      "variant": 1,
+      "scene": 2,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/keyframes/variant-01/scene-02.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/clips/variant-01/scene-02.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-14T12:01:31.527837+00:00"
+    },
+    "v01-s04": {
+      "variant": 1,
+      "scene": 4,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/keyframes/variant-01/scene-04.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/clips/variant-01/scene-04.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-14T12:01:32.028769+00:00"
+    },
+    "v01-s03": {
+      "variant": 1,
+      "scene": 3,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/keyframes/variant-01/scene-03.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/clips/variant-01/scene-03.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-14T12:01:32.446943+00:00"
+    },
+    "v01-s01": {
+      "variant": 1,
+      "scene": 1,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/keyframes/variant-01/scene-01.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/clips/variant-01/scene-01.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-14T12:01:32.926706+00:00"
+    },
+    "v01-s05": {
+      "variant": 1,
+      "scene": 5,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/keyframes/variant-01/scene-05.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/clips/variant-01/scene-05.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-14T12:01:58.379805+00:00"
+    },
+    "v02-s01": {
+      "variant": 2,
+      "scene": 1,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/keyframes/variant-02/scene-01.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/clips/variant-02/scene-01.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-14T12:02:01.176601+00:00"
+    },
+    "v02-s03": {
+      "variant": 2,
+      "scene": 3,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/keyframes/variant-02/scene-03.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/clips/variant-02/scene-03.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-14T12:02:01.707981+00:00"
+    },
+    "v02-s02": {
+      "variant": 2,
+      "scene": 2,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/keyframes/variant-02/scene-02.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/clips/variant-02/scene-02.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-14T12:09:21.814557+00:00"
+    },
+    "v03-s01": {
+      "variant": 3,
+      "scene": 1,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/keyframes/variant-03/scene-01.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/clips/variant-03/scene-01.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-14T12:02:31.100864+00:00"
+    },
+    "v02-s05": {
+      "variant": 2,
+      "scene": 5,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/keyframes/variant-02/scene-05.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/clips/variant-02/scene-05.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-14T12:02:32.555715+00:00"
+    },
+    "v03-s02": {
+      "variant": 3,
+      "scene": 2,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/keyframes/variant-03/scene-02.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/clips/variant-03/scene-02.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-14T12:02:36.386705+00:00"
+    },
+    "v03-s04": {
+      "variant": 3,
+      "scene": 4,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/keyframes/variant-03/scene-04.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/clips/variant-03/scene-04.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-14T12:02:52.518007+00:00"
+    },
+    "v02-s04": {
+      "variant": 2,
+      "scene": 4,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/keyframes/variant-02/scene-04.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/clips/variant-02/scene-04.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-14T12:02:53.777515+00:00"
+    },
+    "v03-s03": {
+      "variant": 3,
+      "scene": 3,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/keyframes/variant-03/scene-03.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/clips/variant-03/scene-03.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-14T12:07:50.051314+00:00"
+    },
+    "v03-s05": {
+      "variant": 3,
+      "scene": 5,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/keyframes/variant-03/scene-05.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/clips/variant-03/scene-05.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-14T12:03:03.603553+00:00"
+    },
+    "v04-s02": {
+      "variant": 4,
+      "scene": 2,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/keyframes/variant-04/scene-02.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/clips/variant-04/scene-02.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-14T12:03:23.521894+00:00"
+    },
+    "v04-s01": {
+      "variant": 4,
+      "scene": 1,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/keyframes/variant-04/scene-01.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/clips/variant-04/scene-01.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-14T12:03:24.647933+00:00"
+    },
+    "v04-s03": {
+      "variant": 4,
+      "scene": 3,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/keyframes/variant-04/scene-03.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/clips/variant-04/scene-03.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-14T12:03:25.691017+00:00"
+    },
+    "v04-s04": {
+      "variant": 4,
+      "scene": 4,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/keyframes/variant-04/scene-04.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/clips/variant-04/scene-04.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-14T12:03:34.152559+00:00"
+    },
+    "v05-s02": {
+      "variant": 5,
+      "scene": 2,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/keyframes/variant-05/scene-02.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/clips/variant-05/scene-02.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-14T12:03:53.062789+00:00"
+    },
+    "v05-s01": {
+      "variant": 5,
+      "scene": 1,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/keyframes/variant-05/scene-01.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/clips/variant-05/scene-01.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-14T12:03:53.913962+00:00"
+    },
+    "v04-s05": {
+      "variant": 4,
+      "scene": 5,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/keyframes/variant-04/scene-05.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/clips/variant-04/scene-05.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-14T12:08:53.262302+00:00"
+    },
+    "v05-s03": {
+      "variant": 5,
+      "scene": 3,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/keyframes/variant-05/scene-03.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/clips/variant-05/scene-03.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-14T12:04:03.371054+00:00"
+    },
+    "v05-s04": {
+      "variant": 5,
+      "scene": 4,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/keyframes/variant-05/scene-04.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/clips/variant-05/scene-04.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-14T12:04:26.559495+00:00"
+    },
+    "v05-s05": {
+      "variant": 5,
+      "scene": 5,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/keyframes/variant-05/scene-05.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/phase2-v2-unique/clips/variant-05/scene-05.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-14T12:04:26.684747+00:00"
+    }
+  },
+  "costs": [],
+  "updated_at": "2026-07-14T12:09:21.814656+00:00"
+}

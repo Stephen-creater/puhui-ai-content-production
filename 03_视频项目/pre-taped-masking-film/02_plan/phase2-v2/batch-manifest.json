@@ -65,7 +65,7 @@
         },
         {
           "scene_id": "scene-02",
-          "duration_seconds": 4.3,
+          "duration_seconds": 4.7,
           "title": "TAPE FIRST",
           "caption": "Keep the clear film folded and press the built-in yellow tape firmly first.",
           "spoken_text": "Keep the clear film folded and press the built-in yellow tape firmly first.",
@@ -76,7 +76,7 @@
         },
         {
           "scene_id": "scene-03",
-          "duration_seconds": 4.2,
+          "duration_seconds": 4.8,
           "title": "PULL DOWN TO COVER",
           "caption": "Once the tape is secure, pull the connected clear film over tile and countertop.",
           "spoken_text": "Once the tape is secure, pull the connected clear film over tile and countertop.",
@@ -87,7 +87,7 @@
         },
         {
           "scene_id": "scene-04",
-          "duration_seconds": 4.4,
+          "duration_seconds": 4.7,
           "title": "KEEP PAINT OFF FINISHES",
           "caption": "Spray paint and sanding dust land on the film, not the finished surfaces.",
           "spoken_text": "Spray paint and sanding dust land on the film, not the finished surfaces.",
@@ -98,7 +98,7 @@
         },
         {
           "scene_id": "scene-05",
-          "duration_seconds": 5,
+          "duration_seconds": 3.7,
           "title": "TAKE THE MESS WITH YOU",
           "caption": "Peel the dirty covering away, and the cleanup leaves with the film.",
           "spoken_text": "Peel the dirty covering away, and the cleanup leaves with the film.",
@@ -117,7 +117,7 @@
       "scenes": [
         {
           "scene_id": "scene-01",
-          "duration_seconds": 3.6,
+          "duration_seconds": 4.4,
           "title": "MASK FASTER",
           "caption": "Mask the work zone in fewer steps and keep the project moving.",
           "spoken_text": "Mask the work zone in fewer steps and keep the project moving.",
@@ -128,7 +128,7 @@
         },
         {
           "scene_id": "scene-02",
-          "duration_seconds": 4.3,
+          "duration_seconds": 4,
           "title": "ONE INTEGRATED ROLL",
           "caption": "The yellow tape is already joined to the folded clear PE film.",
           "spoken_text": "The yellow tape is already joined to the folded clear PE film.",
@@ -139,7 +139,7 @@
         },
         {
           "scene_id": "scene-03",
-          "duration_seconds": 4.2,
+          "duration_seconds": 3.9,
           "title": "PRESS ONCE THEN PULL",
           "caption": "Press the tape once, then pull the film down in one smooth motion.",
           "spoken_text": "Press the tape once, then pull the film down in one smooth motion.",
@@ -161,7 +161,7 @@
         },
         {
           "scene_id": "scene-05",
-          "duration_seconds": 5,
+          "duration_seconds": 4.8,
           "title": "MOVE TO THE NEXT JOB",
           "caption": "After spraying, peel everything away and move straight to the next job.",
           "spoken_text": "After spraying, peel everything away and move straight to the next job.",
@@ -175,12 +175,12 @@
     {
       "variant_id": "variant-03",
       "strategy": "product-structure",
-      "duration_seconds": 21.5,
+      "duration_seconds": 20.6,
       "output": "05_deliverables/phase2-v2/variant-03.mp4",
       "scenes": [
         {
           "scene_id": "scene-01",
-          "duration_seconds": 3.6,
+          "duration_seconds": 3.9,
           "title": "TWO MATERIALS ONE SYSTEM",
           "caption": "One roll combines yellow masking tape with transparent PE film.",
           "spoken_text": "One roll combines yellow masking tape with transparent PE film.",
@@ -191,7 +191,7 @@
         },
         {
           "scene_id": "scene-02",
-          "duration_seconds": 4.3,
+          "duration_seconds": 3.8,
           "title": "PERMANENTLY CONNECTED",
           "caption": "The tape and film stay permanently connected while you position the roll.",
           "spoken_text": "The tape and film stay permanently connected while you position the roll.",
@@ -202,7 +202,7 @@
         },
         {
           "scene_id": "scene-03",
-          "duration_seconds": 4.2,
+          "duration_seconds": 4.3,
           "title": "SECURE THE YELLOW EDGE",
           "caption": "Keep the film folded and secure the yellow edge before unfolding anything.",
           "spoken_text": "Keep the film folded and secure the yellow edge before unfolding anything.",
@@ -213,7 +213,7 @@
         },
         {
           "scene_id": "scene-04",
-          "duration_seconds": 4.4,
+          "duration_seconds": 4.1,
           "title": "UNFOLD THE CLEAR BARRIER",
           "caption": "Then unfold the clear film to build a barrier over the work surface.",
           "spoken_text": "Then unfold the clear film to build a barrier over the work surface.",
@@ -224,7 +224,7 @@
         },
         {
           "scene_id": "scene-05",
-          "duration_seconds": 5,
+          "duration_seconds": 4.5,
           "title": "REMOVE THE WHOLE SYSTEM",
           "caption": "After the work, tape, film, paint, and dust all leave together.",
           "spoken_text": "After the work, tape, film, paint, and dust all leave together.",
@@ -238,12 +238,12 @@
     {
       "variant_id": "variant-04",
       "strategy": "professional-recommendation",
-      "duration_seconds": 21.5,
+      "duration_seconds": 20,
       "output": "05_deliverables/phase2-v2/variant-04.mp4",
       "scenes": [
         {
           "scene_id": "scene-01",
-          "duration_seconds": 3.6,
+          "duration_seconds": 4.2,
           "title": "A PRO'S FIRST CHOICE",
           "caption": "On renovation jobs, I use one roll to mask faster and cleaner.",
           "spoken_text": "On renovation jobs, I use one roll to mask faster and cleaner.",
@@ -254,7 +254,7 @@
         },
         {
           "scene_id": "scene-02",
-          "duration_seconds": 4.3,
+          "duration_seconds": 3.8,
           "title": "MY FIRST STEP IS TAPE",
           "caption": "My first step is pressing the yellow tape firmly along the edge.",
           "spoken_text": "My first step is pressing the yellow tape firmly along the edge.",
@@ -265,7 +265,7 @@
         },
         {
           "scene_id": "scene-03",
-          "duration_seconds": 4.2,
+          "duration_seconds": 3.4,
           "title": "THEN I COVER THE AREA",
           "caption": "Only after it is secure do I pull the clear film down.",
           "spoken_text": "Only after it is secure do I pull the clear film down.",
@@ -276,7 +276,7 @@
         },
         {
           "scene_id": "scene-04",
-          "duration_seconds": 4.4,
+          "duration_seconds": 3.9,
           "title": "READY FOR SPRAYING",
           "caption": "I fix the far edge, tear by hand, and start spraying.",
           "spoken_text": "I fix the far edge, tear by hand, and start spraying.",
@@ -287,7 +287,7 @@
         },
         {
           "scene_id": "scene-05",
-          "duration_seconds": 5,
+          "duration_seconds": 4.7,
           "title": "THE FINISH STAYS CLEAN",
           "caption": "The mess peels away, and the finished surface stays clean underneath.",
           "spoken_text": "The mess peels away, and the finished surface stays clean underneath.",
@@ -301,12 +301,12 @@
     {
       "variant_id": "variant-05",
       "strategy": "before-after",
-      "duration_seconds": 21.5,
+      "duration_seconds": 21,
       "output": "05_deliverables/phase2-v2/variant-05.mp4",
       "scenes": [
         {
           "scene_id": "scene-01",
-          "duration_seconds": 3.6,
+          "duration_seconds": 3.9,
           "title": "DIRTY FILM CLEAN VANITY",
           "caption": "This dirty film carried the paint, while the vanity stayed clean.",
           "spoken_text": "This dirty film carried the paint, while the vanity stayed clean.",
@@ -328,7 +328,7 @@
         },
         {
           "scene_id": "scene-03",
-          "duration_seconds": 4.2,
+          "duration_seconds": 4.6,
           "title": "DROP THE FILM AFTERWARD",
           "caption": "After the tape holds, pull the transparent film down over tile and fixtures.",
           "spoken_text": "After the tape holds, pull the transparent film down over tile and fixtures.",
@@ -339,7 +339,7 @@
         },
         {
           "scene_id": "scene-04",
-          "duration_seconds": 4.4,
+          "duration_seconds": 4.2,
           "title": "LET THE BARRIER GET DIRTY",
           "caption": "Sanding dust and paint settle on the barrier instead of the bathroom.",
           "spoken_text": "Sanding dust and paint settle on the barrier instead of the bathroom.",
@@ -350,7 +350,7 @@
         },
         {
           "scene_id": "scene-05",
-          "duration_seconds": 5,
+          "duration_seconds": 4,
           "title": "PEEL BACK TO CLEAN",
           "caption": "Peel away the used covering and reveal the clean surface underneath.",
           "spoken_text": "Peel away the used covering and reveal the clean surface underneath.",
@@ -363,4 +363,3 @@
     }
   ]
 }
-

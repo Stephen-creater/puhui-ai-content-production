@@ -43,7 +43,7 @@
         {
           "id": 2,
           "narration": "Keep the clear film folded and press the built-in yellow tape firmly first.",
-          "duration_seconds": 4.3,
+          "duration_seconds": 4.7,
           "generation_duration_seconds": 5,
           "reference_images": [
             "../../00_input/product_images/operation-reference-01.png",
@@ -56,7 +56,7 @@
         {
           "id": 3,
           "narration": "Once the tape is secure, pull the connected clear film over tile and countertop.",
-          "duration_seconds": 4.2,
+          "duration_seconds": 4.8,
           "generation_duration_seconds": 5,
           "reference_images": [
             "../../00_input/product_images/operation-reference-01.png",
@@ -69,7 +69,7 @@
         {
           "id": 4,
           "narration": "Spray paint and sanding dust land on the film, not the finished surfaces.",
-          "duration_seconds": 4.4,
+          "duration_seconds": 4.7,
           "generation_duration_seconds": 5,
           "reference_images": [
             "../../00_input/product_images/operation-reference-01.png",
@@ -82,7 +82,7 @@
         {
           "id": 5,
           "narration": "Peel the dirty covering away, and the cleanup leaves with the film.",
-          "duration_seconds": 5,
+          "duration_seconds": 3.7,
           "generation_duration_seconds": 5,
           "reference_images": [
             "../../00_input/product_images/operation-reference-01.png",
@@ -102,7 +102,7 @@
         {
           "id": 1,
           "narration": "Mask the work zone in fewer steps and keep the project moving.",
-          "duration_seconds": 3.6,
+          "duration_seconds": 4.4,
           "generation_duration_seconds": 5,
           "reference_images": [
             "../../00_input/product_images/operation-reference-01.png",
@@ -115,20 +115,20 @@
         {
           "id": 2,
           "narration": "The yellow tape is already joined to the folded clear PE film.",
-          "duration_seconds": 4.3,
+          "duration_seconds": 4,
           "generation_duration_seconds": 5,
           "reference_images": [
             "../../00_input/product_images/operation-reference-01.png",
             "../../00_input/product_images/operation-reference-02.png"
           ],
-          "keyframe_prompt": "Clean tabletop product close-up beside the apartment window. The same painter holds the white-core masking film roll horizontally with both hands. The yellow masking tape runs continuously along the folded transparent PE film, clearly one inseparable product. Soft daylight, crisp material texture, different composition from all kitchen shots, no text.",
+          "keyframe_prompt": "Photographic macro side view beside an apartment window. The painter holds exactly one white-core pre-taped masking-film roll horizontally. One long straight yellow masking-tape edge runs parallel to the roll axis and is factory-bonded to the top edge of one folded transparent PE sheet hanging below it. The bonded yellow-to-clear seam fills the center of frame. Absolutely no yellow bands crossing around the roll circumference, no transverse strips, no loose tape, no second roll, no material on the counter. Soft daylight, crisp material texture, no text.",
           "video_prompt": "The painter rotates the roll a quarter turn and traces the permanent yellow-tape-to-clear-film seam with one finger. The components remain joined. Smooth short arc camera move, photorealistic product geometry.",
           "negative_prompt": "yellow tape separated from clear film, separate tape roll, blue tape, tape applied after film, scissors, knife, incorrect hands, extra fingers, warped face, product deformation, opaque film, text, logo, watermark, split screen, camera shake"
         },
         {
           "id": 3,
           "narration": "Press the tape once, then pull the film down in one smooth motion.",
-          "duration_seconds": 4.2,
+          "duration_seconds": 3.9,
           "generation_duration_seconds": 5,
           "reference_images": [
             "../../00_input/product_images/operation-reference-01.png",
@@ -154,7 +154,7 @@
         {
           "id": 5,
           "narration": "After spraying, peel everything away and move straight to the next job.",
-          "duration_seconds": 5,
+          "duration_seconds": 4.8,
           "generation_duration_seconds": 5,
           "reference_images": [
             "../../00_input/product_images/operation-reference-01.png",
@@ -174,7 +174,7 @@
         {
           "id": 1,
           "narration": "One roll combines yellow masking tape with transparent PE film.",
-          "duration_seconds": 3.6,
+          "duration_seconds": 3.9,
           "generation_duration_seconds": 5,
           "reference_images": [
             "../../00_input/product_images/operation-reference-01.png",
@@ -187,7 +187,7 @@
         {
           "id": 2,
           "narration": "The tape and film stay permanently connected while you position the roll.",
-          "duration_seconds": 4.3,
+          "duration_seconds": 3.8,
           "generation_duration_seconds": 5,
           "reference_images": [
             "../../00_input/product_images/operation-reference-01.png",
@@ -200,20 +200,20 @@
         {
           "id": 3,
           "narration": "Keep the film folded and secure the yellow edge before unfolding anything.",
-          "duration_seconds": 4.2,
+          "duration_seconds": 4.3,
           "generation_duration_seconds": 5,
           "reference_images": [
             "../../00_input/product_images/operation-reference-01.png",
             "../../00_input/product_images/operation-reference-02.png"
           ],
-          "keyframe_prompt": "Over-the-shoulder close shot in a blue-gray kitchenette renovation. The same painter holds the clear film neatly folded while pressing the yellow tape along the lower edge of a floating shelf. The tape is the only part contacting the shelf at this moment. No text.",
+          "keyframe_prompt": "Oblique close-up in a blue-gray kitchenette. The same expert holds exactly one integrated pre-taped masking-film roll against the floating shelf. The folded transparent film remains visibly attached immediately beneath the yellow strip while his other hand presses that same yellow strip firmly under the shelf. One continuous bonded product from roll to yellow tape to clear film; no loose packet, no separate film sheet, no separate tape roll. Product seam fully visible, no text.",
           "video_prompt": "Over the painter's shoulder, both thumbs press the yellow strip firmly across the floating shelf edge. The clear film remains folded throughout the shot. Slow deliberate professional action, correct order.",
           "negative_prompt": "yellow tape separated from clear film, separate tape roll, blue tape, tape applied after film, scissors, knife, incorrect hands, extra fingers, warped face, product deformation, opaque film, text, logo, watermark, split screen, camera shake"
         },
         {
           "id": 4,
           "narration": "Then unfold the clear film to build a barrier over the work surface.",
-          "duration_seconds": 4.4,
+          "duration_seconds": 4.1,
           "generation_duration_seconds": 5,
           "reference_images": [
             "../../00_input/product_images/operation-reference-01.png",
@@ -226,7 +226,7 @@
         {
           "id": 5,
           "narration": "After the work, tape, film, paint, and dust all leave together.",
-          "duration_seconds": 5,
+          "duration_seconds": 4.5,
           "generation_duration_seconds": 5,
           "reference_images": [
             "../../00_input/product_images/operation-reference-01.png",
@@ -246,7 +246,7 @@
         {
           "id": 1,
           "narration": "On renovation jobs, I use one roll to mask faster and cleaner.",
-          "duration_seconds": 3.6,
+          "duration_seconds": 4.2,
           "generation_duration_seconds": 5,
           "reference_images": [
             "../../00_input/product_images/operation-reference-01.png",
@@ -259,7 +259,7 @@
         {
           "id": 2,
           "narration": "My first step is pressing the yellow tape firmly along the edge.",
-          "duration_seconds": 4.3,
+          "duration_seconds": 3.8,
           "generation_duration_seconds": 5,
           "reference_images": [
             "../../00_input/product_images/operation-reference-01.png",
@@ -272,7 +272,7 @@
         {
           "id": 3,
           "narration": "Only after it is secure do I pull the clear film down.",
-          "duration_seconds": 4.2,
+          "duration_seconds": 3.4,
           "generation_duration_seconds": 5,
           "reference_images": [
             "../../00_input/product_images/operation-reference-01.png",
@@ -285,7 +285,7 @@
         {
           "id": 4,
           "narration": "I fix the far edge, tear by hand, and start spraying.",
-          "duration_seconds": 4.4,
+          "duration_seconds": 3.9,
           "generation_duration_seconds": 5,
           "reference_images": [
             "../../00_input/product_images/operation-reference-01.png",
@@ -298,13 +298,13 @@
         {
           "id": 5,
           "narration": "The mess peels away, and the finished surface stays clean underneath.",
-          "duration_seconds": 5,
+          "duration_seconds": 4.7,
           "generation_duration_seconds": 5,
           "reference_images": [
             "../../00_input/product_images/operation-reference-01.png",
             "../../00_input/product_images/operation-reference-02.png"
           ],
-          "keyframe_prompt": "Medium result shot from inside the townhouse room. The same painter peels the spotted film away from the shelving and reveals clean finished cabinet fronts. He gives a small approving nod while holding the removed bundle at his side. No text, mouth closed.",
+          "keyframe_prompt": "Medium completed-job result shot inside the same townhouse room. The exact same Black American professional painter from the opening shot, age 38, close-cropped hair, navy work jacket, gray trousers and clear safety glasses, stands in front of fully uncovered clean finished cabinet fronts. In his left hand he holds an already removed compact crumpled bundle of transparent film covered with paint spots and dust; its attached dirty yellow tape edge is clearly visible. His right hand checks the spotless bare cabinet surface. No product roll, no applying tape, no film still attached to cabinets, no other person, no text, mouth closed.",
           "video_prompt": "He peels the integrated dirty covering off in one sweep, checks the clean cabinet finish with his free hand, and gives a brief approving nod. Yellow tape leaves with film, no residue.",
           "negative_prompt": "yellow tape separated from clear film, separate tape roll, blue tape, tape applied after film, scissors, knife, incorrect hands, extra fingers, warped face, product deformation, opaque film, text, logo, watermark, split screen, camera shake"
         }
@@ -318,7 +318,7 @@
         {
           "id": 1,
           "narration": "This dirty film carried the paint, while the vanity stayed clean.",
-          "duration_seconds": 3.6,
+          "duration_seconds": 3.9,
           "generation_duration_seconds": 5,
           "reference_images": [
             "../../00_input/product_images/operation-reference-01.png",
@@ -344,7 +344,7 @@
         {
           "id": 3,
           "narration": "After the tape holds, pull the transparent film down over tile and fixtures.",
-          "duration_seconds": 4.2,
+          "duration_seconds": 4.6,
           "generation_duration_seconds": 5,
           "reference_images": [
             "../../00_input/product_images/operation-reference-01.png",
@@ -357,7 +357,7 @@
         {
           "id": 4,
           "narration": "Sanding dust and paint settle on the barrier instead of the bathroom.",
-          "duration_seconds": 4.4,
+          "duration_seconds": 4.2,
           "generation_duration_seconds": 5,
           "reference_images": [
             "../../00_input/product_images/operation-reference-01.png",
@@ -370,7 +370,7 @@
         {
           "id": 5,
           "narration": "Peel away the used covering and reveal the clean surface underneath.",
-          "duration_seconds": 5,
+          "duration_seconds": 4,
           "generation_duration_seconds": 5,
           "reference_images": [
             "../../00_input/product_images/operation-reference-01.png",
@@ -384,4 +384,3 @@
     }
   ]
 }
-
