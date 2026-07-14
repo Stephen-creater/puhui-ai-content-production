@@ -1,10 +1,10 @@
 {
-  "project": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-film-ad-v1",
+  "project": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/visual-bank-v1",
   "ok": true,
   "outputs": [
     {
       "variant": 1,
-      "path": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-film-ad-v1/output/variant-01.mp4",
+      "path": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/03_generation/visual-bank-v1/output/variant-01.mp4",
       "exists": true,
       "ok": true,
       "duration": 20.0,

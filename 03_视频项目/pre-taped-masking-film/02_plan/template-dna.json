@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "template_id": "problem-proof-presenter-cta-v1",
+  "source_reference": "reference-01",
+  "duration_target_seconds": 36,
+  "duration_range_seconds": [20, 60],
+  "aspect_ratio": "9:16",
+  "layers": ["moving_visual", "top_claim", "voice", "bottom_caption"],
+  "audio_structure": {
+    "b_roll": "single_consistent_voiceover",
+    "presenter_cta": "native_dialogue_with_visible_lip_sync"
+  },
+  "scene_functions": [
+    {"id": "hook", "target_seconds": 3, "purpose": "show pain and protected result"},
+    {"id": "product", "target_seconds": 5, "purpose": "show the integrated product structure"},
+    {"id": "operation_1", "target_seconds": 4, "purpose": "apply and press the yellow tape first"},
+    {"id": "operation_2", "target_seconds": 4, "purpose": "pull the film down after tape fixation"},
+    {"id": "operation_3", "target_seconds": 4, "purpose": "fix the far edge and tear by hand"},
+    {"id": "proof", "target_seconds": 3.2, "purpose": "show paint and dust landing on the film"},
+    {"id": "result", "target_seconds": 4.4, "purpose": "peel away and reveal a clean surface"},
+    {"id": "presenter_cta", "target_seconds": 8, "purpose": "presenter recommendation and call to action"}
+  ],
+  "edit_rules": {
+    "hook_deadline_seconds": 2,
+    "preferred_transition": "hard_cut_or_action_match",
+    "avoid": ["slow_dissolve", "empty_intro", "model_generated_text"]
+  }
+}

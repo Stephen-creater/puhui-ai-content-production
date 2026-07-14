@@ -2,21 +2,22 @@
 set -euo pipefail
 
 ROOT="${0:A:h}"
-V1="${ROOT:h}"
-VOICE="$ROOT/assets/voice"
-CTA="$ROOT/native-audio-cta/clips/variant-01/scene-01.mp4"
-BASE="$ROOT/output/pre-taped-film-ad-v2-base.mp4"
-FINAL="$ROOT/output/pre-taped-film-ad-v2-final.mp4"
+PROJECT="${ROOT:h}"
+VISUAL_BANK="$PROJECT/03_generation/visual-bank-v1"
+VOICE="$ROOT/voice"
+CTA="$PROJECT/03_generation/native-audio-cta/clips/variant-01/scene-01.mp4"
+BASE="$PROJECT/05_deliverables/v2/pre-taped-film-ad-v2-base.mp4"
+FINAL="$PROJECT/05_deliverables/v2/pre-taped-film-ad-v2-final.mp4"
 
 ffmpeg -y -hide_banner \
-  -i "$V1/clips/variant-01/scene-05.mp4" \
-  -i "$V1/clips/variant-01/scene-06.mp4" \
-  -i "$V1/clips/variant-01/scene-01.mp4" \
-  -i "$V1/clips/variant-01/scene-02.mp4" \
-  -i "$V1/clips/variant-01/scene-03.mp4" \
-  -i "$V1/clips/variant-01/scene-04.mp4" \
-  -i "$V1/clips/variant-01/scene-05.mp4" \
-  -i "$V1/clips/variant-01/scene-06.mp4" \
+  -i "$VISUAL_BANK/clips/variant-01/scene-05.mp4" \
+  -i "$VISUAL_BANK/clips/variant-01/scene-06.mp4" \
+  -i "$VISUAL_BANK/clips/variant-01/scene-01.mp4" \
+  -i "$VISUAL_BANK/clips/variant-01/scene-02.mp4" \
+  -i "$VISUAL_BANK/clips/variant-01/scene-03.mp4" \
+  -i "$VISUAL_BANK/clips/variant-01/scene-04.mp4" \
+  -i "$VISUAL_BANK/clips/variant-01/scene-05.mp4" \
+  -i "$VISUAL_BANK/clips/variant-01/scene-06.mp4" \
   -i "$CTA" \
   -i "$VOICE/vo01_hook.mp3" \
   -i "$VOICE/vo02_product.mp3" \
