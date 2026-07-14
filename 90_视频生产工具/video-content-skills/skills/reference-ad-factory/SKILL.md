@@ -55,8 +55,8 @@ The script copies inputs into a standard local project. Heavy media remains igno
 
    Compilation rejects missing intake authority, unknown product fact IDs, prohibited phrases, unknown assets, strategy mismatches, and final durations outside 20–60 seconds.
 6. Use `video-batch-producer` to generate keyframes first. Review product geometry, identity, hands, action order, and claim accuracy before paid video generation.
-7. Generate B-roll and presenter shots. Use one consistent voiceover for B-roll; use native model dialogue only for visible speaking shots.
-8. Finish captions, top claims, audio, timing, loudness, and delivery encoding with deterministic post-production.
+7. Generate B-roll and presenter shots. For reliable timing, generate one natural-speed voice file per scene from that scene's exact `spoken_text`; use native model dialogue only for deliberately designed visible speaking shots. Measure voice duration before locking scene windows.
+8. Finish captions, top claims, audio, timing, loudness, and delivery encoding with deterministic post-production. Pad short scene voice with tail silence, but never slow narration to fill a scene. Derive captions from the exact TTS input.
 
    ```bash
    python3 scripts/assemble_variants.py \

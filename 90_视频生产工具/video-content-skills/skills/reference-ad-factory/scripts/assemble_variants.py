@@ -219,6 +219,7 @@ def validate(
 ) -> dict[str, Any]:
     missing_visuals: list[str] = []
     missing_voices: list[str] = []
+    voice_headroom_seconds: list[float] = []
     assets = manifest["assets"]
     for value in assets.values():
         if not resolve(project, value).is_file():
@@ -229,8 +230,21 @@ def validate(
             missing_voices.append(voice)
         for scene in variant.get("scenes", []):
             scene_voice = scene.get("voiceover_path")
-            if scene_voice and not resolve(project, scene_voice).is_file():
-                missing_voices.append(scene_voice)
+            if scene_voice:
+                voice_path = resolve(project, scene_voice)
+                if not voice_path.is_file():
+                    missing_voices.append(scene_voice)
+                else:
+                    voice_duration = probe_duration(voice_path)
+                    scene_duration = float(scene["duration_seconds"])
+                    headroom = scene_duration - voice_duration
+                    if headroom < -0.02:
+                        raise ValueError(
+                            "voice exceeds scene window: "
+                            f"{variant.get('variant_id')} {scene.get('scene_id', scene.get('asset'))} "
+                            f"voice={voice_duration:.3f}s scene={scene_duration:.3f}s"
+                        )
+                    voice_headroom_seconds.append(headroom)
     if missing_visuals and not allow_missing_visuals:
         raise SystemExit(f"Missing visual assets: {missing_visuals}")
     if missing_voices and not allow_missing_voice:
@@ -241,6 +255,9 @@ def validate(
         "missing_voice_assets": missing_voices,
         "missing_visual_assets": missing_visuals,
         "durations": {item["variant_id"]: item["duration_seconds"] for item in manifest["variants"]},
+        "minimum_scene_voice_headroom_seconds": (
+            round(min(voice_headroom_seconds), 3) if voice_headroom_seconds else None
+        ),
     }
     if "visual_policy" in manifest or "audio_policy" in manifest:
         summary.update(validate_production_contract(manifest))

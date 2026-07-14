@@ -32,13 +32,13 @@ Show keyframe count, video job count, model, resolution, generated duration, nat
 
 Generate and review all keyframes before animation. Fail a frame for product geometry, action order, identity drift, hand defects, unsafe text area, misleading claims, or missing proof context.
 
-### 7. Video and sound
+### 7. Voice timing and video
 
-Animate approved frames. Keep one main action per generated clip. Use a consistent B-roll voice; reserve native dialogue for visible speakers. Resume missing assets instead of regenerating successful work.
+Generate one voice file per scene from its exact `spoken_text`, measure the real duration, then lock each scene window with a small margin. Preserve natural TTS speed; never lengthen narration with tempo processing. Animate approved frames with one main action per clip. Reserve native dialogue for intentionally visible speakers. Resume missing assets instead of regenerating successful work.
 
 ### 8. Post-production
 
-Trim source clips to editorial duration, assemble by shot function, normalize voice, add captions and claims in post, encode delivery media, and generate a contact sheet. Do not depend on the video model for readable text.
+Trim source clips to editorial duration, assemble by shot function, normalize voice, pad only tail silence, add captions and claims in post, encode delivery media, and generate a contact sheet. Captions must equal the real per-scene TTS input. Do not depend on the video model for readable text.
 
 ### 9. Verification
 

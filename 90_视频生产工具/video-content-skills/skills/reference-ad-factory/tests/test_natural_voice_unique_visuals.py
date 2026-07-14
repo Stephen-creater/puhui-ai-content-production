@@ -7,6 +7,7 @@ import importlib.util
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 
 SCRIPT = Path(__file__).parents[1] / "scripts" / "assemble_variants.py"
@@ -38,12 +39,14 @@ def valid_manifest() -> dict:
                 "scenes": [
                     {
                         "asset": "v01-s01",
+                        "duration_seconds": 4.0,
                         "caption": "Painting or sanding?",
                         "spoken_text": "Painting or sanding?",
                         "voiceover_path": "04_postproduction/phase2-v2/voice/variant-01/scene-01.mp3",
                     },
                     {
                         "asset": "v01-s02",
+                        "duration_seconds": 4.0,
                         "caption": "Press the yellow tape first.",
                         "spoken_text": "Press the yellow tape first.",
                         "voiceover_path": "04_postproduction/phase2-v2/voice/variant-01/scene-02.mp3",
@@ -89,6 +92,18 @@ class NaturalVoiceUniqueVisualsTest(unittest.TestCase):
             result = MODULE.validate(valid_manifest(), Path(directory), True, True)
         self.assertEqual(result["scene_voice_assets"], 2)
         self.assertEqual(result["unique_visual_assets"], 2)
+
+    def test_rejects_scene_window_shorter_than_natural_voice(self) -> None:
+        manifest = valid_manifest()
+        with tempfile.TemporaryDirectory() as directory:
+            project = Path(directory)
+            for scene in manifest["variants"][0]["scenes"]:
+                voice = project / scene["voiceover_path"]
+                voice.parent.mkdir(parents=True, exist_ok=True)
+                voice.touch()
+            with patch.object(MODULE, "probe_duration", return_value=4.2):
+                with self.assertRaisesRegex(ValueError, "voice exceeds scene window"):
+                    MODULE.validate(manifest, project, False, True)
 
 
 if __name__ == "__main__":

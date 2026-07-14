@@ -1,77 +1,113 @@
 # Operator runbook
 
-This runbook is for a new AI agent or a human operator with no prior conversation context.
+This is the cold-start path for an AI agent or human operator with no conversation context. Replace `REPO` and `PROJECT` once, then execute the gates in order.
 
-## Prerequisites
+```bash
+REPO=/absolute/path/to/puhui-ai-content-production
+PROJECT="$REPO/03_视频项目/pre-taped-masking-film"
+FACTORY="$REPO/90_视频生产工具/video-content-skills/skills/reference-ad-factory"
+PRODUCER="$REPO/90_视频生产工具/video-content-skills/skills/video-batch-producer"
+```
 
-- Python 3.11+, FFmpeg, ffprobe, and the three local Skills are available.
-- The project contains `intake.json`, `product-brief.json`, `template-dna.json`, `production-plan.json`, and `variant-content.json`.
-- Heavy media exists locally even though Git ignores it.
-- TokenDance credentials are stored in the environment or macOS Keychain.
+## Inputs and prerequisites
 
-## Commands
+- Python 3.11+, FFmpeg and ffprobe.
+- Reference video under `PROJECT/00_input/reference_videos/`.
+- Product reference images and approved product facts.
+- TokenDance credential available through the existing environment or macOS Keychain integration.
+- Paid generation explicitly authorized by the user.
+- Heavy audio and video files are local artifacts and may be Git-ignored.
 
-1. Analyze or reuse the reference:
+## Fast path
 
-   ```bash
-   python3 reference-video-analyzer/scripts/analyze_reference.py \
-     --input PROJECT/00_input/reference_videos/reference-01.mp4 \
-     --output-dir PROJECT/01_analysis/reference-01
-   ```
+### 1. Analyze once, reuse by hash
 
-   Matching source hashes return `status: reused` without regenerating files.
+```bash
+python3 "$REPO/90_视频生产工具/video-content-skills/skills/reference-video-analyzer/scripts/analyze_reference.py" \
+  --input "$PROJECT/00_input/reference_videos/reference-01.mp4" \
+  --output-dir "$PROJECT/01_analysis/reference-01"
+```
 
-2. Validate and compile editorial content:
+Matching source SHA-256 should return `status: reused`. Do not repeat transcript, OCR or shot extraction when the reference hash is unchanged.
 
-   ```bash
-   python3 reference-ad-factory/scripts/compile_variants.py --project PROJECT --check-only
-   python3 reference-ad-factory/scripts/compile_variants.py --project PROJECT --force
-   ```
+### 2. Compile and validate the five strategies
 
-3. Preview paid delta work:
+```bash
+python3 "$FACTORY/scripts/compile_variants.py" --project "$PROJECT" --check-only
+python3 "$FACTORY/scripts/compile_variants.py" --project "$PROJECT" --force
+```
 
-   ```bash
-   python3 video-batch-producer/scripts/run_pipeline.py \
-     --project PROJECT/03_generation/phase2-hooks \
-     --max-workers 2 --retries 1
-   ```
+The five strategies must have complete scripts, `spoken_text`, captions, unique visual assets and explicit product-order constraints. Placeholder strategies are a stop condition.
 
-   Record image count, video jobs, generated video seconds, native-audio jobs, resolution, reuse counts, retry ceiling, and provider pricing availability.
+### 3. Generate scene-level voice before locking timing
 
-4. Generate keyframes only after cost authorization:
+Generate one Alex / ElevenLabs `eleven_v3` file for every scene, using the exact `spoken_text`. Save each file at its manifest `voiceover_path`.
 
-   ```bash
-   python3 video-batch-producer/scripts/run_pipeline.py \
-     --project PROJECT/03_generation/phase2-hooks \
-     --execute --cost-authorized --keyframes-only --max-workers 2 --retries 1
-   ```
+Measure each audio file with ffprobe. Set that scene's window to at least the measured voice duration plus a short visual margin. Redistribute spare time between scenes while keeping each final video between 20 and 60 seconds.
 
-5. Review every keyframe. Reject wrong product geometry, action order, identity, hands, claims, or text. Continue only when all pass.
+Hard rules:
 
-6. Generate missing clips:
+- Never slow a full-video voice track to fill the edit.
+- Never use `atempo` to lengthen narration.
+- Preserve original TTS speed; only pad silence at the tail of a scene.
+- Caption text must equal that scene's actual TTS input.
 
-   ```bash
-   python3 video-batch-producer/scripts/run_pipeline.py \
-     --project PROJECT/03_generation/phase2-hooks \
-     --execute --cost-authorized --max-workers 2 --retries 1
-   ```
+### 4. Preview exact paid delta
 
-7. Generate one complete Alex / ElevenLabs `eleven_v3` voiceover per variant. Save files at the exact `voiceover_path` values in `batch-manifest.json`. A human may use the ChatCut voice interface; an agent may use the ChatCut voice Skill after user authorization.
+```bash
+python3 "$PRODUCER/scripts/run_pipeline.py" \
+  --project "$PROJECT/03_generation/phase2-v2-unique" \
+  --max-workers 4 --retries 1
+```
 
-8. Preview and assemble:
+Record new images, new video jobs, generated seconds, resolution, native-audio jobs, retry ceiling and reused assets. Do not execute if any old clip path appears in a no-reuse batch.
 
-   ```bash
-   python3 reference-ad-factory/scripts/assemble_variants.py \
-     --manifest PROJECT/02_plan/phase2/batch-manifest.json --dry-run
-   python3 reference-ad-factory/scripts/assemble_variants.py \
-     --manifest PROJECT/02_plan/phase2/batch-manifest.json --force
-   ```
+### 5. Generate and review keyframes first
 
-9. Verify hook clips, final videos, transcript, captions, product truth, and human release approval. Do not call a batch release-ready without the human gate.
+```bash
+python3 "$PRODUCER/scripts/run_pipeline.py" \
+  --project "$PROJECT/03_generation/phase2-v2-unique" \
+  --execute --cost-authorized --keyframes-only --max-workers 4 --retries 1
+```
 
-## Failure policy
+Review all keyframes. Reject wrong integrated-product geometry, wrong action order, identity drift, bad hands, unsupported claims, embedded text or cross-variant visual reuse. Move only rejected files aside, strengthen their prompts and rerun without `--force`; this regenerates only missing assets.
 
-- Re-run without `--force` to resume only missing paid assets.
-- Never delete successful generations during retry.
-- After two prompt-only failures on identity or geometry, strengthen the visual anchor instead of submitting a third text-only retry.
-- Stop on missing authority, unsupported claims, unknown assets, or product-order contradictions.
+### 6. Generate and review clips
+
+```bash
+python3 "$PRODUCER/scripts/run_pipeline.py" \
+  --project "$PROJECT/03_generation/phase2-v2-unique" \
+  --execute --cost-authorized --max-workers 4 --retries 1
+
+python3 "$PRODUCER/scripts/verify_project.py" \
+  --project "$PROJECT/03_generation/phase2-v2-unique"
+```
+
+Review motion in every clip. Reject reversed order, detached tape and film, impossible hand movement, identity changes, frozen output or unintended speech. Retry only failed clips.
+
+### 7. Preview, assemble and verify
+
+```bash
+python3 "$FACTORY/scripts/assemble_variants.py" \
+  --manifest "$PROJECT/02_plan/phase2-v2/batch-manifest.json" --dry-run
+
+python3 "$FACTORY/scripts/assemble_variants.py" \
+  --manifest "$PROJECT/02_plan/phase2-v2/batch-manifest.json" --force
+```
+
+Verify all five outputs with ffprobe and human playback. Required release checks:
+
+1. Duration is 20–60 seconds.
+2. Voice stays natural from first line to last line.
+3. Each subtitle is the exact line spoken in that scene and appears in the same window.
+4. The integrated product and tape-first order remain correct.
+5. Every variant has its own visual assets; no old keyframe or clip is reused.
+6. The hook, pacing and visual information density are not worse than the accepted v2 baseline.
+
+## Failure and resume policy
+
+- Rerun without `--force` to resume only missing paid assets.
+- Keep successful generations; move rejected outputs into a local review folder instead of deleting the evidence.
+- After two text-only failures on product geometry or identity, change the visual anchor/reference strategy before another paid retry.
+- Stop on missing authority, unsupported claims, unknown assets, product-order contradictions or a failed release check.
+- Commit and push each approved milestone; do not add large generated MP4 files unless the user explicitly requests it.
