@@ -164,6 +164,10 @@ def atempo_chain(factor: float) -> str:
     return ",".join(f"atempo={value:.6f}" for value in factors)
 
 
+def output_audio_args() -> list[str]:
+    return ["-c:a", "aac", "-b:a", "192k", "-ar", "48000"]
+
+
 def resolve(project: Path, value: str) -> Path:
     path = Path(value).expanduser()
     return path.resolve() if path.is_absolute() else (project / path).resolve()
@@ -278,7 +282,7 @@ def assemble_variant(manifest: dict[str, Any], project: Path, variant: dict[str,
         "ffmpeg", "-y", "-hide_banner", "-loglevel", "error", *inputs,
         "-filter_complex", ";".join(filters), "-map", "[outv]", "-map", "[outa]",
         "-t", str(total_duration), "-c:v", "libx264", "-preset", "medium", "-crf", "18",
-        "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", str(output),
+        *output_audio_args(), "-movflags", "+faststart", str(output),
     ]
     result = subprocess.run(command, capture_output=True, text=True)
     if result.returncode:

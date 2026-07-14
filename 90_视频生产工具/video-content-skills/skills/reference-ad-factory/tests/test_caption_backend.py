@@ -33,6 +33,12 @@ class CaptionBackendTest(unittest.TestCase):
             self.assertEqual(alpha.getpixel((0, 0)), 0)
             self.assertGreater(alpha.getbbox()[3] - alpha.getbbox()[1], 100)
 
+    def test_output_audio_is_explicitly_48khz(self) -> None:
+        self.assertEqual(
+            MODULE.output_audio_args(),
+            ["-c:a", "aac", "-b:a", "192k", "-ar", "48000"],
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
