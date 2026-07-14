@@ -168,6 +168,47 @@ def output_audio_args() -> list[str]:
     return ["-c:a", "aac", "-b:a", "192k", "-ar", "48000"]
 
 
+def scene_voice_filter(input_index: int, duration: float) -> str:
+    return (
+        f"[{input_index}:a]loudnorm=I=-16:TP=-1.5:LRA=11,"
+        "aresample=48000,aformat=sample_fmts=fltp:sample_rates=48000:channel_layouts=stereo,"
+        f"apad,atrim=duration={duration},asetpts=PTS-STARTPTS"
+    )
+
+
+def validate_production_contract(manifest: dict[str, Any]) -> dict[str, int]:
+    visual_policy = manifest.get("visual_policy", {})
+    audio_policy = manifest.get("audio_policy", {})
+    if visual_policy.get("reuse_existing_clips") is not False:
+        raise ValueError("visual policy must disable existing clip reuse")
+    if visual_policy.get("unique_asset_per_scene") is not True:
+        raise ValueError("visual policy must require one unique asset per scene")
+    if audio_policy.get("voice_speed_mode") != "natural":
+        raise ValueError("voice speed mode must be natural")
+    if audio_policy.get("caption_source") != "spoken_text":
+        raise ValueError("caption source must be spoken_text")
+
+    required_path = visual_policy.get("required_path_fragment", "")
+    assets = manifest.get("assets", {})
+    used_assets: set[str] = set()
+    scene_voice_assets = 0
+    for variant in manifest.get("variants", []):
+        for scene in variant.get("scenes", []):
+            asset_id = scene.get("asset")
+            if asset_id in used_assets:
+                raise ValueError(f"visual asset reused: {asset_id}")
+            used_assets.add(asset_id)
+            asset_path = assets.get(asset_id, "")
+            if required_path and required_path not in asset_path:
+                raise ValueError(f"visual asset outside required generation root: {asset_path}")
+            if scene.get("caption", "").strip() != scene.get("spoken_text", "").strip():
+                raise ValueError(f"caption must equal spoken_text: {variant.get('variant_id')} {asset_id}")
+            if not scene.get("voiceover_path"):
+                raise ValueError(f"scene voiceover_path required: {variant.get('variant_id')} {asset_id}")
+            scene_voice_assets += 1
+    return {"scene_voice_assets": scene_voice_assets, "unique_visual_assets": len(used_assets)}
+
+
 def resolve(project: Path, value: str) -> Path:
     path = Path(value).expanduser()
     return path.resolve() if path.is_absolute() else (project / path).resolve()
@@ -186,17 +227,24 @@ def validate(
         voice = variant.get("voiceover_path")
         if voice and not resolve(project, voice).is_file():
             missing_voices.append(voice)
+        for scene in variant.get("scenes", []):
+            scene_voice = scene.get("voiceover_path")
+            if scene_voice and not resolve(project, scene_voice).is_file():
+                missing_voices.append(scene_voice)
     if missing_visuals and not allow_missing_visuals:
         raise SystemExit(f"Missing visual assets: {missing_visuals}")
     if missing_voices and not allow_missing_voice:
         raise SystemExit(f"Missing voice assets: {missing_voices}")
-    return {
+    summary = {
         "variants": len(manifest["variants"]),
         "shared_assets": len(assets),
         "missing_voice_assets": missing_voices,
         "missing_visual_assets": missing_visuals,
         "durations": {item["variant_id"]: item["duration_seconds"] for item in manifest["variants"]},
     }
+    if "visual_policy" in manifest or "audio_policy" in manifest:
+        summary.update(validate_production_contract(manifest))
+    return summary
 
 
 def assemble_variant(manifest: dict[str, Any], project: Path, variant: dict[str, Any], force: bool) -> dict[str, Any]:
@@ -230,6 +278,11 @@ def assemble_variant(manifest: dict[str, Any], project: Path, variant: dict[str,
             overlay_index = input_count
             inputs.extend(["-loop", "1", "-framerate", str(fps), "-i", str(overlay_path)])
             input_count += 1
+        scene_voice_index: int | None = None
+        if scene.get("voiceover_path"):
+            scene_voice_index = input_count
+            inputs.extend(["-i", str(resolve(project, scene["voiceover_path"]))])
+            input_count += 1
         start = float(scene.get("source_start_seconds", 0))
         duration = float(scene["duration_seconds"])
         filters.append(
@@ -244,7 +297,9 @@ def assemble_variant(manifest: dict[str, Any], project: Path, variant: dict[str,
             )
         else:
             filters.append(f"[rawv{index}]null[v{index}]")
-        if scene.get("use_source_audio") and has_audio(clip):
+        if scene_voice_index is not None:
+            filters.append(f"{scene_voice_filter(scene_voice_index, duration)}[a{index}]")
+        elif scene.get("use_source_audio") and has_audio(clip):
             filters.append(
                 f"[{clip_index}:a]atrim=start={start}:duration={duration},asetpts=PTS-STARTPTS,"
                 f"aresample=48000,aformat=sample_fmts=fltp:sample_rates=48000:channel_layouts=stereo,"
