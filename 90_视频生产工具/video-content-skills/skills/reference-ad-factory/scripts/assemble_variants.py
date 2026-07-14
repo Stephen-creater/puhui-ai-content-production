@@ -220,6 +220,10 @@ def validate(
     missing_visuals: list[str] = []
     missing_voices: list[str] = []
     voice_headroom_seconds: list[float] = []
+    spoken_wpm_values: list[float] = []
+    audio_policy = manifest.get("audio_policy", {})
+    minimum_wpm = audio_policy.get("min_spoken_wpm")
+    maximum_wpm = audio_policy.get("max_spoken_wpm")
     assets = manifest["assets"]
     for value in assets.values():
         if not resolve(project, value).is_file():
@@ -245,6 +249,18 @@ def validate(
                             f"voice={voice_duration:.3f}s scene={scene_duration:.3f}s"
                         )
                     voice_headroom_seconds.append(headroom)
+                    word_count = len(scene.get("spoken_text", "").split())
+                    spoken_wpm = word_count * 60 / voice_duration
+                    if (
+                        (minimum_wpm is not None and spoken_wpm < float(minimum_wpm))
+                        or (maximum_wpm is not None and spoken_wpm > float(maximum_wpm))
+                    ):
+                        raise ValueError(
+                            "spoken rate outside policy: "
+                            f"{variant.get('variant_id')} {scene.get('scene_id', scene.get('asset'))} "
+                            f"wpm={spoken_wpm:.1f} allowed={minimum_wpm}-{maximum_wpm}"
+                        )
+                    spoken_wpm_values.append(spoken_wpm)
     if missing_visuals and not allow_missing_visuals:
         raise SystemExit(f"Missing visual assets: {missing_visuals}")
     if missing_voices and not allow_missing_voice:
@@ -257,6 +273,10 @@ def validate(
         "durations": {item["variant_id"]: item["duration_seconds"] for item in manifest["variants"]},
         "minimum_scene_voice_headroom_seconds": (
             round(min(voice_headroom_seconds), 3) if voice_headroom_seconds else None
+        ),
+        "spoken_wpm_range": (
+            [round(min(spoken_wpm_values), 1), round(max(spoken_wpm_values), 1)]
+            if spoken_wpm_values else None
         ),
     }
     if "visual_policy" in manifest or "audio_policy" in manifest:

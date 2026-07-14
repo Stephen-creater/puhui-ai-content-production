@@ -83,7 +83,16 @@ python3 "$PRODUCER/scripts/verify_project.py" \
   --project "$PROJECT/03_generation/phase2-v2-unique"
 ```
 
-Review motion in every clip. Reject reversed order, detached tape and film, impossible hand movement, identity changes, frozen output or unintended speech. Retry only failed clips.
+Review motion in every clip. Reject reversed order, detached tape and film, impossible hand movement, identity changes, frozen output or unintended speech. Retry only failed clips. For example:
+
+```bash
+python3 "$PRODUCER/scripts/run_pipeline.py" \
+  --project "$PROJECT/03_generation/phase2-v2-unique" \
+  --execute --cost-authorized --force \
+  --task v01-s02 --task v01-s03 --max-workers 2 --retries 1
+```
+
+`--force` applies only to the explicitly selected tasks when `--task` is present.
 
 ### 7. Preview, assemble and verify
 

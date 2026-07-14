@@ -57,6 +57,18 @@ class VariantSpecificScenesTest(unittest.TestCase):
     def test_reports_duration_for_every_variant(self) -> None:
         self.assertEqual(MODULE.expected_variant_durations(PROJECT), {"variant-01": 4, "variant-02": 5})
 
+    def test_filters_paid_work_to_explicit_retry_tasks(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            tasks = MODULE.planned_tasks(PROJECT, Path(directory), True)
+        selected = MODULE.filter_tasks(tasks, ["v02-s01"])
+        self.assertEqual([(item["variant"], item["scene"]) for item in selected], [(2, 1)])
+
+    def test_rejects_unknown_retry_task(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            tasks = MODULE.planned_tasks(PROJECT, Path(directory), True)
+        with self.assertRaisesRegex(ValueError, "unknown task selector"):
+            MODULE.filter_tasks(tasks, ["v09-s09"])
+
 
 if __name__ == "__main__":
     unittest.main()

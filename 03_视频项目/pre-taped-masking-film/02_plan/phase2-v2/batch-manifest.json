@@ -16,7 +16,9 @@
     "caption_source": "spoken_text",
     "voice": "Alex (alex)",
     "provider": "elevenlabs",
-    "model": "eleven_v3"
+    "model": "eleven_v3",
+    "min_spoken_wpm": 155,
+    "max_spoken_wpm": 260
   },
   "assets": {
     "v01-s01": "03_generation/phase2-v2-unique/clips/variant-01/scene-01.mp4",

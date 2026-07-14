@@ -27,6 +27,8 @@ def valid_manifest() -> dict:
         "audio_policy": {
             "voice_speed_mode": "natural",
             "caption_source": "spoken_text",
+            "min_spoken_wpm": 150,
+            "max_spoken_wpm": 260,
         },
         "assets": {
             "v01-s01": "03_generation/phase2-v2-unique/clips/variant-01/scene-01.mp4",
@@ -103,6 +105,20 @@ class NaturalVoiceUniqueVisualsTest(unittest.TestCase):
                 voice.touch()
             with patch.object(MODULE, "probe_duration", return_value=4.2):
                 with self.assertRaisesRegex(ValueError, "voice exceeds scene window"):
+                    MODULE.validate(manifest, project, False, True)
+
+    def test_rejects_slow_generated_voice_before_assembly(self) -> None:
+        manifest = valid_manifest()
+        for scene in manifest["variants"][0]["scenes"]:
+            scene["duration_seconds"] = 12.0
+        with tempfile.TemporaryDirectory() as directory:
+            project = Path(directory)
+            for scene in manifest["variants"][0]["scenes"]:
+                voice = project / scene["voiceover_path"]
+                voice.parent.mkdir(parents=True, exist_ok=True)
+                voice.touch()
+            with patch.object(MODULE, "probe_duration", return_value=10.0):
+                with self.assertRaisesRegex(ValueError, "spoken rate outside policy"):
                     MODULE.validate(manifest, project, False, True)
 
 

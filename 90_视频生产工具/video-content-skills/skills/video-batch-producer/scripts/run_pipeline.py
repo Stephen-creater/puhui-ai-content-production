@@ -294,6 +294,21 @@ def planned_tasks(project: dict[str, Any], root: Path, force: bool) -> list[dict
     return tasks
 
 
+def task_key(task: dict[str, Any]) -> str:
+    return f"v{int(task['variant']):02d}-s{int(task['scene']):02d}"
+
+
+def filter_tasks(tasks: list[dict[str, Any]], selectors: list[str] | None) -> list[dict[str, Any]]:
+    if not selectors:
+        return tasks
+    requested = list(dict.fromkeys(selectors))
+    by_key = {task_key(task): task for task in tasks}
+    unknown = [value for value in requested if value not in by_key]
+    if unknown:
+        raise ValueError(f"unknown task selector: {', '.join(unknown)}")
+    return [by_key[value] for value in requested]
+
+
 def scenes_for_variant(project: dict[str, Any], variant: int) -> list[dict[str, Any]]:
     if "variant_scenes" not in project:
         return project["scenes"]
@@ -327,6 +342,10 @@ def main() -> int:
     parser.add_argument("--timeout", type=int, default=900)
     parser.add_argument("--retries", type=int, default=1)
     parser.add_argument("--cost-authorized", action="store_true", help="Confirm that the user authorized paid API calls")
+    parser.add_argument(
+        "--task", action="append", dest="tasks", metavar="vNN-sNN",
+        help="Limit preview or execution to one task; repeat for targeted retries",
+    )
     args = parser.parse_args()
 
     root = Path(args.project).expanduser().resolve()
@@ -344,7 +363,10 @@ def main() -> int:
                     resolved_references.append(str((root / value).resolve()))
             if resolved_references:
                 scene["reference_images"] = resolved_references
-    tasks = planned_tasks(project, root, args.force)
+    try:
+        tasks = filter_tasks(planned_tasks(project, root, args.force), args.tasks)
+    except ValueError as exc:
+        parser.error(str(exc))
     keyframes_needed = sum(task["needs_keyframe"] for task in tasks)
     clips_needed = 0 if args.keyframes_only else sum(task["needs_clip"] for task in tasks)
     generated_seconds = 0
@@ -373,6 +395,7 @@ def main() -> int:
         "native_audio_jobs": native_audio_jobs,
         "retry_ceiling_per_task": args.retries,
         "max_workers": args.max_workers,
+        "selected_tasks": [task_key(task) for task in tasks] if args.tasks else [],
         "pricing_status": "not_exposed_by_provider_model_catalog",
         "asset_bank": bool(project.get("asset_bank")),
         "final_videos": 0 if project.get("asset_bank") else project["variants"],
