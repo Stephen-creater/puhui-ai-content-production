@@ -1,0 +1,86 @@
+{
+  "variant_id": "variant-02",
+  "strategy": "efficiency",
+  "claim_fact_ids": [
+    "F1",
+    "F2",
+    "F3",
+    "F4",
+    "F5",
+    "F6",
+    "F7"
+  ],
+  "voiceover_start_seconds": 0,
+  "voiceover_target_seconds": 27.8,
+  "voiceover_text": "Mask the work area with fewer separate steps. Start by pressing the built-in yellow tape firmly along the cabinet edge. Once it is secure, pull the clear PE film down to cover the tile and countertop. Fix the far edge and tear by hand. The film catches paint and dust, then peels away with the mess, leaving far less cleanup after the job.",
+  "scenes": [
+    {
+      "asset": "hook-efficiency",
+      "duration_seconds": 3,
+      "title": "MASK FASTER",
+      "caption": "Fewer separate masking steps.",
+      "use_source_audio": false
+    },
+    {
+      "asset": "tape",
+      "duration_seconds": 4,
+      "title": "PRESS ONCE",
+      "caption": "Secure the built-in yellow tape first.",
+      "use_source_audio": false
+    },
+    {
+      "asset": "pull",
+      "duration_seconds": 4,
+      "title": "COVER MORE",
+      "caption": "Pull the clear film down smoothly.",
+      "use_source_audio": false
+    },
+    {
+      "asset": "tear",
+      "duration_seconds": 4.2,
+      "title": "NO SCISSORS",
+      "caption": "Fix the edge and tear by hand.",
+      "use_source_audio": false
+    },
+    {
+      "asset": "product",
+      "duration_seconds": 5,
+      "title": "ONE INTEGRATED ROLL",
+      "caption": "Tape and film stay connected.",
+      "use_source_audio": false
+    },
+    {
+      "asset": "paint",
+      "duration_seconds": 3.2,
+      "title": "KEEP WORK MOVING",
+      "caption": "Paint and dust collect on the film.",
+      "use_source_audio": false
+    },
+    {
+      "asset": "peel",
+      "duration_seconds": 4.4,
+      "title": "CLEAN UP FASTER",
+      "caption": "Peel away the dirty film.",
+      "use_source_audio": false
+    },
+    {
+      "asset": "presenter",
+      "duration_seconds": 8,
+      "title": "FASTER MASKING",
+      "caption": "Spend less time on cleanup.",
+      "use_source_audio": true
+    }
+  ],
+  "duration_seconds": 35.8,
+  "voiceover_path": "04_postproduction/phase2/voice/variant-02.mp3",
+  "verified_claims": {
+    "F1": "The transparent PE film and top yellow masking tape are permanently connected as one product.",
+    "F2": "Correct installation presses and secures the yellow tape before pulling the film down.",
+    "F3": "The transparent film can cover countertops, tile, furniture, and other renovation surfaces.",
+    "F4": "After the far edge is fixed and the film is tensioned, the film can be torn by hand without scissors.",
+    "F5": "During painting or sanding, paint and dust collect on the exposed film surface.",
+    "F6": "The product is removed from the tape edge with the dirty film and is intended not to damage the furniture finish or leave adhesive residue.",
+    "F7": "Removing the contaminated film reduces the cleanup work after the job."
+  },
+  "output": "05_deliverables/phase2/variant-02.mp4"
+}

@@ -121,7 +121,12 @@ def main() -> None:
     report_path = output_dir / "reference-analysis.json"
     contact_path = output_dir / "contact-sheet-auto.jpg"
     if not args.overwrite and (report_path.exists() or contact_path.exists()):
-        raise SystemExit("Analysis output already exists; pass --overwrite to replace it")
+        if report_path.is_file() and contact_path.is_file():
+            existing = json.loads(report_path.read_text(encoding="utf-8"))
+            if existing.get("source", {}).get("sha256") == sha256(source):
+                print(json.dumps({"status": "reused", "report": str(report_path)}, ensure_ascii=False))
+                return
+        raise SystemExit("Analysis output exists for different or incomplete input; pass --overwrite to replace it")
 
     raw_probe = probe(source)
     video = next((item for item in raw_probe.get("streams", []) if item.get("codec_type") == "video"), {})

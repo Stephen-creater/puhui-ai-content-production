@@ -1,0 +1,86 @@
+{
+  "variant_id": "variant-05",
+  "strategy": "before-after",
+  "claim_fact_ids": [
+    "F1",
+    "F2",
+    "F3",
+    "F4",
+    "F5",
+    "F6",
+    "F7"
+  ],
+  "voiceover_start_seconds": 0,
+  "voiceover_target_seconds": 27.8,
+  "voiceover_text": "Before masking, paint and sanding dust can reach the countertop and tile. After using pre-taped masking film, the mess leaves with the covering. Press the connected yellow tape first, then pull the clear PE film down. Fix the far edge and tear by hand. Work over the protected surface, then peel the film away to reveal the clean area underneath.",
+  "scenes": [
+    {
+      "asset": "hook-before-after",
+      "duration_seconds": 3,
+      "title": "MESS IN. CLEAN OUT.",
+      "caption": "See the surface before and after removal.",
+      "use_source_audio": false
+    },
+    {
+      "asset": "tape",
+      "duration_seconds": 4,
+      "title": "START WITH THE EDGE",
+      "caption": "Press the connected yellow tape first.",
+      "use_source_audio": false
+    },
+    {
+      "asset": "pull",
+      "duration_seconds": 4,
+      "title": "COVER THE SURFACE",
+      "caption": "Pull the clear PE film down.",
+      "use_source_audio": false
+    },
+    {
+      "asset": "tear",
+      "duration_seconds": 4.2,
+      "title": "LOCK THE COVERAGE",
+      "caption": "Fix the far edge and tear by hand.",
+      "use_source_audio": false
+    },
+    {
+      "asset": "paint",
+      "duration_seconds": 3.2,
+      "title": "BEFORE REMOVAL",
+      "caption": "Paint and dust sit on the film.",
+      "use_source_audio": false
+    },
+    {
+      "asset": "peel",
+      "duration_seconds": 4.4,
+      "title": "AFTER REMOVAL",
+      "caption": "Peel away the dirty covering.",
+      "use_source_audio": false
+    },
+    {
+      "asset": "product",
+      "duration_seconds": 5,
+      "title": "THE DIFFERENCE",
+      "caption": "Tape and film work as one.",
+      "use_source_audio": false
+    },
+    {
+      "asset": "presenter",
+      "duration_seconds": 8,
+      "title": "PROTECT. PEEL. DONE.",
+      "caption": "Try it on your next project.",
+      "use_source_audio": true
+    }
+  ],
+  "duration_seconds": 35.8,
+  "voiceover_path": "04_postproduction/phase2/voice/variant-05.mp3",
+  "verified_claims": {
+    "F1": "The transparent PE film and top yellow masking tape are permanently connected as one product.",
+    "F2": "Correct installation presses and secures the yellow tape before pulling the film down.",
+    "F3": "The transparent film can cover countertops, tile, furniture, and other renovation surfaces.",
+    "F4": "After the far edge is fixed and the film is tensioned, the film can be torn by hand without scissors.",
+    "F5": "During painting or sanding, paint and dust collect on the exposed film surface.",
+    "F6": "The product is removed from the tape edge with the dirty film and is intended not to damage the furniture finish or leave adhesive residue.",
+    "F7": "Removing the contaminated film reduces the cleanup work after the job."
+  },
+  "output": "05_deliverables/phase2/variant-05.mp4"
+}

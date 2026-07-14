@@ -87,7 +87,6 @@ def main() -> int:
         parser.error("script is empty")
 
     output = Path(args.output).expanduser().resolve()
-    output.mkdir(parents=True, exist_ok=True)
     manifest_path = output / "project.json"
     if manifest_path.exists():
         parser.error(f"project already exists: {manifest_path}")
@@ -112,11 +111,6 @@ def main() -> int:
         "fps": 24,
         "scenes": [build_scene(index + 1, text, args.scene_duration) for index, text in enumerate(units)],
     }
-    manifest_path.write_text(json.dumps(project, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-
-    for folder in ("keyframes", "clips", "output"):
-        (output / folder).mkdir(exist_ok=True)
-
     total_jobs = args.variants * len(project["scenes"])
     expected_duration = sum(scene["duration_seconds"] for scene in project["scenes"])
     if expected_duration < MIN_FINAL_DURATION:
@@ -124,6 +118,11 @@ def main() -> int:
             f"planned final duration is {expected_duration}s; minimum is {MIN_FINAL_DURATION}s. "
             "Increase scenes or scene-duration."
         )
+    output.mkdir(parents=True, exist_ok=True)
+    manifest_path.write_text(json.dumps(project, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    for folder in ("keyframes", "clips", "output"):
+        (output / folder).mkdir(exist_ok=True)
     summary = {
         "project": str(output),
         "scenes": len(project["scenes"]),

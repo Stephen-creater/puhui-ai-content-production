@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "asset_bank": true,
+  "script_source": "02_plan/phase2/variant-content.json",
+  "script": "Three reusable phase-2 differential hooks: efficiency, integrated product structure, and before-after removal proof.",
+  "variants": 1,
+  "aspect_ratio": "9:16",
+  "provider": "tokendance",
+  "image_model": "seedream-5.0-lite",
+  "video_model": "kling-3.0",
+  "video_protocol": "kling:image2video",
+  "video_resolution": "1080p",
+  "kling_mode": "pro",
+  "generate_audio": false,
+  "image_width": 1440,
+  "image_height": 2560,
+  "video_width": 1080,
+  "video_height": 1920,
+  "fps": 24,
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Mask faster with fewer separate steps.",
+      "duration_seconds": 3,
+      "generation_duration_seconds": 4,
+      "reference_images": [
+        "../../00_input/product_images/operation-reference-01.png",
+        "../../00_input/product_images/operation-reference-02.png",
+        "../visual-bank-v1/keyframes/variant-01/scene-01.png"
+      ],
+      "keyframe_prompt": "9:16 photorealistic commercial keyframe in the same modern kitchen. The same European-American professional painter in a gray T-shirt, navy work overalls, and clear safety glasses has already pressed the integrated yellow tape along the white cabinet edge. He is beginning one fast, controlled downward pull of the permanently connected clear PE film over the tile and countertop. Show the action ready to progress, realistic hands, clear product geometry, no text, no logo.",
+      "video_prompt": "The same painter completes one efficient continuous action: with the yellow tape already firmly secured, he pulls the connected clear PE film straight down and quickly covers the tile and countertop. Restrained downward camera follow, realistic film physics, professional pace, product remains integrated.",
+      "negative_prompt": "tape and film separated, tape not secured, blue tape, scissors, extra fingers, warped hands, unreadable text, logo, watermark, camera shake"
+    },
+    {
+      "id": 2,
+      "narration": "Yellow tape and clear film are one integrated roll.",
+      "duration_seconds": 3,
+      "generation_duration_seconds": 4,
+      "reference_images": [
+        "../../00_input/product_images/operation-reference-01.png",
+        "../../00_input/product_images/operation-reference-02.png",
+        "../visual-bank-v1/keyframes/variant-01/scene-01.png"
+      ],
+      "keyframe_prompt": "9:16 photorealistic product macro in the same kitchen. The same professional painter holds one white-core pre-taped masking film roll close to camera. His finger clearly traces the permanent seam where the yellow masking tape is joined to the folded transparent PE film. The yellow tape and clear film are visibly one inseparable product. Correct hands, crisp material detail, neutral commercial lighting, no text, no logo.",
+      "video_prompt": "Slow macro camera move across the integrated roll while the painter's index finger traces the permanent connection between yellow masking tape and folded clear PE film. The product stays rigid and unchanged; tape never separates from film. Natural restrained hand motion.",
+      "negative_prompt": "separate tape roll, tape detached from film, blue tape, opaque plastic, product deformation, extra fingers, text, logo, watermark"
+    },
+    {
+      "id": 3,
+      "narration": "The dirty covering peels away and reveals the clean surface.",
+      "duration_seconds": 3,
+      "generation_duration_seconds": 4,
+      "reference_images": [
+        "../../00_input/product_images/operation-reference-01.png",
+        "../../00_input/product_images/operation-reference-02.png",
+        "../visual-bank-v1/keyframes/variant-01/scene-01.png"
+      ],
+      "keyframe_prompt": "9:16 photorealistic before-after proof in the same modern kitchen. The same professional painter is halfway through peeling the integrated masking film from the yellow tape edge. One side still shows dirty transparent film carrying dry paint mist and sanding dust; the newly revealed gray countertop and tile on the other side are visibly clean. Yellow tape leaves together with the film. Realistic hands and material physics, no split-screen line, no text, no logo.",
+      "video_prompt": "In one continuous proof action, the painter peels the dirty integrated film sideways and inward. The dirty film and yellow tape leave together, progressively revealing the clean countertop and tile underneath. Stable medium close-up, realistic film folding, clear before-to-after transformation.",
+      "negative_prompt": "split-screen graphics, tape left behind, residue, damaged finish, dirt falling onto clean surface, separated tape and film, extra fingers, text, logo, watermark"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "ownership_authorized": true,
+  "reference_scope": "Use the customer-provided video as structural and pacing evidence, not as frames for the new deliverables.",
+  "target_audience": "English-speaking homeowners, painters, and renovation contractors",
+  "platform": "vertical short-video platforms",
+  "language": "en",
+  "aspect_ratio": "9:16",
+  "variant_count": 5,
+  "deadline": "phase-2 validation run",
+  "cost_authority": "User authorized paid generation for this controlled phase-2 test; reuse approved assets and minimize paid delta jobs.",
+  "voice": "Alex / ElevenLabs eleven_v3",
+  "duration_policy": {
+    "minimum_seconds": 20,
+    "recommended_maximum_seconds": 60
+  }
+}

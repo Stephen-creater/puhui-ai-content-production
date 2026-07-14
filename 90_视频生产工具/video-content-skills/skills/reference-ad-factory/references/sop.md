@@ -22,6 +22,8 @@ Record product structure, correct operation, applications, supported claims, for
 
 Assign each variant a declared hook strategy and controlled changes. Lock invariants. Generate complete narration, dialogue, top claims, captions, shot durations, keyframe prompts, video prompts, negative prompts, and reference assignments.
 
+Compile authored content with `compile_variants.py` before any paid call. Treat a successful compile as the handoff from editorial planning to deterministic production.
+
 ### 5. Cost gate
 
 Show keyframe count, video job count, model, resolution, generated duration, native-audio jobs, retry ceiling, and assets already reusable. Obtain approval unless the user has already authorized cost.

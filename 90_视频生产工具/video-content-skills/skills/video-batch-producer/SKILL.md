@@ -48,7 +48,7 @@ Turn a finished script into batch short-video outputs. Keep the workflow agent-n
    ```bash
    python3 scripts/run_pipeline.py \
      --project /absolute/path/work/project-name \
-     --execute --keyframes-only --max-workers 1
+     --execute --cost-authorized --keyframes-only --max-workers 1
    ```
 
    Inspect every keyframe. Do not submit video jobs until product structure, character
@@ -61,7 +61,7 @@ Turn a finished script into batch short-video outputs. Keep the workflow agent-n
    ```bash
    python3 scripts/run_pipeline.py \
      --project /absolute/path/work/project-name \
-     --execute \
+     --execute --cost-authorized \
      --max-workers 2
    ```
 
@@ -72,6 +72,11 @@ Turn a finished script into batch short-video outputs. Keep the workflow agent-n
    ```
 
 8. Open representative keyframes and final videos for visual review. Machine verification is not proof of semantic or visual quality.
+
+For a shared hook, CTA, or reusable shot bank rather than a standalone final video,
+set `"asset_bank": true` in `project.json`. The runner generates and verifies the
+individual clips but skips final concatenation and the 20-second final-video rule.
+Only use asset-bank mode when another manifest explicitly consumes those clips.
 
 ## Output contract
 

@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "product_name": "Pre-taped Masking Film",
+  "verified_facts": [
+    {"id": "F1", "statement": "The transparent PE film and top yellow masking tape are permanently connected as one product."},
+    {"id": "F2", "statement": "Correct installation presses and secures the yellow tape before pulling the film down."},
+    {"id": "F3", "statement": "The transparent film can cover countertops, tile, furniture, and other renovation surfaces."},
+    {"id": "F4", "statement": "After the far edge is fixed and the film is tensioned, the film can be torn by hand without scissors."},
+    {"id": "F5", "statement": "During painting or sanding, paint and dust collect on the exposed film surface."},
+    {"id": "F6", "statement": "The product is removed from the tape edge with the dirty film and is intended not to damage the furniture finish or leave adhesive residue."},
+    {"id": "F7", "statement": "Removing the contaminated film reduces the cleanup work after the job."}
+  ],
+  "correct_operation_order": ["press_yellow_tape", "pull_clear_film_down", "fix_far_edge", "tear_by_hand", "paint_or_sand", "peel_and_collect"],
+  "visual_invariants": [
+    "yellow tape and transparent film remain connected",
+    "yellow tape is pressed before the film is pulled",
+    "no scissors appear",
+    "the same professional painter and workwear remain recognizable"
+  ],
+  "prohibited_phrases": ["100% guaranteed", "works on every surface", "zero risk", "completely waterproof", "industrial certification"],
+  "delivery": {"width": 1080, "height": 1920, "fps": 24, "audio_sample_rate": 48000}
+}

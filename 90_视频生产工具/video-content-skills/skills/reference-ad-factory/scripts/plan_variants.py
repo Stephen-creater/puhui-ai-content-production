@@ -51,6 +51,7 @@ def main() -> None:
     parser.add_argument("--template-dna", type=Path)
     parser.add_argument("--duration-target", type=float)
     parser.add_argument("--force", action="store_true")
+    parser.add_argument("--dry-run", action="store_true", help="Print the plan without writing production-plan.json")
     args = parser.parse_args()
 
     project = args.project.expanduser().resolve()
@@ -69,7 +70,7 @@ def main() -> None:
         print("Warning: target duration exceeds the recommended 60-second maximum")
 
     output = project / "02_plan/production-plan.json"
-    if output.exists() and not args.force:
+    if output.exists() and not args.force and not args.dry_run:
         raise SystemExit(f"Production plan already exists: {output}; pass --force to replace it")
 
     variants = []
@@ -119,8 +120,11 @@ def main() -> None:
         ],
         "batch_quality_gate": "Every variant must have a declared editorial difference and pass the same product truth checks",
     }
-    output.write_text(json.dumps(plan, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(output)
+    if args.dry_run:
+        print(json.dumps(plan, ensure_ascii=False, indent=2))
+    else:
+        output.write_text(json.dumps(plan, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        print(output)
 
 
 if __name__ == "__main__":

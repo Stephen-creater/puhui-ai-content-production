@@ -43,12 +43,32 @@ The script copies inputs into a standard local project. Heavy media remains igno
    ```
 
 5. Write a finished script and shot plan for every variant. Vary the declared strategy; do not rely on model randomness as the only difference.
+   Store the authored content in `02_plan/phase2/variant-content.json`, then compile and validate it:
+
+   ```bash
+   python3 scripts/compile_variants.py \
+     --project /absolute/path/project \
+     --check-only
+   python3 scripts/compile_variants.py \
+     --project /absolute/path/project
+   ```
+
+   Compilation rejects missing intake authority, unknown product fact IDs, prohibited phrases, unknown assets, strategy mismatches, and final durations outside 20–60 seconds.
 6. Use `video-batch-producer` to generate keyframes first. Review product geometry, identity, hands, action order, and claim accuracy before paid video generation.
 7. Generate B-roll and presenter shots. Use one consistent voiceover for B-roll; use native model dialogue only for visible speaking shots.
 8. Finish captions, top claims, audio, timing, loudness, and delivery encoding with deterministic post-production.
+
+   ```bash
+   python3 scripts/assemble_variants.py \
+     --manifest /absolute/path/project/02_plan/phase2/batch-manifest.json \
+     --dry-run
+   python3 scripts/assemble_variants.py \
+     --manifest /absolute/path/project/02_plan/phase2/batch-manifest.json
+   ```
 9. Apply [references/quality-gates.md](references/quality-gates.md). Retry only failed assets and retain successful generations.
 
 Read [references/sop.md](references/sop.md) for the complete stage contract. Read [references/variant-strategy.md](references/variant-strategy.md) before producing more than one variant.
+Give a cold-start agent or human operator [references/operator-runbook.md](references/operator-runbook.md) for exact commands and stop conditions.
 
 ## Non-negotiable rules
 

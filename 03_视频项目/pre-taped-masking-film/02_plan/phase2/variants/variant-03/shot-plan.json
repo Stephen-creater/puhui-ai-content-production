@@ -1,0 +1,86 @@
+{
+  "variant_id": "variant-03",
+  "strategy": "product-structure",
+  "claim_fact_ids": [
+    "F1",
+    "F2",
+    "F3",
+    "F4",
+    "F5",
+    "F6",
+    "F7"
+  ],
+  "voiceover_start_seconds": 0,
+  "voiceover_target_seconds": 27.8,
+  "voiceover_text": "One roll does two jobs. The yellow masking tape and clear PE film are permanently connected, so the product stays together while you work. Press the yellow tape along the cabinet edge first. Then pull the film down, cover the surface, fix the far edge, and tear by hand. Paint and dust land on the film, and the dirty covering peels away when the job is done.",
+  "scenes": [
+    {
+      "asset": "hook-structure",
+      "duration_seconds": 3,
+      "title": "TWO PARTS. ONE ROLL.",
+      "caption": "Yellow tape permanently joined to clear film.",
+      "use_source_audio": false
+    },
+    {
+      "asset": "product",
+      "duration_seconds": 5,
+      "title": "INTEGRATED DESIGN",
+      "caption": "The tape and film stay connected.",
+      "use_source_audio": false
+    },
+    {
+      "asset": "tape",
+      "duration_seconds": 4,
+      "title": "TAPE FIRST",
+      "caption": "Press the yellow edge firmly.",
+      "use_source_audio": false
+    },
+    {
+      "asset": "pull",
+      "duration_seconds": 4,
+      "title": "FILM SECOND",
+      "caption": "Pull the clear PE film down.",
+      "use_source_audio": false
+    },
+    {
+      "asset": "tear",
+      "duration_seconds": 4.2,
+      "title": "HAND TEAR",
+      "caption": "Fix the far edge and tear by hand.",
+      "use_source_audio": false
+    },
+    {
+      "asset": "paint",
+      "duration_seconds": 3.2,
+      "title": "SURFACE BARRIER",
+      "caption": "Paint and dust collect on the film.",
+      "use_source_audio": false
+    },
+    {
+      "asset": "peel",
+      "duration_seconds": 4.4,
+      "title": "REMOVE TOGETHER",
+      "caption": "Tape, film, and mess come away together.",
+      "use_source_audio": false
+    },
+    {
+      "asset": "presenter",
+      "duration_seconds": 8,
+      "title": "ONE SMARTER ROLL",
+      "caption": "Try the integrated masking system.",
+      "use_source_audio": true
+    }
+  ],
+  "duration_seconds": 35.8,
+  "voiceover_path": "04_postproduction/phase2/voice/variant-03.mp3",
+  "verified_claims": {
+    "F1": "The transparent PE film and top yellow masking tape are permanently connected as one product.",
+    "F2": "Correct installation presses and secures the yellow tape before pulling the film down.",
+    "F3": "The transparent film can cover countertops, tile, furniture, and other renovation surfaces.",
+    "F4": "After the far edge is fixed and the film is tensioned, the film can be torn by hand without scissors.",
+    "F5": "During painting or sanding, paint and dust collect on the exposed film surface.",
+    "F6": "The product is removed from the tape edge with the dirty film and is intended not to damage the furniture finish or leave adhesive residue.",
+    "F7": "Removing the contaminated film reduces the cleanup work after the job."
+  },
+  "output": "05_deliverables/phase2/variant-03.mp4"
+}

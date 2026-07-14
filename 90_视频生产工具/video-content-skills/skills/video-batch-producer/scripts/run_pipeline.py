@@ -77,12 +77,13 @@ def dimensions(project: dict[str, Any]) -> tuple[int, int, int, int]:
     )
 
 
-def task_paths(root: Path, variant: int, scene: int) -> tuple[Path, Path]:
+def task_paths(root: Path, variant: int, scene: int, create: bool = False) -> tuple[Path, Path]:
     variant_name = f"variant-{variant:02d}"
     keyframe = root / "keyframes" / variant_name / f"scene-{scene:02d}.png"
     clip = root / "clips" / variant_name / f"scene-{scene:02d}.mp4"
-    keyframe.parent.mkdir(parents=True, exist_ok=True)
-    clip.parent.mkdir(parents=True, exist_ok=True)
+    if create:
+        keyframe.parent.mkdir(parents=True, exist_ok=True)
+        clip.parent.mkdir(parents=True, exist_ok=True)
     return keyframe, clip
 
 
@@ -229,6 +230,7 @@ def concat_variant(project: dict[str, Any], root: Path, variant: int, force: boo
     output = root / "output" / f"variant-{variant:02d}.mp4"
     if output.exists() and not force:
         return output
+    output.parent.mkdir(parents=True, exist_ok=True)
     clips = [task_paths(root, variant, scene["id"])[1] for scene in project["scenes"]]
     missing = [str(path) for path in clips if not path.exists()]
     if missing:
@@ -300,6 +302,7 @@ def main() -> int:
     parser.add_argument("--max-workers", type=int, default=2)
     parser.add_argument("--timeout", type=int, default=900)
     parser.add_argument("--retries", type=int, default=1)
+    parser.add_argument("--cost-authorized", action="store_true", help="Confirm that the user authorized paid API calls")
     args = parser.parse_args()
 
     root = Path(args.project).expanduser().resolve()
@@ -307,20 +310,59 @@ def main() -> int:
     if not project_path.is_file():
         parser.error(f"missing {project_path}")
     project = load_json(project_path)
+    for scene in project.get("scenes", []):
+        resolved_references = []
+        for value in scene.get("reference_images", []):
+            if value.startswith(("http://", "https://", "data:")) or Path(value).is_absolute():
+                resolved_references.append(value)
+            else:
+                resolved_references.append(str((root / value).resolve()))
+        if resolved_references:
+            scene["reference_images"] = resolved_references
     tasks = planned_tasks(project, root, args.force)
+    scenes = {int(scene["id"]): scene for scene in project["scenes"]}
+    keyframes_needed = sum(task["needs_keyframe"] for task in tasks)
+    clips_needed = 0 if args.keyframes_only else sum(task["needs_clip"] for task in tasks)
+    generated_seconds = 0
+    native_audio_jobs = 0
+    for task in tasks:
+        if not task["needs_clip"] or args.keyframes_only:
+            continue
+        scene = scenes[task["scene"]]
+        generated_seconds += int(scene.get("generation_duration_seconds", scene["duration_seconds"]))
+        audio_setting = scene.get("generate_audio", project.get("generate_audio", False))
+        if audio_setting is True or str(audio_setting).lower() in {"1", "true", "on", "yes"}:
+            native_audio_jobs += 1
     summary = {
         "mode": "execute" if args.execute else "dry-run",
         "project": str(root),
         "image_model": project["image_model"],
         "video_model": project["video_model"],
-        "keyframes_to_generate": sum(task["needs_keyframe"] for task in tasks),
-        "video_jobs_to_generate": 0 if args.keyframes_only else sum(task["needs_clip"] for task in tasks),
-        "final_videos": project["variants"],
+        "image_dimensions": f"{project['image_width']}x{project['image_height']}",
+        "video_resolution": project.get("video_resolution", "720p"),
+        "video_dimensions": f"{project['video_width']}x{project['video_height']}",
+        "keyframes_to_generate": keyframes_needed,
+        "keyframes_reused": len(tasks) - keyframes_needed,
+        "video_jobs_to_generate": clips_needed,
+        "video_clips_reused": len(tasks) - clips_needed,
+        "paid_video_seconds_to_generate": generated_seconds,
+        "native_audio_jobs": native_audio_jobs,
+        "retry_ceiling_per_task": args.retries,
+        "max_workers": args.max_workers,
+        "pricing_status": "not_exposed_by_provider_model_catalog",
+        "asset_bank": bool(project.get("asset_bank")),
+        "final_videos": 0 if project.get("asset_bank") else project["variants"],
         "expected_duration_seconds": sum(scene["duration_seconds"] for scene in project["scenes"]),
     }
     print(json.dumps(summary, ensure_ascii=False, indent=2))
     if not args.execute:
         return 0
+    if not args.cost_authorized:
+        print(json.dumps({
+            "status": "authorization_required",
+            "error": "Paid generation requires --cost-authorized after user approval",
+        }, ensure_ascii=False), file=sys.stderr)
+        return 2
     if args.max_workers < 1:
         parser.error("max-workers must be positive")
     try:
@@ -330,11 +372,12 @@ def main() -> int:
         return 2
     status_path = root / "status.json"
     status = load_json(status_path) if status_path.exists() else {"schema_version": 1, "tasks": {}, "costs": []}
-    scenes = {int(scene["id"]): scene for scene in project["scenes"]}
 
     def run_task(task: dict[str, Any]) -> dict[str, Any]:
         keyframe = Path(task["keyframe"])
         clip = Path(task["clip"])
+        keyframe.parent.mkdir(parents=True, exist_ok=True)
+        clip.parent.mkdir(parents=True, exist_ok=True)
         scene = scenes[task["scene"]]
         attempts = args.retries + 1
         last_error = None
@@ -379,6 +422,18 @@ def main() -> int:
 
     if args.keyframes_only:
         print(json.dumps({"status": "keyframes_completed", "project": str(root)}, ensure_ascii=False, indent=2))
+        return 0
+
+    if project.get("asset_bank"):
+        outputs = [
+            str(task_paths(root, variant, int(scene["id"]))[1])
+            for variant in range(1, int(project["variants"]) + 1)
+            for scene in project["scenes"]
+        ]
+        status["outputs"] = outputs
+        status["updated_at"] = utc_now()
+        save_json(status_path, status)
+        print(json.dumps({"status": "asset_bank_completed", "outputs": outputs}, ensure_ascii=False, indent=2))
         return 0
 
     outputs = [str(concat_variant(project, root, variant, args.force)) for variant in range(1, project["variants"] + 1)]
