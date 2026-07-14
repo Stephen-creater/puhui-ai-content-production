@@ -1,6 +1,6 @@
 # Pre-taped Masking Film 基准项目
 
-这是参考成片驱动的产品短视频基准项目。v2 为当前质量基线：35.83 秒、1080×1920、Alex 英文旁白，结尾使用 Kling 3.0 原生人物口播。
+这是参考成片驱动的产品短视频基准项目。v2 是单条质量基线；Phase 2 已在同一参考片上稳定产出 5 条受控变体。每条 35.8 秒、1080×1920、Alex 英文旁白，分别采用清洁成本、施工效率、产品结构、专业推荐和前后对比钩子。
 
 ## 阅读顺序
 
@@ -18,11 +18,19 @@
 - 参考片拆解：`01_analysis/reference-01/reference-breakdown.md`
 - 产品事实：`02_plan/product-brief.md`
 - 模板 DNA：`02_plan/template-dna.json`
-- 五种批量变体计划：`02_plan/production-plan.json`
+- Phase 2 输入与产品事实：`02_plan/intake.json`、`02_plan/product-brief.json`
+- 五种受控变体源内容：`02_plan/phase2/variant-content.json`
+- 可执行批次清单：`02_plan/phase2/batch-manifest.json`
+- 五条脚本与镜头表：`02_plan/phase2/variants/`
 - v2 脚本：`02_plan/master-script-v2.md`
 - 后期合成：`04_postproduction/assemble_v2.sh`
 - v2 验收：`06_reports/v2-verify-report.json`
 - v2 成片：`05_deliverables/v2/pre-taped-film-ad-v2-final.mp4`
+- Phase 2 成片：`05_deliverables/phase2/variant-01.mp4` 至 `variant-05.mp4`
+- Phase 2 验收：`06_reports/phase2-verify-report.json`
+- Phase 2 性能记录：`06_reports/phase2-performance-report.json`
+- 无上下文冷启动审计：`06_reports/phase2-cold-start-audit.md`
+- 人工/AI 操作手册：`../../90_视频生产工具/video-content-skills/skills/reference-ad-factory/references/operator-runbook.md`
 
 ## 边界
 

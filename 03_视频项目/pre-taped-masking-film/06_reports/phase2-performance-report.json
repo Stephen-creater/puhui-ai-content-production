@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "measured_at": "2026-07-14",
+  "result": {
+    "final_videos": 5,
+    "seconds_per_video": 35.8,
+    "total_deliverable_seconds": 179.0
+  },
+  "cold_start_findings": {
+    "reference_analysis_cache_seconds": 0.03,
+    "producer_preview_seconds_range": [0.04, 0.08],
+    "ffprobe_seconds": 0.04,
+    "main_bottleneck": "external video model queue and generation"
+  },
+  "paid_generation_budget": {
+    "new_keyframes": 3,
+    "new_video_jobs": 3,
+    "paid_video_seconds": 12,
+    "full_voice_jobs": 5,
+    "native_audio_video_jobs": 0,
+    "reused_visual_assets": 7,
+    "naive_video_jobs_without_reuse": 40,
+    "video_jobs_avoided": 37,
+    "provider_catalog_exposed_price": false
+  },
+  "observed_timing": {
+    "three_keyframes_wall_seconds_approx": 52,
+    "keyframe_provider_completion_span_seconds": 44.3,
+    "three_kling_clips_wall_minutes_approx": "4-5",
+    "video_provider_completion_span_seconds": 138.3,
+    "five_alex_voiceovers_wall_seconds_approx": 10,
+    "five_video_sequential_assembly_seconds": 97.88,
+    "clean_repeat_total_minutes_estimate": "6.5-8.0",
+    "note": "Voice generation ran in parallel with Kling. Human visual review and the one-time FFmpeg compatibility debugging are excluded from the clean-repeat estimate."
+  },
+  "repeatability_improvements_from_this_run": [
+    "Reference analysis reuses matching SHA-256 results.",
+    "Dry-run is read-only and reports paid seconds, retries, resolution, and reused assets.",
+    "Execution requires an explicit cost-authorization flag.",
+    "Product facts, prohibited phrases, duration, strategies, and asset IDs are compiler-validated.",
+    "Captions fall back to transparent PNG overlays when FFmpeg has no libass filter.",
+    "Deliverable AAC output is explicitly locked to 48 kHz.",
+    "Large audio and video binaries remain local and are excluded from Git."
+  ]
+}

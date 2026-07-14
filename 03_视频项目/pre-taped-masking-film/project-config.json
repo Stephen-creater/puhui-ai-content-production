@@ -19,5 +19,5 @@
     "track": ["plans", "scripts", "keyframes", "reports", "skills"],
     "local_only": ["videos", "audio", "presentations", "provider_metadata", "credentials"]
   },
-  "status": "v2_baseline_verified"
+  "status": "phase2_five_variants_verified"
 }
