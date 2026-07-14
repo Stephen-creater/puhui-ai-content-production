@@ -3,39 +3,39 @@
   "results": [
     {
       "variant_id": "variant-01",
-      "output": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/05_deliverables/phase2/variant-01.mp4",
+      "output": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/05_deliverables/phase2-v2/variant-01.mp4",
       "status": "assembled",
-      "duration_seconds": 35.8,
-      "wall_seconds": 18.904
+      "duration_seconds": 21.5,
+      "wall_seconds": 12.387
     },
     {
       "variant_id": "variant-02",
-      "output": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/05_deliverables/phase2/variant-02.mp4",
+      "output": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/05_deliverables/phase2-v2/variant-02.mp4",
       "status": "assembled",
-      "duration_seconds": 35.8,
-      "wall_seconds": 18.378
+      "duration_seconds": 21.5,
+      "wall_seconds": 12.232
     },
     {
       "variant_id": "variant-03",
-      "output": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/05_deliverables/phase2/variant-03.mp4",
+      "output": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/05_deliverables/phase2-v2/variant-03.mp4",
       "status": "assembled",
-      "duration_seconds": 35.8,
-      "wall_seconds": 20.245
+      "duration_seconds": 20.625,
+      "wall_seconds": 13.692
     },
     {
       "variant_id": "variant-04",
-      "output": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/05_deliverables/phase2/variant-04.mp4",
+      "output": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/05_deliverables/phase2-v2/variant-04.mp4",
       "status": "assembled",
-      "duration_seconds": 35.8,
-      "wall_seconds": 19.597
+      "duration_seconds": 20.0,
+      "wall_seconds": 12.172
     },
     {
       "variant_id": "variant-05",
-      "output": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/05_deliverables/phase2/variant-05.mp4",
+      "output": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/05_deliverables/phase2-v2/variant-05.mp4",
       "status": "assembled",
-      "duration_seconds": 35.8,
-      "wall_seconds": 20.756
+      "duration_seconds": 21.0,
+      "wall_seconds": 12.512
     }
   ],
-  "total_wall_seconds": 97.88
+  "total_wall_seconds": 62.995
 }

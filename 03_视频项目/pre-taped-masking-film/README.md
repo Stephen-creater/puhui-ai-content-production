@@ -1,6 +1,6 @@
 # Pre-taped Masking Film 基准项目
 
-这是参考成片驱动的产品短视频基准项目。v2 是单条质量基线；Phase 2 已在同一参考片上稳定产出 5 条受控变体。每条 35.8 秒、1080×1920、Alex 英文旁白，分别采用清洁成本、施工效率、产品结构、专业推荐和前后对比钩子。
+这是参考成片驱动的产品短视频基准项目。单条 v2 是质量基线；Phase 2 v2 已在同一参考片上产出 5 条独立视觉的受控变体。成片为 20–21.5 秒、1080×1920、逐镜 Alex 英文旁白，分别采用清洁成本、施工效率、产品结构、专业推荐和前后对比钩子。
 
 ## 阅读顺序
 
@@ -21,12 +21,15 @@
 - Phase 2 输入与产品事实：`02_plan/intake.json`、`02_plan/product-brief.json`
 - 五种受控变体源内容：`02_plan/phase2/variant-content.json`
 - 可执行批次清单：`02_plan/phase2/batch-manifest.json`
+- Phase 2 v2 独立视觉清单：`02_plan/phase2-v2/batch-manifest.json`
 - 五条脚本与镜头表：`02_plan/phase2/variants/`
 - v2 脚本：`02_plan/master-script-v2.md`
 - 后期合成：`04_postproduction/assemble_v2.sh`
 - v2 验收：`06_reports/v2-verify-report.json`
 - v2 成片：`05_deliverables/v2/pre-taped-film-ad-v2-final.mp4`
 - Phase 2 成片：`05_deliverables/phase2/variant-01.mp4` 至 `variant-05.mp4`
+- Phase 2 v2 成片：`05_deliverables/phase2-v2/variant-01.mp4` 至 `variant-05.mp4`
+- Phase 2 v2 零 API 收尾报告：`06_reports/phase2-v2-zero-api-final-report.md`
 - Phase 2 验收：`06_reports/phase2-verify-report.json`
 - Phase 2 性能记录：`06_reports/phase2-performance-report.json`
 - 无上下文冷启动审计：`06_reports/phase2-cold-start-audit.md`

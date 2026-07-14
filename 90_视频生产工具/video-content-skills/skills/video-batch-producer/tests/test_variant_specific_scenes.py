@@ -69,6 +69,28 @@ class VariantSpecificScenesTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "unknown task selector"):
             MODULE.filter_tasks(tasks, ["v09-s09"])
 
+    def test_clip_only_retry_preserves_approved_keyframe(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            keyframe, clip = MODULE.task_paths(root, 1, 1, create=True)
+            keyframe.touch()
+            clip.touch()
+            tasks = MODULE.planned_tasks(PROJECT, root, False, force_clips=True)
+        task = tasks[0]
+        self.assertFalse(task["needs_keyframe"])
+        self.assertTrue(task["needs_clip"])
+
+    def test_paid_caps_require_numeric_ceiling_for_each_nonzero_stage(self) -> None:
+        with self.assertRaisesRegex(ValueError, "--max-video-jobs"):
+            MODULE.validate_paid_caps(0, 2, 10, 0, None, 10)
+
+    def test_paid_caps_reject_over_budget_plan(self) -> None:
+        with self.assertRaisesRegex(ValueError, "exceeds --max-paid-video-seconds=9"):
+            MODULE.validate_paid_caps(1, 2, 10, 1, 2, 9)
+
+    def test_paid_caps_accept_exact_authorized_delta(self) -> None:
+        MODULE.validate_paid_caps(1, 2, 10, 1, 2, 10)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -48,7 +48,8 @@ Turn a finished script into batch short-video outputs. Keep the workflow agent-n
    ```bash
    python3 scripts/run_pipeline.py \
      --project /absolute/path/work/project-name \
-     --execute --cost-authorized --keyframes-only --max-workers 1
+     --execute --cost-authorized --keyframes-only \
+     --max-image-jobs 8 --max-workers 1
    ```
 
    Inspect every keyframe. Do not submit video jobs until product structure, character
@@ -62,6 +63,7 @@ Turn a finished script into batch short-video outputs. Keep the workflow agent-n
    python3 scripts/run_pipeline.py \
      --project /absolute/path/work/project-name \
      --execute --cost-authorized \
+     --max-image-jobs 0 --max-video-jobs 8 --max-paid-video-seconds 40 \
      --max-workers 2
    ```
 
@@ -92,7 +94,7 @@ project-name/
 └── verify-report.json
 ```
 
-Never delete successful generations during retry. Re-running with `--execute` resumes missing assets only. Use `--force` only when the user explicitly wants to pay to regenerate existing assets.
+Never delete successful generations during retry. Re-running with `--execute` resumes missing assets only. Use repeated `--task vNN-sNN` selectors with `--force-clips` to regenerate only rejected clips while preserving approved keyframes. Use `--force-keyframes --keyframes-only` for rejected first frames. Use `--force` only when the user explicitly wants to pay to regenerate both stages.
 
 ## Provider and model selection
 
@@ -121,6 +123,8 @@ voiceover track in post for B-roll when cross-scene voice continuity matters.
 
 - Never print or store API keys in the project.
 - Treat API generation as paid and network-mutating.
+- Every paid invocation requires numeric ceilings for each nonzero stage: `--max-image-jobs`, `--max-video-jobs`, and `--max-paid-video-seconds`. Copy the exact dry-run counts; the runner refuses missing or exceeded caps before loading the API key.
+- Authorization applies to one reviewed delta only. Dry-run again and obtain renewed approval before expanding task selectors, retry count, model, resolution, or generated seconds.
 - Send only prompts and generated keyframes to TokenDance and its routed model provider.
 - Use only assets the user owns or is permitted to process.
 - Reject misleading product claims, unauthorized face/voice cloning, and copyrighted source reuse without permission.

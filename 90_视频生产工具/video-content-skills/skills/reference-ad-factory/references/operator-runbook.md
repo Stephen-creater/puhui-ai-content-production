@@ -67,7 +67,8 @@ Record new images, new video jobs, generated seconds, resolution, native-audio j
 ```bash
 python3 "$PRODUCER/scripts/run_pipeline.py" \
   --project "$PROJECT/03_generation/phase2-v2-unique" \
-  --execute --cost-authorized --keyframes-only --max-workers 4 --retries 1
+  --execute --cost-authorized --keyframes-only \
+  --max-image-jobs 25 --max-workers 4 --retries 1
 ```
 
 Review all keyframes. Reject wrong integrated-product geometry, wrong action order, identity drift, bad hands, unsupported claims, embedded text or cross-variant visual reuse. Move only rejected files aside, strengthen their prompts and rerun without `--force`; this regenerates only missing assets.
@@ -77,7 +78,9 @@ Review all keyframes. Reject wrong integrated-product geometry, wrong action ord
 ```bash
 python3 "$PRODUCER/scripts/run_pipeline.py" \
   --project "$PROJECT/03_generation/phase2-v2-unique" \
-  --execute --cost-authorized --max-workers 4 --retries 1
+  --execute --cost-authorized \
+  --max-image-jobs 0 --max-video-jobs 25 --max-paid-video-seconds 125 \
+  --max-workers 4 --retries 1
 
 python3 "$PRODUCER/scripts/verify_project.py" \
   --project "$PROJECT/03_generation/phase2-v2-unique"
@@ -88,11 +91,13 @@ Review motion in every clip. Reject reversed order, detached tape and film, impo
 ```bash
 python3 "$PRODUCER/scripts/run_pipeline.py" \
   --project "$PROJECT/03_generation/phase2-v2-unique" \
-  --execute --cost-authorized --force \
-  --task v01-s02 --task v01-s03 --max-workers 2 --retries 1
+  --execute --cost-authorized --force-clips \
+  --task v01-s02 --task v01-s03 \
+  --max-image-jobs 0 --max-video-jobs 2 --max-paid-video-seconds 10 \
+  --max-workers 2 --retries 1
 ```
 
-`--force` applies only to the explicitly selected tasks when `--task` is present.
+`--force-clips` preserves approved keyframes and regenerates only the explicitly selected clips. Use `--force-keyframes --keyframes-only` when only selected first frames need replacement; use `--force` only when both stages must be replaced.
 
 ### 7. Preview, assemble and verify
 
@@ -116,6 +121,8 @@ Verify all five outputs with ffprobe and human playback. Required release checks
 ## Failure and resume policy
 
 - Rerun without `--force` to resume only missing paid assets.
+- Treat every authorization as single-use for the reviewed dry-run delta. Re-preview and renew approval whenever task count, generated seconds, retry ceiling, model or resolution changes.
+- Copy the dry-run numbers into the hard caps. Paid execution is blocked before API-key loading when a required cap is absent or too low.
 - Keep successful generations; move rejected outputs into a local review folder instead of deleting the evidence.
 - After two text-only failures on product geometry or identity, change the visual anchor/reference strategy before another paid retry.
 - Stop on missing authority, unsupported claims, unknown assets, product-order contradictions or a failed release check.

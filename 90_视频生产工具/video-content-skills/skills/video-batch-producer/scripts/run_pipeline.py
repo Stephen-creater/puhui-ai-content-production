@@ -278,7 +278,10 @@ def concat_variant(project: dict[str, Any], root: Path, variant: int, force: boo
     return output
 
 
-def planned_tasks(project: dict[str, Any], root: Path, force: bool) -> list[dict[str, Any]]:
+def planned_tasks(
+    project: dict[str, Any], root: Path, force: bool,
+    force_clips: bool = False, force_keyframes: bool = False,
+) -> list[dict[str, Any]]:
     tasks: list[dict[str, Any]] = []
     for variant in range(1, int(project["variants"]) + 1):
         for scene in scenes_for_variant(project, variant):
@@ -288,8 +291,8 @@ def planned_tasks(project: dict[str, Any], root: Path, force: bool) -> list[dict
                 "scene": int(scene["id"]),
                 "keyframe": str(keyframe),
                 "clip": str(clip),
-                "needs_keyframe": force or not keyframe.exists(),
-                "needs_clip": force or not clip.exists(),
+                "needs_keyframe": force or force_keyframes or not keyframe.exists(),
+                "needs_clip": force or force_clips or not clip.exists(),
             })
     return tasks
 
@@ -332,16 +335,44 @@ def expected_variant_durations(project: dict[str, Any]) -> dict[str, float]:
     }
 
 
+def validate_paid_caps(
+    keyframes_needed: int,
+    clips_needed: int,
+    generated_seconds: int,
+    max_image_jobs: int | None,
+    max_video_jobs: int | None,
+    max_paid_video_seconds: int | None,
+) -> None:
+    """Refuse paid work unless explicit numeric ceilings cover the exact delta."""
+    checks = (
+        ("image jobs", keyframes_needed, max_image_jobs, "--max-image-jobs"),
+        ("video jobs", clips_needed, max_video_jobs, "--max-video-jobs"),
+        ("paid video seconds", generated_seconds, max_paid_video_seconds, "--max-paid-video-seconds"),
+    )
+    for label, required, limit, flag in checks:
+        if limit is not None and limit < 0:
+            raise ValueError(f"{flag} cannot be negative")
+        if required > 0 and limit is None:
+            raise ValueError(f"paid execution requires {flag}; exact {label} planned: {required}")
+        if limit is not None and required > limit:
+            raise ValueError(f"planned {label} {required} exceeds {flag}={limit}")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--project", required=True, help="Project directory containing project.json")
     parser.add_argument("--execute", action="store_true", help="Call paid APIs and write outputs")
     parser.add_argument("--keyframes-only", action="store_true", help="Generate missing keyframes, then stop before video jobs")
     parser.add_argument("--force", action="store_true", help="Regenerate existing paid assets")
+    parser.add_argument("--force-clips", action="store_true", help="Regenerate selected clips while preserving keyframes")
+    parser.add_argument("--force-keyframes", action="store_true", help="Regenerate selected keyframes while preserving clips")
     parser.add_argument("--max-workers", type=int, default=2)
     parser.add_argument("--timeout", type=int, default=900)
     parser.add_argument("--retries", type=int, default=1)
     parser.add_argument("--cost-authorized", action="store_true", help="Confirm that the user authorized paid API calls")
+    parser.add_argument("--max-image-jobs", type=int, help="Hard ceiling for paid image jobs in this invocation")
+    parser.add_argument("--max-video-jobs", type=int, help="Hard ceiling for paid video jobs in this invocation")
+    parser.add_argument("--max-paid-video-seconds", type=int, help="Hard ceiling for paid video seconds in this invocation")
     parser.add_argument(
         "--task", action="append", dest="tasks", metavar="vNN-sNN",
         help="Limit preview or execution to one task; repeat for targeted retries",
@@ -363,8 +394,13 @@ def main() -> int:
                     resolved_references.append(str((root / value).resolve()))
             if resolved_references:
                 scene["reference_images"] = resolved_references
+    if args.force and (args.force_clips or args.force_keyframes):
+        parser.error("--force cannot be combined with --force-clips or --force-keyframes")
     try:
-        tasks = filter_tasks(planned_tasks(project, root, args.force), args.tasks)
+        tasks = filter_tasks(
+            planned_tasks(project, root, args.force, args.force_clips, args.force_keyframes),
+            args.tasks,
+        )
     except ValueError as exc:
         parser.error(str(exc))
     keyframes_needed = sum(task["needs_keyframe"] for task in tasks)
@@ -392,6 +428,11 @@ def main() -> int:
         "video_jobs_to_generate": clips_needed,
         "video_clips_reused": len(tasks) - clips_needed,
         "paid_video_seconds_to_generate": generated_seconds,
+        "paid_caps": {
+            "max_image_jobs": args.max_image_jobs,
+            "max_video_jobs": args.max_video_jobs,
+            "max_paid_video_seconds": args.max_paid_video_seconds,
+        },
         "native_audio_jobs": native_audio_jobs,
         "retry_ceiling_per_task": args.retries,
         "max_workers": args.max_workers,
@@ -409,6 +450,18 @@ def main() -> int:
             "status": "authorization_required",
             "error": "Paid generation requires --cost-authorized after user approval",
         }, ensure_ascii=False), file=sys.stderr)
+        return 2
+    try:
+        validate_paid_caps(
+            keyframes_needed,
+            clips_needed,
+            generated_seconds,
+            args.max_image_jobs,
+            args.max_video_jobs,
+            args.max_paid_video_seconds,
+        )
+    except ValueError as exc:
+        print(json.dumps({"status": "cost_cap_required", "error": str(exc)}, ensure_ascii=False), file=sys.stderr)
         return 2
     if args.max_workers < 1:
         parser.error("max-workers must be positive")

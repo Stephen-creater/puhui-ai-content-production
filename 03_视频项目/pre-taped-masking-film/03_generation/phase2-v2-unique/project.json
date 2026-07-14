@@ -42,15 +42,15 @@
         },
         {
           "id": 2,
-          "narration": "Keep the clear film folded and press the built-in yellow tape firmly first.",
-          "duration_seconds": 4.7,
+          "narration": "Press the built-in yellow tape firmly along the edge before pulling the film down.",
+          "duration_seconds": 4.9,
           "generation_duration_seconds": 5,
           "reference_images": [
             "../../00_input/product_images/operation-reference-01.png",
             "../../00_input/product_images/operation-reference-02.png"
           ],
           "keyframe_prompt": "Tight side-angle hand close-up under white kitchen wall cabinets. The same bearded painter keeps the transparent PE film folded against the roll while his thumb presses the permanently attached yellow masking tape from left to right along the cabinet underside. The yellow tape is visibly connected to the clear film. Photorealistic hands, sharp product detail, no text.",
-          "video_prompt": "His thumb moves firmly along the yellow tape and seals it to the cabinet edge while the clear film remains folded and does not drop yet. One continuous left-to-right action, tight controlled camera slide, realistic fingers and adhesive contact.",
+          "video_prompt": "One thumb moves left to right and presses the yellow tape firmly against the cabinet edge. The roll and connected clear film stay fixed in place throughout; no pulling, unfolding, peeling, detaching or reversing. One continuous press-only action, tight controlled camera slide.",
           "negative_prompt": "yellow tape separated from clear film, separate tape roll, blue tape, tape applied after film, scissors, knife, incorrect hands, extra fingers, warped face, product deformation, opaque film, text, logo, watermark, split screen, camera shake"
         },
         {
@@ -62,8 +62,8 @@
             "../../00_input/product_images/operation-reference-01.png",
             "../../00_input/product_images/operation-reference-02.png"
           ],
-          "keyframe_prompt": "Medium low-angle shot in the same white kitchen. The yellow tape is already fully secured beneath the cabinet. The same painter grips the connected transparent film with both hands and begins pulling it downward across the tiled backsplash toward the dark counter. Clear separation between fixed yellow top edge and descending clear film, no text.",
-          "video_prompt": "With the yellow tape already fixed, the painter pulls the connected clear PE film straight down in one smooth fast motion until it covers the tiled backsplash and countertop. Camera follows downward, realistic transparent material and tension.",
+          "keyframe_prompt": "Medium low-angle shot in the same white kitchen. The yellow tape is already fully secured beneath the cabinet. Only a narrow ten-centimeter accordion-folded strip of the connected transparent film is visible directly below the yellow edge; the backsplash and dark counter are still uncovered. The same painter grips the bottom of that compact fold with both hands at the exact start of a downward pull. No loose film on the counter, no text.",
+          "video_prompt": "Starting from the compact folded strip directly under the already fixed yellow tape, both hands pull the connected clear PE film only downward in one smooth motion until it covers the tiled backsplash and reaches the countertop. Never move upward, roll up, retract, peel or detach the yellow edge. Camera follows downward.",
           "negative_prompt": "yellow tape separated from clear film, separate tape roll, blue tape, tape applied after film, scissors, knife, incorrect hands, extra fingers, warped face, product deformation, opaque film, text, logo, watermark, split screen, camera shake"
         },
         {
@@ -82,7 +82,7 @@
         {
           "id": 5,
           "narration": "Peel the dirty covering away, and the cleanup leaves with the film.",
-          "duration_seconds": 3.7,
+          "duration_seconds": 3.5,
           "generation_duration_seconds": 5,
           "reference_images": [
             "../../00_input/product_images/operation-reference-01.png",
@@ -127,7 +127,7 @@
         },
         {
           "id": 3,
-          "narration": "Press the tape once, then pull the film down in one smooth motion.",
+          "narration": "Press the yellow tape firmly before pulling the connected film down.",
           "duration_seconds": 3.9,
           "generation_duration_seconds": 5,
           "reference_images": [
@@ -135,12 +135,12 @@
             "../../00_input/product_images/operation-reference-02.png"
           ],
           "keyframe_prompt": "Oblique medium shot along a built-in sideboard edge in the open-plan apartment. The same dark-haired painter has already pressed the yellow tape along the top edge; one hand finishes the last press while the other holds the clear film ready to descend. Yellow tape is secure before film movement. No text.",
-          "video_prompt": "He completes the final firm press on the yellow strip, releases that hand, then immediately pulls the connected clear film downward in one smooth efficient motion. Single continuous action, lateral camera track, correct order clearly visible.",
+          "video_prompt": "His open palm slides once from left to right and presses the yellow strip firmly against the edge. The roll and connected film remain fixed; no peeling, detaching, lifting or pulling away. One press-only action with a restrained lateral camera track.",
           "negative_prompt": "yellow tape separated from clear film, separate tape roll, blue tape, tape applied after film, scissors, knife, incorrect hands, extra fingers, warped face, product deformation, opaque film, text, logo, watermark, split screen, camera shake"
         },
         {
           "id": 4,
-          "narration": "Stretch it, fix the far edge, and tear the material cleanly by hand.",
+          "narration": "At the far edge, tear the material cleanly by hand.",
           "duration_seconds": 4.4,
           "generation_duration_seconds": 5,
           "reference_images": [
@@ -148,7 +148,7 @@
             "../../00_input/product_images/operation-reference-02.png"
           ],
           "keyframe_prompt": "Low side view at the far end of the apartment sideboard. The connected transparent film is taut across the protected surface. The same painter anchors the yellow edge at the far side and grips the film roll to tear it by hand, with no scissors or knife present. Realistic tension and hands, no text.",
-          "video_prompt": "The painter stretches the film taut, presses the far yellow edge, then makes one clean hand tear along the roll. The material separates at the tear while tape and film remain integrated on the installed section. Quick practical motion.",
+          "video_prompt": "The installed transparent covering stays taut and fixed. The painter makes one short decisive downward hand tear exactly at the roll edge; the loose roll separates while yellow tape and clear film remain integrated on the installed section. No peeling from the cabinet, no extra setup actions.",
           "negative_prompt": "yellow tape separated from clear film, separate tape roll, blue tape, tape applied after film, scissors, knife, incorrect hands, extra fingers, warped face, product deformation, opaque film, text, logo, watermark, split screen, camera shake"
         },
         {
@@ -181,7 +181,7 @@
             "../../00_input/product_images/operation-reference-02.png"
           ],
           "keyframe_prompt": "Extreme macro product photograph on a clean workshop bench. A salt-and-pepper European-American painter, age 42, dark green work jacket and clear safety glasses holds a white-core pre-taped masking film roll under focused neutral light. Yellow masking tape and folded transparent PE film are both visible as one integrated system. No face-dominant framing, no text.",
-          "video_prompt": "A slow macro orbit reveals the white core, yellow tape and folded transparent PE film as one continuous product. The painter rotates the roll gently; nothing separates or deforms.",
+          "video_prompt": "The product and both hands remain almost still while the camera makes a slow macro push-in along the permanently bonded yellow-tape-to-clear-film seam. No rotation, unrolling, pulling, loose strips, separation or deformation.",
           "negative_prompt": "yellow tape separated from clear film, separate tape roll, blue tape, tape applied after film, scissors, knife, incorrect hands, extra fingers, warped face, product deformation, opaque film, text, logo, watermark, split screen, camera shake"
         },
         {
@@ -199,7 +199,7 @@
         },
         {
           "id": 3,
-          "narration": "Keep the film folded and secure the yellow edge before unfolding anything.",
+          "narration": "Secure the yellow edge firmly before unfolding the connected clear film.",
           "duration_seconds": 4.3,
           "generation_duration_seconds": 5,
           "reference_images": [
@@ -207,7 +207,7 @@
             "../../00_input/product_images/operation-reference-02.png"
           ],
           "keyframe_prompt": "Oblique close-up in a blue-gray kitchenette. The same expert holds exactly one integrated pre-taped masking-film roll against the floating shelf. The folded transparent film remains visibly attached immediately beneath the yellow strip while his other hand presses that same yellow strip firmly under the shelf. One continuous bonded product from roll to yellow tape to clear film; no loose packet, no separate film sheet, no separate tape roll. Product seam fully visible, no text.",
-          "video_prompt": "Over the painter's shoulder, both thumbs press the yellow strip firmly across the floating shelf edge. The clear film remains folded throughout the shot. Slow deliberate professional action, correct order.",
+          "video_prompt": "Both thumbs move steadily along the yellow strip and press it firmly against the floating shelf edge. The roll and connected clear film stay fixed; no unfolding, pulling, peeling, lifting or detaching. One slow press-only action.",
           "negative_prompt": "yellow tape separated from clear film, separate tape roll, blue tape, tape applied after film, scissors, knife, incorrect hands, extra fingers, warped face, product deformation, opaque film, text, logo, watermark, split screen, camera shake"
         },
         {
@@ -253,7 +253,7 @@
             "../../00_input/product_images/operation-reference-02.png"
           ],
           "keyframe_prompt": "Documentary-style medium shot in a townhouse renovation with unpainted built-in shelving. A Black American professional painter, age 38, navy work jacket, gray trousers and clear safety glasses stands beside the shelving and presents one integrated pre-taped masking film roll toward camera. Confident but natural, no on-screen text, mouth closed because narration is off-camera.",
-          "video_prompt": "The painter lifts the integrated roll toward camera, points once to the yellow edge, then turns toward the shelving to begin work. Natural documentary camera step-in, no visible speaking.",
+          "video_prompt": "The painter holds the integrated roll almost still at chest height and points once to the bonded yellow edge while the camera makes a slow documentary push-in. No rotation, no thrust toward camera, no product deformation, no visible speaking.",
           "negative_prompt": "yellow tape separated from clear film, separate tape roll, blue tape, tape applied after film, scissors, knife, incorrect hands, extra fingers, warped face, product deformation, opaque film, text, logo, watermark, split screen, camera shake"
         },
         {
@@ -284,15 +284,15 @@
         },
         {
           "id": 4,
-          "narration": "I fix the far edge, tear by hand, and start spraying.",
+          "narration": "I fix the far edge and tear the film cleanly by hand.",
           "duration_seconds": 3.9,
           "generation_duration_seconds": 5,
           "reference_images": [
             "../../00_input/product_images/operation-reference-01.png",
             "../../00_input/product_images/operation-reference-02.png"
           ],
-          "keyframe_prompt": "Wide profile shot of the townhouse shelving fully protected by transparent film with yellow top and side edges. The same painter finishes a hand tear at the far edge while a spray gun rests safely on a nearby stand. No scissors, no text.",
-          "video_prompt": "He anchors the far edge, tears the film cleanly by hand, sets the roll aside, then picks up the spray gun. One concise professional sequence, fixed profile camera.",
+          "keyframe_prompt": "Tight profile close-up at the far edge of the townhouse shelving. The installed transparent covering is taut and fixed with yellow tape along the cabinet edge. The same Black painter grips the attached roll with one hand and pinches the material at the roll edge with the other, at the exact start of a clean hand tear. No spray gun, no scissors, no loose covering, no text.",
+          "video_prompt": "The installed covering remains fixed and taut while the painter makes one short decisive hand tear at the roll edge. The loose roll separates cleanly; the installed yellow tape and transparent film remain together on the cabinet. No peeling off the shelving, no spraying, no extra action.",
           "negative_prompt": "yellow tape separated from clear film, separate tape roll, blue tape, tape applied after film, scissors, knife, incorrect hands, extra fingers, warped face, product deformation, opaque film, text, logo, watermark, split screen, camera shake"
         },
         {
@@ -350,8 +350,8 @@
             "../../00_input/product_images/operation-reference-01.png",
             "../../00_input/product_images/operation-reference-02.png"
           ],
-          "keyframe_prompt": "Diagonal wide shot across the bathroom vanity. The yellow edge is already secured. The same painter pulls transparent PE film downward to cover the tiled wall, counter and faucet area while keeping the film clear of the floor. No text.",
-          "video_prompt": "He pulls the connected film down after the tape is secured, spreading it across tile, counter and fixtures in a single controlled drop. Camera pans diagonally with the coverage.",
+          "keyframe_prompt": "Diagonal wide shot across the bathroom vanity. The continuous yellow tape edge is already fully secured and untouched beneath the upper cabinets. Only a compact folded band of the connected transparent film hangs directly below it. The same painter's hands grip the lower clear-film fold well below the yellow edge at the exact start of a downward pull; no hand touches the tape. Tile, counter and faucet are still uncovered, no text.",
+          "video_prompt": "Both hands stay well below the fixed yellow edge and pull only the connected transparent film downward over tile, counter and faucet in one controlled drop. The yellow tape remains perfectly fixed and untouched for the entire shot. No peeling, lifting, detaching, sideways pull or upward motion. Camera follows downward.",
           "negative_prompt": "yellow tape separated from clear film, separate tape roll, blue tape, tape applied after film, scissors, knife, incorrect hands, extra fingers, warped face, product deformation, opaque film, text, logo, watermark, split screen, camera shake"
         },
         {

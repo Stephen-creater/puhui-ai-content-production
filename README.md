@@ -17,7 +17,7 @@
 - 成片时长不少于 20 秒，通常不超过 60 秒，具体由脚本信息量与自然节奏决定。
 - 使用 agent-native Skill 和项目清单驱动生产，不依赖可视化拖拽工作流。
 - 标准 Skill 链路为 `reference-video-analyzer` → `reference-ad-factory` → `video-batch-producer`。
-- 产品演示片采用高密度 B-roll、统一旁白、同步字幕与真人原生口播 CTA。
+- 产品演示片采用高密度 B-roll、逐镜自然语速旁白和同源同步字幕；只有明确设计的出镜口播镜头才使用原生对白。
 - 优先使用“参考成片 → 模板 DNA → 产品改写 → 受控变体”的生产模式。
 - 一体式 Pre-taped Masking Film 必须保持黄色美纹胶与透明 PE 膜永久连接，并严格先贴胶、后拉膜。
 
