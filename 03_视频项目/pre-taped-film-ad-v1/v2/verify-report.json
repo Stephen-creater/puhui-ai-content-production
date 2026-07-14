@@ -1,0 +1,33 @@
+{
+  "output": "output/pre-taped-film-ad-v2-final.mp4",
+  "ok": true,
+  "duration_seconds": 35.833333,
+  "duration_policy": {
+    "minimum_seconds": 20,
+    "recommended_maximum_seconds": 60,
+    "status": "within_recommended_range"
+  },
+  "video": {
+    "codec": "h264",
+    "width": 1080,
+    "height": 1920,
+    "fps": 24
+  },
+  "audio": {
+    "codec": "aac",
+    "sample_rate": 48000,
+    "channels": 2,
+    "integrated_loudness_lufs": -16.5,
+    "true_peak_dbfs": -1.5,
+    "voiceover": "Alex / ElevenLabs eleven_v3",
+    "presenter_dialogue": "Kling 3.0 native audio"
+  },
+  "checks": {
+    "full_transcript_present": true,
+    "captions_within_safe_area": true,
+    "presenter_mouth_motion_visible": true,
+    "product_is_integrated_tape_and_film": true,
+    "yellow_tape_applied_before_film_pull": true,
+    "contact_sheet_reviewed": true
+  }
+}

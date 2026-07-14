@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "script": "产品亮相。展示核心卖点。呈现使用场景。品牌收尾。",
+  "variants": 2,
+  "aspect_ratio": "9:16",
+  "provider": "tokendance",
+  "image_model": "seedream-5.0-lite",
+  "video_model": "seedance-2.0-mini",
+  "video_protocol": "seedance:generations",
+  "video_resolution": "720p",
+  "image_width": 1440,
+  "image_height": 2560,
+  "video_width": 720,
+  "video_height": 1280,
+  "fps": 24,
+  "scenes": []
+}

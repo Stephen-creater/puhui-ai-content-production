@@ -1,0 +1,42 @@
+{
+  "project": "/Users/a1-6/Downloads/浦汇未来/work/mvp-smoke",
+  "ok": true,
+  "outputs": [
+    {
+      "variant": 1,
+      "path": "/Users/a1-6/Downloads/浦汇未来/work/mvp-smoke/output/variant-01.mp4",
+      "exists": true,
+      "ok": true,
+      "duration": 20.0,
+      "size_bytes": 42809,
+      "video": {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 1080,
+        "height": 1920,
+        "r_frame_rate": "24/1"
+      },
+      "dimensions_match": true,
+      "duration_plausible": true
+    },
+    {
+      "variant": 2,
+      "path": "/Users/a1-6/Downloads/浦汇未来/work/mvp-smoke/output/variant-02.mp4",
+      "exists": true,
+      "ok": true,
+      "duration": 20.0,
+      "size_bytes": 42896,
+      "video": {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 1080,
+        "height": 1920,
+        "r_frame_rate": "24/1"
+      },
+      "dimensions_match": true,
+      "duration_plausible": true
+    }
+  ]
+}

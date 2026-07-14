@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-07-14T07:14:48.728573+00:00",
+  "script_source": "inline",
+  "script": "测试。",
+  "variants": 1,
+  "aspect_ratio": "9:16",
+  "provider": "tokendance",
+  "image_model": "seedream-5.0-lite",
+  "video_model": "kling-3.0",
+  "video_protocol": "kling:image2video",
+  "video_resolution": "1080p",
+  "image_width": 1440,
+  "image_height": 2560,
+  "video_width": 1080,
+  "video_height": 1920,
+  "fps": 24,
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "测试。",
+      "duration_seconds": 5,
+      "keyframe_prompt": "Vertical cinematic advertising keyframe, one coherent scene, realistic lighting, clear subject, no embedded text, no watermark. Story beat: 测试。",
+      "video_prompt": "Animate this keyframe into a polished short advertising shot. Preserve subject identity, product geometry, colors, and background continuity. Use one restrained camera movement and natural motion. Story beat: 测试。",
+      "negative_prompt": "distorted product, extra limbs, warped hands, unreadable text, watermark, flicker, jump cut"
+    }
+  ]
+}

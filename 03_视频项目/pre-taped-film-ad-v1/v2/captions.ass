@@ -1,0 +1,31 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+ScaledBorderAndShadow: yes
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Title,Arial,70,&H0000D8FF,&H0000D8FF,&H00141414,&H88000000,-1,0,0,0,100,100,0,0,1,6,2,8,70,70,135,1
+Style: Caption,Arial,50,&H00FFFFFF,&H00FFFFFF,&H00141414,&H88000000,-1,0,0,0,100,100,0,0,1,5,2,2,72,72,145,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:03.00,Title,,0,0,0,,SKIP THE CLEANUP
+Dialogue: 0,0:00:00.00,0:00:03.00,Caption,,0,0,0,,Painting or sanding?\NSkip hours of cleanup.
+Dialogue: 0,0:00:03.00,0:00:08.00,Title,,0,0,0,,TAPE + FILM IN ONE
+Dialogue: 0,0:00:03.00,0:00:08.00,Caption,,0,0,0,,Pre-taped masking film combines yellow tape\Nand clear PE film in one roll.
+Dialogue: 0,0:00:08.00,0:00:12.00,Title,,0,0,0,,TAPE FIRST
+Dialogue: 0,0:00:08.00,0:00:12.00,Caption,,0,0,0,,First, press the yellow tape firmly\Nalong the cabinet edge.
+Dialogue: 0,0:00:12.00,0:00:16.00,Title,,0,0,0,,PULL DOWN TO COVER
+Dialogue: 0,0:00:12.00,0:00:16.00,Caption,,0,0,0,,Then pull the film down smoothly\Nto cover the tile and countertop.
+Dialogue: 0,0:00:16.00,0:00:20.20,Title,,0,0,0,,TEAR BY HAND
+Dialogue: 0,0:00:16.00,0:00:20.20,Caption,,0,0,0,,Fix the far edge, pull tight, and tear it by hand.\NNo scissors.
+Dialogue: 0,0:00:20.20,0:00:23.40,Title,,0,0,0,,PAINT STAYS ON FILM
+Dialogue: 0,0:00:20.20,0:00:23.40,Caption,,0,0,0,,Paint and dust stay on the film,\Nnot on your furniture.
+Dialogue: 0,0:00:23.40,0:00:27.80,Title,,0,0,0,,PEEL CLEAN
+Dialogue: 0,0:00:23.40,0:00:27.80,Caption,,0,0,0,,Peel it away. No damage, no sticky residue,\Nand no cleanup.
+Dialogue: 0,0:00:27.80,0:00:35.80,Title,,0,0,0,,FASTER MASKING. LESS CLEANUP.
+Dialogue: 0,0:00:27.80,0:00:35.80,Caption,,0,0,0,,One roll, faster masking, and far less cleanup.\NTry pre-taped masking film on your next project.
+

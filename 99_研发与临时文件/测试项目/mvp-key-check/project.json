@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-07-14T06:06:49.672735+00:00",
+  "script_source": "inline",
+  "script": "产品出现。展示卖点。",
+  "variants": 1,
+  "aspect_ratio": "9:16",
+  "image_model": "black-forest-labs/FLUX.1-schnell",
+  "video_model": "kwaivgI/kling-2.1-standard",
+  "image_width": 768,
+  "image_height": 1344,
+  "video_width": 1080,
+  "video_height": 1920,
+  "fps": 24,
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "产品出现。",
+      "duration_seconds": 5,
+      "keyframe_prompt": "Vertical cinematic advertising keyframe, one coherent scene, realistic lighting, clear subject, no embedded text, no watermark. Story beat: 产品出现。",
+      "video_prompt": "Animate this keyframe into a polished short advertising shot. Preserve subject identity, product geometry, colors, and background continuity. Use one restrained camera movement and natural motion. Story beat: 产品出现。",
+      "negative_prompt": "distorted product, extra limbs, warped hands, unreadable text, watermark, flicker, jump cut"
+    },
+    {
+      "id": 2,
+      "narration": "展示卖点。",
+      "duration_seconds": 5,
+      "keyframe_prompt": "Vertical cinematic advertising keyframe, one coherent scene, realistic lighting, clear subject, no embedded text, no watermark. Story beat: 展示卖点。",
+      "video_prompt": "Animate this keyframe into a polished short advertising shot. Preserve subject identity, product geometry, colors, and background continuity. Use one restrained camera movement and natural motion. Story beat: 展示卖点。",
+      "negative_prompt": "distorted product, extra limbs, warped hands, unreadable text, watermark, flicker, jump cut"
+    }
+  ]
+}

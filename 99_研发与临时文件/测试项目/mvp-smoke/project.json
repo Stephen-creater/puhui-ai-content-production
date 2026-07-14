@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-07-14T06:02:00.426147+00:00",
+  "script_source": "inline",
+  "script": "第一幕展示产品外观。第二幕展示核心功能。第三幕展示真实使用场景。最后呈现品牌和行动号召。",
+  "variants": 2,
+  "aspect_ratio": "9:16",
+  "image_model": "black-forest-labs/FLUX.1-schnell",
+  "video_model": "kwaivgI/kling-2.1-standard",
+  "image_width": 768,
+  "image_height": 1344,
+  "video_width": 1080,
+  "video_height": 1920,
+  "fps": 24,
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "第一幕展示产品外观。",
+      "duration_seconds": 5,
+      "keyframe_prompt": "Vertical cinematic advertising keyframe, one coherent scene, realistic lighting, clear subject, no embedded text, no watermark. Story beat: 第一幕展示产品外观。",
+      "video_prompt": "Animate this keyframe into a polished short advertising shot. Preserve subject identity, product geometry, colors, and background continuity. Use one restrained camera movement and natural motion. Story beat: 第一幕展示产品外观。",
+      "negative_prompt": "distorted product, extra limbs, warped hands, unreadable text, watermark, flicker, jump cut"
+    },
+    {
+      "id": 2,
+      "narration": "第二幕展示核心功能。",
+      "duration_seconds": 5,
+      "keyframe_prompt": "Vertical cinematic advertising keyframe, one coherent scene, realistic lighting, clear subject, no embedded text, no watermark. Story beat: 第二幕展示核心功能。",
+      "video_prompt": "Animate this keyframe into a polished short advertising shot. Preserve subject identity, product geometry, colors, and background continuity. Use one restrained camera movement and natural motion. Story beat: 第二幕展示核心功能。",
+      "negative_prompt": "distorted product, extra limbs, warped hands, unreadable text, watermark, flicker, jump cut"
+    },
+    {
+      "id": 3,
+      "narration": "第三幕展示真实使用场景。",
+      "duration_seconds": 5,
+      "keyframe_prompt": "Vertical cinematic advertising keyframe, one coherent scene, realistic lighting, clear subject, no embedded text, no watermark. Story beat: 第三幕展示真实使用场景。",
+      "video_prompt": "Animate this keyframe into a polished short advertising shot. Preserve subject identity, product geometry, colors, and background continuity. Use one restrained camera movement and natural motion. Story beat: 第三幕展示真实使用场景。",
+      "negative_prompt": "distorted product, extra limbs, warped hands, unreadable text, watermark, flicker, jump cut"
+    },
+    {
+      "id": 4,
+      "narration": "最后呈现品牌和行动号召。",
+      "duration_seconds": 5,
+      "keyframe_prompt": "Vertical cinematic advertising keyframe, one coherent scene, realistic lighting, clear subject, no embedded text, no watermark. Story beat: 最后呈现品牌和行动号召。",
+      "video_prompt": "Animate this keyframe into a polished short advertising shot. Preserve subject identity, product geometry, colors, and background continuity. Use one restrained camera movement and natural motion. Story beat: 最后呈现品牌和行动号召。",
+      "negative_prompt": "distorted product, extra limbs, warped hands, unreadable text, watermark, flicker, jump cut"
+    }
+  ]
+}

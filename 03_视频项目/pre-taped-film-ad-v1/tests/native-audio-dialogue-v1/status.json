@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "tasks": {
+    "v01-s01": {
+      "variant": 1,
+      "scene": 1,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-film-ad-v1/tests/native-audio-dialogue-v1/keyframes/variant-01/scene-01.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-film-ad-v1/tests/native-audio-dialogue-v1/clips/variant-01/scene-01.mp4",
+      "needs_keyframe": false,
+      "needs_clip": false,
+      "status": "completed",
+      "usage": {},
+      "completed_at": "2026-07-14T07:42:31.654155+00:00"
+    }
+  },
+  "costs": [],
+  "updated_at": "2026-07-14T07:44:13.930394+00:00",
+  "outputs": [
+    "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-film-ad-v1/tests/native-audio-dialogue-v1/output/variant-01.mp4"
+  ]
+}

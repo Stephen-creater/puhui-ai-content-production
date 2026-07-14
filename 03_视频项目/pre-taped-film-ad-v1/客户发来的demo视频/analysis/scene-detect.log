@@ -1,0 +1,30 @@
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-film-ad-v1/客户发来的demo视频/db82a82492a5e161fcf851704725bffe.mp4':
+  Metadata:
+    minor_version   : 0
+    major_brand     : mp42
+    compatible_brands: mp41isom
+    encoder         : Lavf58.20.100
+  Duration: 00:00:35.52, start: 0.000000, bitrate: 1520 kb/s
+  Stream #0:0[0x1](und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p(progressive), 580x956, 1446 kb/s, SAR 1:1 DAR 145:239, 30 fps, 30 tbr, 15360 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 68 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+      vendor_id       : [0][0][0][0]
+Stream mapping:
+  Stream #0:0 (h264) -> select:default
+  metadata:default -> Stream #0:0 (wrapped_avframe)
+Press [q] to stop, [?] for help
+Output #0, null, to 'pipe:':
+  Metadata:
+    minor_version   : 0
+    major_brand     : mp42
+    compatible_brands: mp41isom
+    encoder         : Lavf62.3.100
+  Stream #0:0: Video: wrapped_avframe, yuv420p(progressive), 580x956 [SAR 1:1 DAR 145:239], q=2-31, 200 kb/s, 30 fps, 30 tbn
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+[out#0/null @ 0x600002bc0240] video:4KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=    9 fps=0.0 q=-0.0 Lsize=N/A time=00:00:24.36 bitrate=N/A speed=73.2x elapsed=0:00:00.33    

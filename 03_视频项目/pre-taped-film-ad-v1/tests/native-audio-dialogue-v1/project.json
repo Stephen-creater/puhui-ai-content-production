@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "script_source": "native-audio smoke test",
+  "script": "Protect cabinets in seconds. Press the tape first, pull down the film, and paint without the cleanup.",
+  "variants": 1,
+  "aspect_ratio": "9:16",
+  "provider": "tokendance",
+  "image_model": "seedream-5.0-lite",
+  "video_model": "kling-3.0",
+  "video_protocol": "kling:image2video",
+  "video_resolution": "720p",
+  "kling_mode": "pro",
+  "generate_audio": false,
+  "image_width": 1440,
+  "image_height": 2560,
+  "video_width": 720,
+  "video_height": 1280,
+  "fps": 24,
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "Protect cabinets in seconds. Press the tape first, pull down the film, and paint without the cleanup.",
+      "duration_seconds": 8,
+      "generation_duration_seconds": 8,
+      "generate_audio": true,
+      "keyframe_prompt": "Reuse the approved presenter keyframe.",
+      "video_prompt": "A friendly European-American professional painter holds one integrated pre-taped masking film roll, looks directly into the camera, points once to the permanently connected yellow masking tape and transparent PE film, and speaks in clear natural American English with accurate lip sync: 'Protect cabinets in seconds. Press the tape first, pull down the film, and paint without the cleanup.' Subtle workshop room tone, no music, one continuous medium close-up, natural facial expression and restrained hand movement. The product geometry stays unchanged and the yellow tape never separates from the transparent film.",
+      "negative_prompt": "silent person, closed mouth while speaking, mismatched lip movement, extra fingers, deformed product, separated tape and film, subtitles, logo, watermark, camera shake"
+    }
+  ]
+}

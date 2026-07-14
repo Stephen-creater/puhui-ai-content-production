@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-07-14T06:29:02.057877+00:00",
+  "script_source": "inline",
+  "script": "一枚银色无线耳机从黑色展台上缓缓升起，蓝色轮廓光掠过金属表面。",
+  "variants": 2,
+  "aspect_ratio": "9:16",
+  "provider": "tokendance",
+  "image_model": "seedream-5.0-lite",
+  "video_model": "seedance-2.0-mini",
+  "image_width": 1440,
+  "image_height": 2560,
+  "video_width": 720,
+  "video_height": 1280,
+  "fps": 24,
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "一枚银色无线耳机从黑色展台上缓缓升起，蓝色轮廓光掠过金属表面。",
+      "duration_seconds": 5,
+      "keyframe_prompt": "Vertical cinematic advertising keyframe, one coherent scene, realistic lighting, clear subject, no embedded text, no watermark. Story beat: 一枚银色无线耳机从黑色展台上缓缓升起，蓝色轮廓光掠过金属表面。",
+      "video_prompt": "Animate this keyframe into a polished short advertising shot. Preserve subject identity, product geometry, colors, and background continuity. Use one restrained camera movement and natural motion. Story beat: 一枚银色无线耳机从黑色展台上缓缓升起，蓝色轮廓光掠过金属表面。",
+      "negative_prompt": "distorted product, extra limbs, warped hands, unreadable text, watermark, flicker, jump cut"
+    }
+  ]
+}

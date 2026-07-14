@@ -1,0 +1,24 @@
+{
+  "id": "cgt-20260714142321-d2wdt",
+  "model": "doubao-seedance-2-0-mini-260615",
+  "status": "succeeded",
+  "content": {
+    "video_url": "https://tokendance.space/gateway/resources/eyJlIjoxNzg0MDk2NzU1LCJkIjoiaHR0cHM6Ly9hcmstYWNnLWNuLWJlaWppbmcudG9zLWNuLWJlaWppbmcudm9sY2VzLmNvbS9kb3ViYW8tc2VlZGFuY2UtMi0wLW1pbmkvMDIxNzg0MDEwMjAyODMzMDAwMDAwMDAwMDAwMDAwMDAwMDBmZmZmYWMxNGYzODcyYzRiYTQubXA0P1gtVG9zLUFsZ29yaXRobT1UT1M0LUhNQUMtU0hBMjU2XHUwMDI2WC1Ub3MtQ3JlZGVudGlhbD1BS0xUWVdKa1pURXhOakExWkRVeU5EYzNZemhqTlRNNU9HSXlOakJoTkRjeU9UUSUyRjIwMjYwNzE0JTJGY24tYmVpamluZyUyRnRvcyUyRnJlcXVlc3RcdTAwMjZYLVRvcy1EYXRlPTIwMjYwNzE0VDA2MjU0MlpcdTAwMjZYLVRvcy1FeHBpcmVzPTg2NDAwXHUwMDI2WC1Ub3MtU2lnbmF0dXJlPWI1MDczMzk4OTBkZGI3Y2U5NmQ5MGNmZTY1NmZlYzNhM2YxMTkwNzdmODQzZDkzM2EzMDZjOGU2NTQxMTBjYWZcdTAwMjZYLVRvcy1TaWduZWRIZWFkZXJzPWhvc3QifQ.dwuV-sp2ccSXtWgtLD8rHIMfdzDJ6Vm6VnodlMt9DcQ"
+  },
+  "usage": {
+    "completion_tokens": 108900,
+    "total_tokens": 108900
+  },
+  "created_at": 1784010202,
+  "updated_at": 1784010351,
+  "seed": 85558,
+  "resolution": "720p",
+  "ratio": "9:16",
+  "duration": 5,
+  "framespersecond": 24,
+  "service_tier": "default",
+  "execution_expires_after": 172800,
+  "generate_audio": true,
+  "draft": false,
+  "priority": 0
+}

@@ -1,0 +1,37 @@
+.DS_Store
+**/.DS_Store
+**/__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.mobileprovision
+.local-git-backups/
+
+# Git tracks the reproducible workflow, not heavy delivery binaries.
+**/*.mp4
+**/*.mov
+**/*.mkv
+**/*.pptx
+**/*.wav
+**/*.mp3
+**/*.m4a
+
+# Large business documents are local-only.
+02_招商内容/Oracle（上海）AI 人才创智中心-V8(1)(1).pptx
+
+# Keep the verified v2 final and customer reference, but omit reproducible video intermediates.
+03_视频项目/pre-taped-film-ad-v1/clips/**/*.mp4
+03_视频项目/pre-taped-film-ad-v1/output/*.mp4
+03_视频项目/pre-taped-film-ad-v1/tests/**/*.mp4
+03_视频项目/pre-taped-film-ad-v1/v2/native-audio-cta/**/*.mp4
+03_视频项目/pre-taped-film-ad-v1/v2/output/pre-taped-film-ad-v2-base.mp4
+99_研发与临时文件/测试项目/**/*.mp4
+
+# Provider response metadata can contain signed URLs, request headers, or access identifiers.
+**/*.source.json
+**/*.job.json
+**/*response-meta*.json
