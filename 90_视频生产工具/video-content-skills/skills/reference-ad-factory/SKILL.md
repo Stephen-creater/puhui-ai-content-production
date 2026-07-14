@@ -1,0 +1,60 @@
+---
+name: reference-ad-factory
+description: Orchestrate a complete reference-driven AI short-video factory from one or more finished reference videos and a product truth pack. Use when a user wants to reproduce the production quality of an existing ad, turn a reference video into one new finished product video, create controlled batches of similar-but-distinct variants, or build a reusable reference-template library without visual workflow tools.
+---
+
+# Reference Ad Factory
+
+Run an agent-native pipeline: reference evidence becomes template DNA, product truth becomes constraints, controlled strategies become variants, and generation remains resumable and verifiable.
+
+## Required inputs
+
+- One or more user-owned or authorized reference videos.
+- Product brief with verified facts, required action order, prohibited claims, and delivery format.
+- Product images; character or brand references when continuity matters.
+- Variant count, language, aspect ratio, and cost authority.
+
+## Initialize a project
+
+```bash
+python3 scripts/init_project.py \
+  --output-root /absolute/path/03_video_projects \
+  --project-name product-campaign \
+  --reference-video /absolute/path/reference.mp4 \
+  --product-image /absolute/path/product-front.png \
+  --product-image /absolute/path/product-in-use.png \
+  --variants 3 \
+  --language en
+```
+
+The script copies inputs into a standard local project. Heavy media remains ignored by Git.
+
+## Production workflow
+
+1. Use `reference-video-analyzer` for every reference. Enrich technical evidence with transcript, on-screen text, shot functions, action progression, information layers, audio structure, and CTA.
+2. Derive one `template-dna.json` from structure. When several references exist, preserve patterns supported by multiple examples and label one-off choices.
+3. Complete the product brief. Keep product truth independent from template DNA.
+4. Create controlled variant plans:
+
+   ```bash
+   python3 scripts/plan_variants.py \
+     --project /absolute/path/project \
+     --variants 5
+   ```
+
+5. Write a finished script and shot plan for every variant. Vary the declared strategy; do not rely on model randomness as the only difference.
+6. Use `video-batch-producer` to generate keyframes first. Review product geometry, identity, hands, action order, and claim accuracy before paid video generation.
+7. Generate B-roll and presenter shots. Use one consistent voiceover for B-roll; use native model dialogue only for visible speaking shots.
+8. Finish captions, top claims, audio, timing, loudness, and delivery encoding with deterministic post-production.
+9. Apply [references/quality-gates.md](references/quality-gates.md). Retry only failed assets and retain successful generations.
+
+Read [references/sop.md](references/sop.md) for the complete stage contract. Read [references/variant-strategy.md](references/variant-strategy.md) before producing more than one variant.
+
+## Non-negotiable rules
+
+- Extract structure from references; do not clone protected branding, exact copy, faces, voices, or frames without permission.
+- Lock product facts, geometry, operation order, brand rules, delivery specifications, and prohibited claims.
+- Require a paid-generation preview showing job count, model, resolution, estimated duration, and retry policy.
+- Keep final duration at least 20 seconds and normally no more than 60 seconds.
+- Store scripts, plans, Skills, keyframes, and reports in Git; keep videos, audio, PPT, credentials, signed URLs, and provider metadata local.
+- Treat human review as a release gate, not an optional improvement.

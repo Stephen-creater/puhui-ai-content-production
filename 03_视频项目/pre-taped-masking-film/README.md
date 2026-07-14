@@ -18,6 +18,7 @@
 - 参考片拆解：`01_analysis/reference-01/reference-breakdown.md`
 - 产品事实：`02_plan/product-brief.md`
 - 模板 DNA：`02_plan/template-dna.json`
+- 五种批量变体计划：`02_plan/production-plan.json`
 - v2 脚本：`02_plan/master-script-v2.md`
 - 后期合成：`04_postproduction/assemble_v2.sh`
 - v2 验收：`06_reports/v2-verify-report.json`
