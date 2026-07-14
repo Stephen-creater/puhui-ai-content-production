@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "source": {
+    "path": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/00_input/reference_videos/customer-reference-01.mp4",
+    "filename": "customer-reference-01.mp4",
+    "size_bytes": 6748993,
+    "sha256": "9ceb40a887f365d7aa42a197660edac7433f93aacc5de2bd8e2d1b8cd1c9f86f"
+  },
+  "technical": {
+    "duration_seconds": 35.52,
+    "video": {
+      "codec": "h264",
+      "width": 580,
+      "height": 956,
+      "fps": 30.0,
+      "pixel_format": "yuv420p"
+    },
+    "audio": {
+      "codec": "aac",
+      "sample_rate": 48000,
+      "channels": 2
+    }
+  },
+  "scene_detection": {
+    "threshold": 0.3,
+    "cut_times_seconds": [
+      4.933,
+      7.667,
+      9.4,
+      11.1,
+      14.5,
+      17.567,
+      21.067,
+      24.333
+    ],
+    "segments": [
+      {
+        "id": 1,
+        "start_seconds": 0.0,
+        "end_seconds": 4.933,
+        "duration_seconds": 4.933
+      },
+      {
+        "id": 2,
+        "start_seconds": 4.933,
+        "end_seconds": 7.667,
+        "duration_seconds": 2.734
+      },
+      {
+        "id": 3,
+        "start_seconds": 7.667,
+        "end_seconds": 9.4,
+        "duration_seconds": 1.733
+      },
+      {
+        "id": 4,
+        "start_seconds": 9.4,
+        "end_seconds": 11.1,
+        "duration_seconds": 1.7
+      },
+      {
+        "id": 5,
+        "start_seconds": 11.1,
+        "end_seconds": 14.5,
+        "duration_seconds": 3.4
+      },
+      {
+        "id": 6,
+        "start_seconds": 14.5,
+        "end_seconds": 17.567,
+        "duration_seconds": 3.067
+      },
+      {
+        "id": 7,
+        "start_seconds": 17.567,
+        "end_seconds": 21.067,
+        "duration_seconds": 3.5
+      },
+      {
+        "id": 8,
+        "start_seconds": 21.067,
+        "end_seconds": 24.333,
+        "duration_seconds": 3.266
+      },
+      {
+        "id": 9,
+        "start_seconds": 24.333,
+        "end_seconds": 35.52,
+        "duration_seconds": 11.187
+      }
+    ],
+    "segment_count": 9,
+    "average_segment_seconds": 3.947,
+    "requires_editorial_review": true
+  },
+  "contact_sheet": {
+    "path": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/pre-taped-masking-film/01_analysis/reference-01/contact-sheet-auto.jpg",
+    "interval_seconds": 1.0,
+    "sample_count": 36,
+    "columns": 4,
+    "rows": 9
+  },
+  "transcript": {
+    "status": "not_provided"
+  },
+  "enrichment_required": [
+    "transcript_and_speaker_roles",
+    "on_screen_text",
+    "shot_function",
+    "action_progression",
+    "information_layers",
+    "audio_structure",
+    "template_dna"
+  ]
+}
