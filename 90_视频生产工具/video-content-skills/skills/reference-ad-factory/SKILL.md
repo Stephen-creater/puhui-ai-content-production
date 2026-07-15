@@ -1,6 +1,6 @@
 ---
 name: reference-ad-factory
-description: Orchestrate a complete reference-driven AI short-video factory from one or more finished reference videos and a product truth pack. Use when a user wants to reproduce the production quality of an existing ad, turn a reference video into one new finished product video, create controlled batches of similar-but-distinct variants, or build a reusable reference-template library without visual workflow tools.
+description: Orchestrate a complete reference-driven AI short-video factory from real-life hook discovery or authorized finished reference videos and a product truth pack. Use when a user wants to find TikTok UGC hooks under a strict API budget, reproduce the production quality of an existing ad, turn a reference video into one new finished product video, create controlled batches of similar-but-distinct variants, or build a reusable reference-template library without visual workflow tools.
 ---
 
 # Reference Ad Factory
@@ -31,10 +31,19 @@ The script copies inputs into a standard local project. Heavy media remains igno
 
 ## Production workflow
 
-1. Use `reference-video-analyzer` for every reference. Enrich technical evidence with transcript, on-screen text, shot functions, action progression, information layers, audio structure, and CTA.
-2. Derive one `template-dna.json` from structure. When several references exist, preserve patterns supported by multiple examples and label one-off choices.
-3. Complete the product brief. Keep product truth independent from template DNA.
-4. Create controlled variant plans:
+1. When the user lacks a reference or needs real-life opening hooks, use TikHub only as a discovery index. Preview the exact request count and cost before execution:
+
+   ```bash
+   python3 scripts/search_tiktok_hooks.py \
+     --query "paint spill" \
+     --query "renovation dust"
+   ```
+
+   Execute only with both hard caps. Every result remains `license_status: unverified`; obtain the creator's permission before downloading, editing, or publishing it commercially.
+2. Use `reference-video-analyzer` for every authorized reference. Enrich technical evidence with transcript, on-screen text, shot functions, action progression, information layers, audio structure, and CTA.
+3. Derive one `template-dna.json` from structure. When several references exist, preserve patterns supported by multiple examples and label one-off choices.
+4. Complete the product brief. Keep product truth independent from template DNA.
+5. Create controlled variant plans:
 
    ```bash
    python3 scripts/plan_variants.py \
@@ -42,7 +51,7 @@ The script copies inputs into a standard local project. Heavy media remains igno
      --variants 5
    ```
 
-5. Write a finished script and shot plan for every variant. Vary the declared strategy; do not rely on model randomness as the only difference.
+6. Write a finished script and shot plan for every variant. Vary the declared strategy; do not rely on model randomness as the only difference.
    Store the authored content in `02_plan/phase2/variant-content.json`, then compile and validate it:
 
    ```bash
@@ -54,9 +63,9 @@ The script copies inputs into a standard local project. Heavy media remains igno
    ```
 
    Compilation rejects missing intake authority, unknown product fact IDs, prohibited phrases, unknown assets, strategy mismatches, and final durations outside 20–60 seconds.
-6. Use `video-batch-producer` to generate keyframes first. Review product geometry, identity, hands, action order, and claim accuracy before paid video generation.
-7. Generate B-roll and presenter shots. For reliable timing, generate one natural-speed voice file per scene from that scene's exact `spoken_text`; use native model dialogue only for deliberately designed visible speaking shots. Measure voice duration before locking scene windows.
-8. Finish captions, top claims, audio, timing, loudness, and delivery encoding with deterministic post-production. Pad short scene voice with tail silence, but never slow narration to fill a scene. Derive captions from the exact TTS input.
+7. Use `video-batch-producer` to generate keyframes first. Review product geometry, identity, hands, action order, and claim accuracy before paid video generation.
+8. Generate B-roll and presenter shots. For reliable timing, generate one natural-speed voice file per scene from that scene's exact `spoken_text`; use native model dialogue only for deliberately designed visible speaking shots. Measure voice duration before locking scene windows.
+9. Finish captions, top claims, audio, timing, loudness, and delivery encoding with deterministic post-production. Pad short scene voice with tail silence, but never slow narration to fill a scene. Derive captions from the exact TTS input.
 
    ```bash
    python3 scripts/assemble_variants.py \
@@ -65,7 +74,7 @@ The script copies inputs into a standard local project. Heavy media remains igno
    python3 scripts/assemble_variants.py \
      --manifest /absolute/path/project/02_plan/phase2/batch-manifest.json
    ```
-9. Apply [references/quality-gates.md](references/quality-gates.md). Retry only failed assets and retain successful generations.
+10. Apply [references/quality-gates.md](references/quality-gates.md). Retry only failed assets and retain successful generations.
 
 Read [references/sop.md](references/sop.md) for the complete stage contract. Read [references/variant-strategy.md](references/variant-strategy.md) before producing more than one variant.
 Give a cold-start agent or human operator [references/operator-runbook.md](references/operator-runbook.md) for exact commands and stop conditions.

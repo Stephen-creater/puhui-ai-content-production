@@ -6,6 +6,8 @@
 
 Collect reference videos, product facts, product images, target audience, language, platform, aspect ratio, variant count, deadline, cost authority, required claims, and prohibited claims. Stop when ownership or product truth is unclear.
 
+When no suitable reference exists, a discovery-only TikHub search may precede intake. Run the helper in dry-run mode first, cap both request count and estimated USD cost, store provider responses only in `work/`, and retain only safe source metadata in reports. Search results are not licensed assets: do not download, edit, or publish a candidate until the creator's permission and intended usage rights are recorded.
+
 ### 1. Reference evidence
 
 For each reference, produce technical metadata, transcript, scene boundaries, contact sheet, on-screen text, shot functions, action progression, information density, audio roles, hook, proof, payoff, and CTA. Separate measured facts from editorial inference.

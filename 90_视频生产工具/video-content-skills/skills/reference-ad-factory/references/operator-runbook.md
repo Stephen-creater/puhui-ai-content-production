@@ -20,6 +20,30 @@ PRODUCER="$REPO/90_视频生产工具/video-content-skills/skills/video-batch-pr
 
 ## Fast path
 
+### 0. Discover real-life hooks when no authorized reference is available
+
+TikHub is a discovery index, not a stock-footage license. Preview before spending:
+
+```bash
+python3 "$FACTORY/scripts/search_tiktok_hooks.py" \
+  --query "paint spill" \
+  --query "renovation dust" \
+  --output-dir "$REPO/work/tikhub-hook-search/latest"
+```
+
+After reviewing the preview, execute with caps copied from it:
+
+```bash
+python3 "$FACTORY/scripts/search_tiktok_hooks.py" \
+  --query "paint spill" \
+  --query "renovation dust" \
+  --output-dir "$REPO/work/tikhub-hook-search/latest" \
+  --execute --cost-authorized \
+  --max-requests 2 --max-cost-usd 0.002
+```
+
+The key is read from `TIKHUB_API_KEY` or macOS Keychain service `video-content-skills/tikhub` only after all gates pass. Review candidates manually and record permission before moving an authorized reference into `00_input/reference_videos/`.
+
 ### 1. Analyze once, reuse by hash
 
 ```bash
