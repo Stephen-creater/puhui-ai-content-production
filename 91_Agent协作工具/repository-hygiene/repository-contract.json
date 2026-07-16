@@ -13,6 +13,7 @@
     "99_研发与临时文件/work"
   ],
   "allowed_root_files": [
+    ".gitattributes",
     ".gitignore",
     "AGENTS.md",
     "LICENSE",
