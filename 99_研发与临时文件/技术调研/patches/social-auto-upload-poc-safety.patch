@@ -1,0 +1,639 @@
+diff --git a/sau_cli.py b/sau_cli.py
+index 4cbe854..54d7e3e 100644
+--- a/sau_cli.py
++++ b/sau_cli.py
+@@ -773,8 +773,9 @@ async def dispatch(args: argparse.Namespace) -> int:
+         if args.action == "upload-note":
+             # 如果指定了 --notef，读取文件内容作为 note
+             note_content = args.note
+-            if args.notef:
+-                note_file = Path(args.notef)
++            note_file_arg = getattr(args, "notef", None)
++            if note_file_arg:
++                note_file = Path(note_file_arg)
+                 if not note_file.exists():
+                     print(f"错误：文件不存在: {note_file}", file=sys.stderr)
+                     return 1
+@@ -790,7 +791,7 @@ async def dispatch(args: argparse.Namespace) -> int:
+                 publish_strategy=publish_strategy,
+                 debug=args.debug,
+                 headless=args.headless,
+-                bgm=args.bgm or "",
++                bgm=getattr(args, "bgm", "") or "",
+             )
+             await upload_note(request)
+             print(f"Douyin note upload submitted: {len(request.image_files)} images")
+diff --git a/tests/test_xiaohongshu_uploader.py b/tests/test_xiaohongshu_uploader.py
+index d2b2fcd..3efa07d 100644
+--- a/tests/test_xiaohongshu_uploader.py
++++ b/tests/test_xiaohongshu_uploader.py
+@@ -89,7 +89,59 @@ class RecordingPage:
+         return self.locators[selector]
+ 
+ 
++class SubmitPage:
++    def __init__(self, wait_error=None):
++        self.submit_button = RecordingLocator("submit")
++        self.wait_error = wait_error
++        self.wait_calls = []
++        self.screenshot_calls = 0
++
++    def locator(self, selector):
++        return self.submit_button
++
++    async def wait_for_url(self, pattern, timeout):
++        self.wait_calls.append((pattern, timeout))
++        if self.wait_error:
++            raise self.wait_error
++
++    async def screenshot(self, **kwargs):
++        self.screenshot_calls += 1
++
++
+ class XiaohongshuUploaderTests(unittest.TestCase):
++    def test_submit_once_does_not_click_again_when_result_is_ambiguous(self):
++        page = SubmitPage(wait_error=TimeoutError("no redirect"))
++
++        with self.assertRaisesRegex(RuntimeError, "结果不明确"):
++            asyncio.run(
++                xhs_main._submit_xhs_once(
++                    page,
++                    xhs_main.XIAOHONGSHU_PUBLISH_STRATEGY_IMMEDIATE,
++                    "视频",
++                    debug=True,
++                )
++            )
++
++        self.assertEqual(page.submit_button.actions, [("click",)])
++        self.assertEqual(len(page.wait_calls), 1)
++        self.assertEqual(page.screenshot_calls, 1)
++
++    def test_submit_once_clicks_exactly_once_on_success(self):
++        page = SubmitPage()
++
++        asyncio.run(
++            xhs_main._submit_xhs_once(
++                page,
++                xhs_main.XIAOHONGSHU_PUBLISH_STRATEGY_SCHEDULED,
++                "图文",
++                debug=False,
++            )
++        )
++
++        self.assertEqual(page.submit_button.actions, [("click",)])
++        self.assertEqual(len(page.wait_calls), 1)
++        self.assertEqual(page.screenshot_calls, 0)
++
+     def test_creator_urls_keep_xiaohongshu_domain_by_default(self):
+         with patch.dict(os.environ, {"SAU_XHS_CREATOR_BASE_URL": ""}):
+             self.assertEqual(
+@@ -243,7 +295,7 @@ class XiaohongshuUploaderTests(unittest.TestCase):
+         self.assertIn(("type", "#话题1", 30), page.keyboard.actions)
+         self.assertEqual(
+             page.locators['#creator-editor-topic-container .item'].actions,
+-            [("wait_for", {"state": "visible", "timeout": 2000}), ("click",)],
++            [("wait_for", {"state": "visible", "timeout": 4000}), ("click",)],
+         )
+ 
+     def test_video_fill_meta_can_fill_first_tag_without_desc(self):
+diff --git a/uploader/douyin_uploader/main.py b/uploader/douyin_uploader/main.py
+index 9109809..ce52e6b 100644
+--- a/uploader/douyin_uploader/main.py
++++ b/uploader/douyin_uploader/main.py
+@@ -23,12 +23,65 @@ from utils.log import douyin_logger
+ 
+ DOUYIN_PUBLISH_STRATEGY_IMMEDIATE = "immediate"
+ DOUYIN_PUBLISH_STRATEGY_SCHEDULED = "scheduled"
++DOUYIN_PUBLISH_INITIAL_TIMEOUT_MS = 3000
++DOUYIN_PUBLISH_VERIFICATION_TIMEOUT_MS = 15000
+ 
+ 
+ def _msg(emoji: str, text: str) -> str:
+     return f"{emoji} {text}"
+ 
+ 
++async def _submit_douyin_once(
++    page: Page,
++    success_url_pattern: str,
++    content_kind: str,
++    debug: bool = False,
++    after_initial_wait=None,
++) -> None:
++    """Click publish once, then only observe or complete an explicit challenge."""
++    publish_button = page.get_by_role("button", name="发布", exact=True)
++    if not await publish_button.count():
++        raise RuntimeError(f"未找到{content_kind}发布按钮，未执行提交")
++
++    await publish_button.click(force=True)
++
++    result_error: Exception | None = None
++    try:
++        await page.wait_for_url(
++            success_url_pattern,
++            timeout=DOUYIN_PUBLISH_INITIAL_TIMEOUT_MS,
++        )
++    except Exception as exc:
++        result_error = exc
++        challenge_handled = False
++        if after_initial_wait:
++            try:
++                callback_result = after_initial_wait()
++                challenge_handled = (
++                    await callback_result
++                    if inspect.isawaitable(callback_result)
++                    else bool(callback_result)
++                )
++                if challenge_handled:
++                    await page.wait_for_url(
++                        success_url_pattern,
++                        timeout=DOUYIN_PUBLISH_VERIFICATION_TIMEOUT_MS,
++                    )
++                    result_error = None
++            except Exception as challenge_exc:
++                result_error = challenge_exc
++
++        if result_error is not None:
++            if debug:
++                await page.screenshot(full_page=True)
++            raise RuntimeError(
++                f"{content_kind}发布结果不明确：已点击一次发布按钮，但未观察到成功页面；"
++                "禁止自动重试，请先回查作品列表"
++            ) from result_error
++
++    douyin_logger.success(_msg("🥳", f"{content_kind}发布成功，小人开心收工"))
++
++
+ async def _emit_qrcode_callback(qrcode_callback, payload: dict):
+     if not qrcode_callback:
+         return
+@@ -332,6 +385,10 @@ class DouYinBaseUploader(BaseVideoUploader):
+         await page.keyboard.press("Control+KeyA")
+         await page.keyboard.press("Delete")
+ 
++        description = (description or "").strip()
++        if description:
++            await page.keyboard.type(description)
++
+         for tag in tags or []:
+             await page.keyboard.type(" #" + tag)
+             await page.keyboard.press("Space")
+@@ -550,7 +607,7 @@ class DouYinVideo(DouYinBaseUploader):
+         self.desc = desc or ""
+ 
+     async def _submit_sms_verify_code(self, page: Page, sms_input, code: str, code_file: str) -> bool:
+-        douyin_logger.info(_msg("✍️", f"已获取验证码，准备填入: {code}"))
++        douyin_logger.info(_msg("✍️", "已获取验证码，准备填入（验证码不写入日志）"))
+         await sms_input.click()
+         await sms_input.fill(code)
+         douyin_logger.info(_msg("✅", "验证码已填入输入框"))
+@@ -581,6 +638,36 @@ class DouYinVideo(DouYinBaseUploader):
+         douyin_logger.info(_msg("🔄", "验证码处理完成，继续发布流程"))
+         return True
+ 
++    async def _handle_sms_challenge_after_submit(self, page: Page) -> bool:
++        sms_input = page.locator(
++            'input[placeholder*="验证码"], input[type="tel"], input[placeholder*="短信"], input[placeholder*="手机号"]'
++        ).first
++        if not await sms_input.count() or not await sms_input.is_visible():
++            return False
++
++        douyin_logger.warning(_msg("📱", "检测到抖音短信/安全验证，需要用户本人处理"))
++        get_code_btn = page.get_by_text("获取验证码").first
++        if await get_code_btn.count() and await get_code_btn.is_visible():
++            await get_code_btn.click()
++            douyin_logger.info(_msg("📤", "已请求验证码，请查看账号绑定手机"))
++
++        code_file = os.path.join(BASE_DIR, "verify_code.txt")
++        if not os.path.exists(code_file) and not self.headless:
++            douyin_logger.info(_msg("🧍", "请在浏览器中手动输入验证码并完成验证；验证码无需交给程序"))
++            try:
++                await sms_input.wait_for(state="hidden", timeout=120000)
++            except Exception as exc:
++                raise RuntimeError("等待浏览器人工完成短信验证超时") from exc
++            douyin_logger.success(_msg("✅", "浏览器短信验证已完成"))
++            return True
++
++        code = await _read_verify_code(code_file)
++        if not code:
++            raise RuntimeError("短信验证等待人工输入，未继续提交")
++
++        await self._submit_sms_verify_code(page, sms_input, code, code_file)
++        return True
++
+     async def validate_upload_args(self):
+         await self.validate_base_args()
+         if not self.title or not str(self.title).strip():
+@@ -741,45 +828,17 @@ class DouYinVideo(DouYinBaseUploader):
+         if self.publish_strategy == DOUYIN_PUBLISH_STRATEGY_SCHEDULED and self.publish_date != 0:
+             await self.set_schedule_time_douyin(page, self.publish_date)
+ 
+-        sms_prompt_logged = False
+-        while True:
+-            try:
+-                # 移除会拦截发布按钮点击的新手引导/话题下拉浮层
+-                await page.evaluate(
+-                    "() => { document.querySelectorAll('.shepherd-element, .shepherd-modal-overlay-container, [class*=\"mention-wrapper\"]').forEach(e => e.remove()); }"
+-                )
+-                # 检测并处理短信验证码弹窗
+-                sms_input = page.locator('input[placeholder*="验证码"], input[type="tel"], input[placeholder*="短信"], input[placeholder*="手机号"]').first
+-                if await sms_input.count() and await sms_input.is_visible():
+-                    douyin_logger.warning(_msg("📱", "检测到短信验证码弹窗"))
+-                    # 点击「获取验证码」按钮（仅首次）
+-                    get_code_btn = page.get_by_text("获取验证码").first
+-                    if await get_code_btn.count() and await get_code_btn.is_visible():
+-                        await get_code_btn.click()
+-                        douyin_logger.info(_msg("📤", "已点击「获取验证码」，请查看手机短信"))
+-                    code_file = os.path.join(BASE_DIR, "verify_code.txt")
+-                    code = await _read_verify_code(code_file)
+-                    if code:
+-                        sms_prompt_logged = False
+-                        await self._submit_sms_verify_code(page, sms_input, code, code_file)
+-                    elif not sms_prompt_logged:
+-                        douyin_logger.warning(_msg("⏳", f"等待验证码输入；可在交互终端直接输入，或写入文件: {code_file}"))
+-                        sms_prompt_logged = True
+-                publish_button = page.get_by_role("button", name="发布", exact=True)
+-                if await publish_button.count():
+-                    await publish_button.click(force=True)
+-                await page.wait_for_url(
+-                    "https://creator.douyin.com/creator-micro/content/manage**",
+-                    timeout=3000,
+-                )
+-                douyin_logger.success(_msg("🥳", "视频发布成功，小人开心收工"))
+-                break
+-            except Exception:
+-                await self.handle_auto_video_cover(page)
+-                douyin_logger.info(_msg("🏃", "小人正在冲刺发布视频"))
+-                if self.debug:
+-                    await page.screenshot(full_page=True)
+-                await asyncio.sleep(0.5)
++        await self.handle_auto_video_cover(page)
++        await page.evaluate(
++            "() => { document.querySelectorAll('.shepherd-element, .shepherd-modal-overlay-container, [class*=\"mention-wrapper\"]').forEach(e => e.remove()); }"
++        )
++        await _submit_douyin_once(
++            page,
++            "https://creator.douyin.com/creator-micro/content/manage**",
++            "视频",
++            debug=self.debug,
++            after_initial_wait=lambda: self._handle_sms_challenge_after_submit(page),
++        )
+ 
+         await context.storage_state(path=self.account_file)
+         douyin_logger.success(_msg("🥳", "cookie 更新完毕"))
+@@ -884,20 +943,12 @@ class DouYinNote(DouYinBaseUploader):
+         if self.publish_strategy == DOUYIN_PUBLISH_STRATEGY_SCHEDULED and self.publish_date != 0:
+             await self.set_schedule_time_douyin(page, self.publish_date)
+ 
+-        while True:
+-            try:
+-                publish_button = page.get_by_role("button", name="发布", exact=True)
+-                if await publish_button.count():
+-                    await publish_button.click()
+-                await page.wait_for_url(
+-                    "**/creator-micro/content/manage?enter_from=publish**",
+-                    timeout=3000,
+-                )
+-                douyin_logger.success(_msg("🥳", "图文发布成功，小人开心收工"))
+-                break
+-            except Exception:
+-                douyin_logger.info(_msg("🏃", "小人正在冲刺发布图文"))
+-                await asyncio.sleep(0.5)
++        await _submit_douyin_once(
++            page,
++            "**/creator-micro/content/manage?enter_from=publish**",
++            "图文",
++            debug=self.debug,
++        )
+ 
+     async def upload(self, playwright: Playwright) -> None:
+         douyin_logger.info(_msg("🧍", "小人先检查 cookie、图片和发布时间"))
+diff --git a/uploader/xiaohongshu_uploader/main.py b/uploader/xiaohongshu_uploader/main.py
+index 9d46ddc..06cd230 100644
+--- a/uploader/xiaohongshu_uploader/main.py
++++ b/uploader/xiaohongshu_uploader/main.py
+@@ -28,6 +28,7 @@ XHS_LOGIN_BOX_SELECTOR = "div[class*='login-box']"
+ XHS_LOGIN_SWITCH_SELECTOR = "img.css-wemwzq"
+ XIAOHONGSHU_PUBLISH_STRATEGY_IMMEDIATE = "immediate"
+ XIAOHONGSHU_PUBLISH_STRATEGY_SCHEDULED = "scheduled"
++XHS_PUBLISH_RESULT_TIMEOUT_MS = 15000
+ 
+ 
+ def _build_xhs_creator_url(path: str) -> str:
+@@ -44,6 +45,36 @@ def _msg(emoji: str, text: str) -> str:
+     return f"{emoji} {text}"
+ 
+ 
++async def _submit_xhs_once(
++    page: Page,
++    publish_strategy: str,
++    content_kind: str,
++    debug: bool = False,
++) -> None:
++    """Submit exactly once and fail closed when the result is ambiguous."""
++    button_text = (
++        "定时发布"
++        if publish_strategy == XIAOHONGSHU_PUBLISH_STRATEGY_SCHEDULED
++        else "发布"
++    )
++    await page.locator(f'button:has-text("{button_text}")').click()
++
++    try:
++        await page.wait_for_url(
++            XHS_PUBLISH_SUCCESS_URL_PATTERN,
++            timeout=XHS_PUBLISH_RESULT_TIMEOUT_MS,
++        )
++    except Exception as exc:
++        if debug:
++            await page.screenshot(full_page=True)
++        raise RuntimeError(
++            f"{content_kind}发布结果不明确：已点击一次发布按钮，但未观察到成功页面；"
++            "禁止自动重试，请先回查作品列表"
++        ) from exc
++
++    xiaohongshu_logger.success(_msg("🥳", f"{content_kind}发布成功，小人开心收工"))
++
++
+ async def _emit_qrcode_callback(qrcode_callback, payload: dict):
+     if not qrcode_callback:
+         return
+@@ -597,23 +628,12 @@ class XiaoHongShuVideo(XiaoHongShuBaseUploader):
+         if self.publish_strategy == XIAOHONGSHU_PUBLISH_STRATEGY_SCHEDULED and self.publish_date != 0:
+             await self.set_schedule_time_xiaohongshu(page, self.publish_date)
+ 
+-        while True:
+-            try:
+-                if self.publish_strategy == XIAOHONGSHU_PUBLISH_STRATEGY_SCHEDULED:
+-                    await page.locator('button:has-text("定时发布")').click()
+-                else:
+-                    await page.locator('button:has-text("发布")').click()
+-                await page.wait_for_url(
+-                    XHS_PUBLISH_SUCCESS_URL_PATTERN,
+-                    timeout=3000
+-                )
+-                xiaohongshu_logger.success(_msg("🥳", "视频发布成功，小人开心收工"))
+-                break
+-            except Exception:
+-                xiaohongshu_logger.info(_msg("🏃", "小人正在冲刺发布视频"))
+-                if self.debug:
+-                    await page.screenshot(full_page=True)
+-                await asyncio.sleep(0.5)
++        await _submit_xhs_once(
++            page,
++            self.publish_strategy,
++            "视频",
++            debug=self.debug,
++        )
+ 
+     async def upload(self, playwright: Playwright) -> None:
+         xiaohongshu_logger.info(_msg("🧍", "小人先检查 cookie、视频文件、封面和发布时间"))
+@@ -720,23 +740,12 @@ class XiaoHongShuNote(XiaoHongShuBaseUploader):
+         if self.publish_strategy == XIAOHONGSHU_PUBLISH_STRATEGY_SCHEDULED and self.publish_date != 0:
+             await self.set_schedule_time_xiaohongshu(page, self.publish_date)
+ 
+-        while True:
+-            try:
+-                if self.publish_strategy == XIAOHONGSHU_PUBLISH_STRATEGY_SCHEDULED:
+-                    await page.locator('button:has-text("定时发布")').click()
+-                else:
+-                    await page.locator('button:has-text("发布")').click()
+-                await page.wait_for_url(
+-                    XHS_PUBLISH_SUCCESS_URL_PATTERN,
+-                    timeout=3000
+-                )
+-                xiaohongshu_logger.success(_msg("🥳", "图文发布成功，小人开心收工"))
+-                break
+-            except Exception:
+-                xiaohongshu_logger.info(_msg("🏃", "小人正在冲刺发布图文"))
+-                if self.debug:
+-                    await page.screenshot(full_page=True)
+-                await asyncio.sleep(0.5)
++        await _submit_xhs_once(
++            page,
++            self.publish_strategy,
++            "图文",
++            debug=self.debug,
++        )
+ 
+     async def upload(self, playwright: Playwright) -> None:
+         xiaohongshu_logger.info(_msg("🧍", "小人先检查 cookie、图片和发布时间"))
+
+diff --git a/tests/test_douyin_uploader.py b/tests/test_douyin_uploader.py
+new file mode 100644
+index 0000000..7387f43
+--- /dev/null
++++ b/tests/test_douyin_uploader.py
+@@ -0,0 +1,214 @@
++import asyncio
++import unittest
++
++import uploader.douyin_uploader.main as douyin_main
++
++
++class RecordingButton:
++    def __init__(self):
++        self.clicks = 0
++
++    @property
++    def first(self):
++        return self
++
++    async def count(self):
++        return 1
++
++    async def click(self, **kwargs):
++        self.clicks += 1
++
++    async def is_visible(self):
++        return True
++
++
++class SubmitPage:
++    def __init__(self, wait_results):
++        self.button = RecordingButton()
++        self.wait_results = list(wait_results)
++        self.wait_calls = []
++        self.screenshot_calls = 0
++
++    def get_by_role(self, role, name, exact=False):
++        return self.button
++
++    async def wait_for_url(self, pattern, timeout):
++        self.wait_calls.append((pattern, timeout))
++        result = self.wait_results.pop(0)
++        if isinstance(result, Exception):
++            raise result
++
++    async def screenshot(self, **kwargs):
++        self.screenshot_calls += 1
++
++
++class RecordingLocator:
++    def __init__(self):
++        self.filled = []
++        self.wait_calls = []
++        self.clicks = 0
++        self.hidden_waits = []
++
++    @property
++    def first(self):
++        return self
++
++    async def fill(self, value):
++        self.filled.append(value)
++
++    async def click(self):
++        self.clicks += 1
++
++    async def count(self):
++        return 1
++
++    async def is_visible(self):
++        return True
++
++    async def wait_for(self, **kwargs):
++        if kwargs.get("state") == "hidden":
++            self.hidden_waits.append(kwargs)
++        else:
++            self.wait_calls.append(kwargs)
++
++
++class RecordingKeyboard:
++    def __init__(self):
++        self.actions = []
++
++    async def press(self, key):
++        self.actions.append(("press", key))
++
++    async def type(self, value):
++        self.actions.append(("type", value))
++
++
++class ContentPage:
++    def __init__(self):
++        self.title_input = RecordingLocator()
++        self.description_editor = RecordingLocator()
++        self.keyboard = RecordingKeyboard()
++
++    def locator(self, selector):
++        if selector.startswith('input[placeholder'):
++            return self.title_input
++        return self.description_editor
++
++
++class SmsPage:
++    def __init__(self):
++        self.sms_input = RecordingLocator()
++        self.get_code_button = RecordingButton()
++
++    def locator(self, selector):
++        return self.sms_input
++
++    def get_by_text(self, text, exact=False):
++        return self.get_code_button
++
++
++class DouyinUploaderSafetyTests(unittest.TestCase):
++    def test_headed_sms_verification_waits_for_browser_without_reading_code(self):
++        page = SmsPage()
++        uploader = type("Uploader", (), {"headless": False})()
++
++        result = asyncio.run(
++            douyin_main.DouYinVideo._handle_sms_challenge_after_submit(
++                uploader,
++                page,
++            )
++        )
++
++        self.assertTrue(result)
++        self.assertEqual(page.get_code_button.clicks, 1)
++        self.assertEqual(
++            page.sms_input.hidden_waits,
++            [{"state": "hidden", "timeout": 120000}],
++        )
++
++    def test_description_is_written_before_tags(self):
++        page = ContentPage()
++
++        asyncio.run(
++            douyin_main.DouYinBaseUploader.fill_title_and_description(
++                object(),
++                page,
++                "测试标题",
++                "正文内容",
++                ["话题1", "话题2"],
++            )
++        )
++
++        self.assertEqual(page.title_input.filled, ["测试标题"])
++        self.assertEqual(
++            page.keyboard.actions,
++            [
++                ("press", "Control+KeyA"),
++                ("press", "Delete"),
++                ("type", "正文内容"),
++                ("type", " #话题1"),
++                ("press", "Space"),
++                ("type", " #话题2"),
++                ("press", "Space"),
++                ("press", "Escape"),
++            ],
++        )
++
++    def test_submit_once_fails_closed_without_clicking_again(self):
++        page = SubmitPage([TimeoutError("no redirect")])
++
++        with self.assertRaisesRegex(RuntimeError, "结果不明确"):
++            asyncio.run(
++                douyin_main._submit_douyin_once(
++                    page,
++                    "**/creator-micro/content/manage**",
++                    "视频",
++                    debug=True,
++                )
++            )
++
++        self.assertEqual(page.button.clicks, 1)
++        self.assertEqual(len(page.wait_calls), 1)
++        self.assertEqual(page.screenshot_calls, 1)
++
++    def test_submit_once_waits_after_sms_without_second_publish_click(self):
++        page = SubmitPage([TimeoutError("sms challenge"), None])
++        callback_calls = 0
++
++        async def handle_sms():
++            nonlocal callback_calls
++            callback_calls += 1
++            return True
++
++        asyncio.run(
++            douyin_main._submit_douyin_once(
++                page,
++                "**/creator-micro/content/manage**",
++                "视频",
++                debug=False,
++                after_initial_wait=handle_sms,
++            )
++        )
++
++        self.assertEqual(page.button.clicks, 1)
++        self.assertEqual(callback_calls, 1)
++        self.assertEqual(len(page.wait_calls), 2)
++
++    def test_submit_once_clicks_exactly_once_on_success(self):
++        page = SubmitPage([None])
++
++        asyncio.run(
++            douyin_main._submit_douyin_once(
++                page,
++                "**/creator-micro/content/manage**",
++                "图文",
++                debug=False,
++            )
++        )
++
++        self.assertEqual(page.button.clicks, 1)
++        self.assertEqual(len(page.wait_calls), 1)
++
++
++if __name__ == "__main__":
++    unittest.main()
