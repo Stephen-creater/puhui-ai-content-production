@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "required_roots": [
+    "01_会议与需求",
+    "02_招商内容",
+    "03_视频项目",
+    "90_视频生产工具",
+    "91_Agent协作工具",
+    "99_研发与临时文件"
+  ],
+  "canonical_local_scratch": "work",
+  "forbidden_duplicate_paths": [
+    "99_研发与临时文件/work"
+  ],
+  "allowed_root_files": [
+    ".gitignore",
+    "AGENTS.md",
+    "LICENSE",
+    "README.md"
+  ],
+  "readme_scan_excludes": [
+    ".git",
+    "work",
+    "99_研发与临时文件/技术调研/research"
+  ]
+}

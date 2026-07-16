@@ -4,9 +4,9 @@
 
 ## 调用顺序
 
-1. `reference-video-analyzer`：把参考成片转为技术证据、镜头结构和模板 DNA。
-2. `reference-ad-factory`：组合参考模板、产品事实、变体策略、质量门和完整 SOP。
-3. `video-batch-producer`：执行关键帧生成、图生视频、原生口播、断点续跑、拼接与技术验证。
+1. [`reference-video-analyzer`](skills/reference-video-analyzer/SKILL.md)：把参考成片转为技术证据、镜头结构和模板 DNA。
+2. [`reference-ad-factory`](skills/reference-ad-factory/SKILL.md)：组合参考模板、产品事实、变体策略、质量门和完整 SOP。
+3. [`video-batch-producer`](skills/video-batch-producer/SKILL.md)：执行关键帧生成、图生视频、原生口播、断点续跑、拼接与技术验证。
 
 ```text
 参考成片
