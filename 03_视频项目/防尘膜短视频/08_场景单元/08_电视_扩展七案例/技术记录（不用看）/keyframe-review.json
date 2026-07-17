@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "criteria_version": "product-keyframe-v1",
+  "reviews": {
+    "v01-s01": {
+      "approved": true,
+      "image_sha256": "cf9a5c536c55a2ce2ad65c69a12f5a9c83c5d7c15f60526e2fac70d6af40f70e",
+      "checks": {
+        "continuous_film_no_holes": true,
+        "full_object_coverage": true,
+        "tape_film_continuity": true,
+        "tape_on_valid_surface": true,
+        "single_integrated_product": true,
+        "no_visual_artifacts": true
+      },
+      "notes": "通过：一整张连续透明膜从同宽黄色胶带垂至地面，完整覆盖移动电视、立柱和脚轮底座；胶带承载面真实，无第二张膜。",
+      "reviewer": "codex-strict-visual-review",
+      "reviewed_at": "2026-07-17T09:37:45.229659+00:00"
+    },
+    "v02-s01": {
+      "approved": true,
+      "image_sha256": "7e4a469af25170ed35f030d275a870e7d1c8c828424485b549467823ab5c61df",
+      "checks": {
+        "continuous_film_no_holes": true,
+        "full_object_coverage": true,
+        "tape_film_continuity": true,
+        "tape_on_valid_surface": true,
+        "single_integrated_product": true,
+        "no_visual_artifacts": true
+      },
+      "notes": "通过：一整张透明膜与黄色胶带全长连续，完整覆盖电视及餐边台前沿；人物不接触，无额外胶带。",
+      "reviewer": "codex-strict-visual-review",
+      "reviewed_at": "2026-07-17T09:37:45.316687+00:00"
+    },
+    "v03-s01": {
+      "approved": true,
+      "image_sha256": "1db33c57983eb5178e3e7206149fa4a953fbffc2a2ec172ec616f804c1292310",
+      "checks": {
+        "continuous_film_no_holes": true,
+        "full_object_coverage": true,
+        "tape_film_continuity": true,
+        "tape_on_valid_surface": true,
+        "single_integrated_product": true,
+        "no_visual_artifacts": true
+      },
+      "notes": "通过：超宽膜完整覆盖大屏和下方区域，黄色胶带与膜上沿连续，边界清晰，无人物或额外结构。",
+      "reviewer": "codex-strict-visual-review",
+      "reviewed_at": "2026-07-17T09:37:45.437162+00:00"
+    },
+    "v05-s01": {
+      "approved": true,
+      "image_sha256": "e92de995c24c905c9f77b81a776e6bf0a53185cc89ac9a6aded56eaa83b5988a",
+      "checks": {
+        "continuous_film_no_holes": true,
+        "full_object_coverage": true,
+        "tape_film_continuity": true,
+        "tape_on_valid_surface": true,
+        "single_integrated_product": true,
+        "no_visual_artifacts": true
+      },
+      "notes": "通过：透明膜沿黄色胶带全长连续并覆盖显像管电视厚机身和矮柜；右侧外扩属于同一张膜的自然垂坠，不是断连或第二张膜。",
+      "reviewer": "codex-strict-visual-review",
+      "reviewed_at": "2026-07-17T09:37:45.522594+00:00"
+    },
+    "v06-s01": {
+      "approved": true,
+      "image_sha256": "45f7404282ffd5da651b854526c9d44bcb5357a0e0b80dfa242873a20fc31022",
+      "checks": {
+        "continuous_film_no_holes": true,
+        "full_object_coverage": true,
+        "tape_film_continuity": true,
+        "tape_on_valid_surface": true,
+        "single_integrated_product": true,
+        "no_visual_artifacts": true
+      },
+      "notes": "通过：绷紧透明膜完整覆盖户外电视，黄色胶带与膜全长连续且承载面真实，无破口或额外胶带。",
+      "reviewer": "codex-strict-visual-review",
+      "reviewed_at": "2026-07-17T09:37:45.605888+00:00"
+    },
+    "v07-s01": {
+      "approved": true,
+      "image_sha256": "c0f259d2689e7e20e2812c8db84f5fbc217cf22a45d28a6de677aa66aed66fef",
+      "checks": {
+        "continuous_film_no_holes": true,
+        "full_object_coverage": true,
+        "tape_film_continuity": true,
+        "tape_on_valid_surface": true,
+        "single_integrated_product": true,
+        "no_visual_artifacts": true
+      },
+      "notes": "通过：一整张透明膜与柜面黄色胶带连续，完整封住电视壁龛；两端清晰、人物在膜外且不接触。",
+      "reviewer": "codex-strict-visual-review",
+      "reviewed_at": "2026-07-17T09:37:45.698882+00:00"
+    },
+    "v04-s01": {
+      "approved": false,
+      "image_sha256": "36cd2c006f6db56a3505dc261782b018a7c2cdf861e6cfb68ad619c266308343",
+      "checks": {
+        "continuous_film_no_holes": false,
+        "full_object_coverage": false,
+        "tape_film_continuity": false,
+        "tape_on_valid_surface": false,
+        "single_integrated_product": false,
+        "no_visual_artifacts": false
+      },
+      "notes": "淘汰：黄色胶带左右延伸超出透明膜的可验证上沿，右端还超出画面，无法证明胶带与膜端点对齐；不允许进入视频阶段。",
+      "reviewer": "codex-strict-visual-review",
+      "reviewed_at": "2026-07-17T09:37:45.784352+00:00"
+    }
+  },
+  "updated_at": "2026-07-17T09:37:45.784478+00:00"
+}

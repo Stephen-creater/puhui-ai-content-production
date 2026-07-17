@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "tasks": {
+    "v02-s01": {
+      "variant": 2,
+      "scene": 1,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/08_电视_扩展七案例/技术记录（不用看）/keyframes/variant-02/scene-01.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/08_电视_扩展七案例/技术记录（不用看）/clips/variant-02/scene-01.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-17T09:33:13.270992+00:00"
+    },
+    "v01-s01": {
+      "variant": 1,
+      "scene": 1,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/08_电视_扩展七案例/技术记录（不用看）/keyframes/variant-01/scene-01.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/08_电视_扩展七案例/技术记录（不用看）/clips/variant-01/scene-01.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-17T09:33:17.714280+00:00"
+    },
+    "v03-s01": {
+      "variant": 3,
+      "scene": 1,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/08_电视_扩展七案例/技术记录（不用看）/keyframes/variant-03/scene-01.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/08_电视_扩展七案例/技术记录（不用看）/clips/variant-03/scene-01.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-17T09:33:58.472402+00:00"
+    },
+    "v04-s01": {
+      "variant": 4,
+      "scene": 1,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/08_电视_扩展七案例/技术记录（不用看）/keyframes/variant-04/scene-01.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/08_电视_扩展七案例/技术记录（不用看）/clips/variant-04/scene-01.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-17T09:34:04.055416+00:00"
+    },
+    "v05-s01": {
+      "variant": 5,
+      "scene": 1,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/08_电视_扩展七案例/技术记录（不用看）/keyframes/variant-05/scene-01.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/08_电视_扩展七案例/技术记录（不用看）/clips/variant-05/scene-01.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-17T09:34:47.928705+00:00"
+    },
+    "v06-s01": {
+      "variant": 6,
+      "scene": 1,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/08_电视_扩展七案例/技术记录（不用看）/keyframes/variant-06/scene-01.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/08_电视_扩展七案例/技术记录（不用看）/clips/variant-06/scene-01.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-17T09:34:47.955940+00:00"
+    },
+    "v07-s01": {
+      "variant": 7,
+      "scene": 1,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/08_电视_扩展七案例/技术记录（不用看）/keyframes/variant-07/scene-01.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/08_电视_扩展七案例/技术记录（不用看）/clips/variant-07/scene-01.mp4",
+      "needs_keyframe": false,
+      "needs_clip": true,
+      "status": "completed",
+      "usage": null,
+      "completed_at": "2026-07-17T09:35:43.025893+00:00"
+    }
+  },
+  "costs": [],
+  "updated_at": "2026-07-17T09:35:43.026034+00:00"
+}
