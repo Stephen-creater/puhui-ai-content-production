@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "criteria_version": "product-keyframe-v1",
+  "reviews": {
+    "v01-s01": {
+      "approved": true,
+      "image_sha256": "44441d399c1bf60f1fd3f850639c8fa998c56143f844ddf79a20ea307f0d4c86",
+      "checks": {
+        "continuous_film_no_holes": true,
+        "full_object_coverage": true,
+        "tape_film_continuity": true,
+        "tape_on_valid_surface": true,
+        "single_integrated_product": true,
+        "no_visual_artifacts": true
+      },
+      "notes": "APPROVE: one intact rectangular sheet covers the full television; square tape endpoints exactly match film width; continuous tape-to-film bond; clear bare-wall gap.",
+      "reviewer": "codex-visual-review",
+      "reviewed_at": "2026-07-17T04:14:24.786765+00:00"
+    },
+    "v02-s01": {
+      "approved": true,
+      "image_sha256": "44441d399c1bf60f1fd3f850639c8fa998c56143f844ddf79a20ea307f0d4c86",
+      "checks": {
+        "continuous_film_no_holes": true,
+        "full_object_coverage": true,
+        "tape_film_continuity": true,
+        "tape_on_valid_surface": true,
+        "single_integrated_product": true,
+        "no_visual_artifacts": true
+      },
+      "notes": "APPROVE: one intact rectangular sheet covers the full television; square tape endpoints exactly match film width; continuous tape-to-film bond; clear bare-wall gap.",
+      "reviewer": "codex-visual-review",
+      "reviewed_at": "2026-07-17T04:14:24.884279+00:00"
+    },
+    "v03-s01": {
+      "approved": true,
+      "image_sha256": "44441d399c1bf60f1fd3f850639c8fa998c56143f844ddf79a20ea307f0d4c86",
+      "checks": {
+        "continuous_film_no_holes": true,
+        "full_object_coverage": true,
+        "tape_film_continuity": true,
+        "tape_on_valid_surface": true,
+        "single_integrated_product": true,
+        "no_visual_artifacts": true
+      },
+      "notes": "APPROVE: one intact rectangular sheet covers the full television; square tape endpoints exactly match film width; continuous tape-to-film bond; clear bare-wall gap.",
+      "reviewer": "codex-visual-review",
+      "reviewed_at": "2026-07-17T04:14:24.977742+00:00"
+    }
+  },
+  "updated_at": "2026-07-17T04:14:24.977899+00:00"
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-07-16T00:00:00Z",
+  "experiment": "television-wall-anchor-intact-film-v3",
+  "asset_bank": true,
+  "script_source": "user rejection of incomplete film and disconnected tape",
+  "script": "A wall-mounted television is fully protected by one intact transparent pre-taped masking film sheet whose integrated yellow tape is continuously adhered to the wall above it.",
+  "variants": 3,
+  "aspect_ratio": "9:16",
+  "provider": "mixed",
+  "image_provider": "tokendance",
+  "video_provider": "nanyao",
+  "image_model": "seedream-5.0-lite",
+  "video_model": "grok-imagine-video-1.5-fast",
+  "video_protocol": "nanyao:videos",
+  "video_generation_duration_seconds": 10,
+  "video_resolution": "720p",
+  "image_width": 1440,
+  "image_height": 2560,
+  "video_width": 720,
+  "video_height": 1280,
+  "fps": 24,
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "",
+      "duration_seconds": 10,
+      "generation_duration_seconds": 10,
+      "reference_images": [
+        "../../../01_原始资料/product_images/operation-reference-01.png",
+        "../../../01_原始资料/product_images/operation-reference-02.png",
+        "rejected-keyframes/round-01/variant-02/scene-01.png"
+      ],
+      "keyframe_prompt": "Edit the third reference image while preserving its front-facing wall-mounted television composition, but correct the product geometry exactly as follows. Photorealistic vertical commercial photograph. Move the complete integrated yellow tape-and-film top edge upward so that a clear 10-centimeter band of bare wall is visible between the yellow tape and the television top bezel. The yellow tape must not touch the television. Create one clean finite yellow tape strip with square flat left and right endpoints, no curl, notch, fold, gap, or torn end. Directly under the tape is one single intact rectangular transparent PE sheet. At the upper-left corner, the film's left vertical edge begins at exactly the tape's left endpoint. At the upper-right corner, the film's right vertical edge begins at exactly the tape's right endpoint. No yellow tape exists outside the film rectangle. The entire film top edge is visibly bonded continuously behind the entire tape from endpoint to endpoint. The transparent sheet passes in front of the television, proven by soft plastic reflections and a slight clear haze visible across the entire black screen and bezel. The television is behind the film, never in front of it. The unbroken film rectangle covers 100 percent of screen, bezel, left edge, right edge and bottom edge, with transparent side margins and one continuous bottom edge below the television. No hole, tear, slit, opening, split, missing section, flap, folded-back corner, doubled sheet, or deep dark fold. Exactly one integrated tape-and-film product. Symmetrical eye-level medium shot, neutral daylight, stable geometry, no person, hands, roll, text, logo, or watermark.",
+      "video_prompt": "Preserve the approved keyframe exactly. The one finite yellow tape strip stays fixed to the wall above the television. The entire lower edge of the tape remains continuously bonded to the single intact transparent PE film sheet. The film remains an unbroken rectangular curtain with no holes, tears, slits, openings, missing areas, separated flaps, folded-back corners, or duplicated layers. It continuously covers the complete television with transparent margins on the left, right and below. Only a very slow subtle camera push-in and extremely small surface shimmer in the intact film. No part of the television becomes uncovered. No tape or film endpoint changes. No installation, pulling, tearing, removal, transformation, strong wind, object movement, camera orbit, flicker, text, logo, or watermark.",
+      "negative_prompt": "hole in film, torn plastic, ripped film, slit, opening, split sheet, missing film, exposed screen, uncovered television edge, film ending above television bottom, separated flap, folded-back corner, deep fold resembling hole, two plastic sheets, detached film, tape disconnected from film, tape longer than film, film narrower than tape, tape gap, broken yellow tape, yellow tape on television, side tape, bottom tape, multiple tape strips, person, hands, film roll, installation, pulling, tearing, removing, opaque cloth, deformation, melting, strong wind, text, logo, watermark"
+    }
+  ]
+}
