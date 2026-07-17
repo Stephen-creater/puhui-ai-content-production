@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "criteria_version": "product-video-v1",
+  "sample_seconds": [1, 3, 5, 7, 9],
+  "reviews": {
+    "v01-s01": {
+      "ledger_case": 4,
+      "approved": true,
+      "video_sha256": "6b7ff230f7f41919dd5eb652dc4ed3d8d2d7be9e308538fc35398c35b45ceb93",
+      "checks": {"continuous_film_no_holes": true, "full_object_coverage": true, "tape_film_continuity": true, "single_sheet_readability": true, "stable_structure_all_samples": true, "differentiated_scene_retained": true},
+      "notes": "通过：五个节点均保持移动电视、立柱和脚轮底座位于同一张连续透明膜后；远处工人与会议室场景稳定。"
+    },
+    "v02-s01": {
+      "ledger_case": 5,
+      "approved": true,
+      "video_sha256": "93e6c48bd1d0e29b8bcf2d5277adc7d45d9d43df63c9ed0fe23f72800d961810",
+      "checks": {"continuous_film_no_holes": true, "full_object_coverage": true, "tape_film_continuity": true, "single_sheet_readability": true, "stable_structure_all_samples": true, "differentiated_scene_retained": true},
+      "notes": "通过：厨房电视和餐边台持续被同一张膜覆盖，女油漆工没有接触产品，黄色胶带结构稳定。"
+    },
+    "v03-s01": {
+      "ledger_case": 6,
+      "approved": true,
+      "video_sha256": "f07c48ff09460f6e55e2da4d9a5ae9d46611f60a29ba421672fcfdb42c14beff",
+      "checks": {"continuous_film_no_holes": true, "full_object_coverage": true, "tape_film_continuity": true, "single_sheet_readability": true, "stable_structure_all_samples": true, "differentiated_scene_retained": true},
+      "notes": "通过：董事会议室大屏的整幅透明膜、左右边界和黄色胶带在五个节点均保持完整，场景对称推进成立。"
+    },
+    "v05-s01": {
+      "ledger_case": 8,
+      "approved": true,
+      "video_sha256": "f294b44c2ead48af899c925ee9afcccc0681a89668addf9951bf9a632d637b79",
+      "checks": {"continuous_film_no_holes": true, "full_object_coverage": true, "tape_film_continuity": true, "single_sheet_readability": true, "stable_structure_all_samples": true, "differentiated_scene_retained": true},
+      "notes": "通过：显像管电视的凸屏、厚机身和矮柜始终由同一张膜覆盖，没有变成平板或发生穿模。"
+    },
+    "v06-s01": {
+      "ledger_case": 9,
+      "approved": true,
+      "video_sha256": "d2fca356ad7145b647590cef3805204c9f7d424d8ce2ec72d27e1a34b7a650b7",
+      "checks": {"continuous_film_no_holes": true, "full_object_coverage": true, "tape_film_continuity": true, "single_sheet_readability": true, "stable_structure_all_samples": true, "differentiated_scene_retained": true},
+      "notes": "通过：户外电视、绷紧膜边和黄色胶带全程稳定，油漆工保持在产品外侧，没有掀膜或脱落。"
+    },
+    "v07-s01": {
+      "ledger_case": 10,
+      "approved": true,
+      "video_sha256": "b327f4624189aa769e70a2f7c2d8d8c4e1c8a9b4c9859c87abe0453be70ab164",
+      "checks": {"continuous_film_no_holes": true, "full_object_coverage": true, "tape_film_continuity": true, "single_sheet_readability": true, "stable_structure_all_samples": true, "differentiated_scene_retained": true},
+      "notes": "通过：壁龛开口在五个节点均由完整透明膜封住，电视未跑到膜前，跪姿展示动作没有触碰产品。"
+    }
+  },
+  "not_generated": {
+    "v04-s01": {
+      "ledger_case": 7,
+      "reason": "首帧黄色胶带端点超出透明膜的可验证上沿且右端出画，关键帧硬门拒绝，未调用视频 API。"
+    }
+  },
+  "reviewer": "codex-strict-visual-review",
+  "reviewed_at": "2026-07-17T09:55:00Z"
+}

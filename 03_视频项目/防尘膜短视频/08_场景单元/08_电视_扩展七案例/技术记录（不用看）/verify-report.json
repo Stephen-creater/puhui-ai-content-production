@@ -1,0 +1,188 @@
+{
+  "project": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/08_电视_扩展七案例/技术记录（不用看）",
+  "asset_bank": true,
+  "ok": false,
+  "clips": [
+    {
+      "variant": 1,
+      "scene": 1,
+      "path": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/08_电视_扩展七案例/技术记录（不用看）/clips/variant-01/scene-01.mp4",
+      "exists": true,
+      "ok": true,
+      "duration": 10.041667,
+      "size_bytes": 3980739,
+      "video": {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 720,
+        "height": 1280,
+        "r_frame_rate": "24/1"
+      },
+      "audio": {
+        "index": 1,
+        "codec_name": "aac",
+        "codec_type": "audio",
+        "sample_rate": "44100",
+        "channels": 2,
+        "r_frame_rate": "0/0"
+      },
+      "dimensions_match": true,
+      "duration_plausible": true,
+      "audio_expected": false,
+      "audio_present": true
+    },
+    {
+      "variant": 2,
+      "scene": 1,
+      "path": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/08_电视_扩展七案例/技术记录（不用看）/clips/variant-02/scene-01.mp4",
+      "exists": true,
+      "ok": true,
+      "duration": 10.041667,
+      "size_bytes": 4149014,
+      "video": {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 720,
+        "height": 1280,
+        "r_frame_rate": "24/1"
+      },
+      "audio": {
+        "index": 1,
+        "codec_name": "aac",
+        "codec_type": "audio",
+        "sample_rate": "44100",
+        "channels": 2,
+        "r_frame_rate": "0/0"
+      },
+      "dimensions_match": true,
+      "duration_plausible": true,
+      "audio_expected": false,
+      "audio_present": true
+    },
+    {
+      "variant": 3,
+      "scene": 1,
+      "path": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/08_电视_扩展七案例/技术记录（不用看）/clips/variant-03/scene-01.mp4",
+      "exists": true,
+      "ok": true,
+      "duration": 10.041667,
+      "size_bytes": 2959267,
+      "video": {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 720,
+        "height": 1280,
+        "r_frame_rate": "24/1"
+      },
+      "audio": {
+        "index": 1,
+        "codec_name": "aac",
+        "codec_type": "audio",
+        "sample_rate": "44100",
+        "channels": 2,
+        "r_frame_rate": "0/0"
+      },
+      "dimensions_match": true,
+      "duration_plausible": true,
+      "audio_expected": false,
+      "audio_present": true
+    },
+    {
+      "variant": 4,
+      "scene": 1,
+      "path": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/08_电视_扩展七案例/技术记录（不用看）/clips/variant-04/scene-01.mp4",
+      "exists": false,
+      "ok": false
+    },
+    {
+      "variant": 5,
+      "scene": 1,
+      "path": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/08_电视_扩展七案例/技术记录（不用看）/clips/variant-05/scene-01.mp4",
+      "exists": true,
+      "ok": true,
+      "duration": 10.041667,
+      "size_bytes": 5285758,
+      "video": {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 720,
+        "height": 1280,
+        "r_frame_rate": "24/1"
+      },
+      "audio": {
+        "index": 1,
+        "codec_name": "aac",
+        "codec_type": "audio",
+        "sample_rate": "44100",
+        "channels": 2,
+        "r_frame_rate": "0/0"
+      },
+      "dimensions_match": true,
+      "duration_plausible": true,
+      "audio_expected": false,
+      "audio_present": true
+    },
+    {
+      "variant": 6,
+      "scene": 1,
+      "path": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/08_电视_扩展七案例/技术记录（不用看）/clips/variant-06/scene-01.mp4",
+      "exists": true,
+      "ok": true,
+      "duration": 10.041667,
+      "size_bytes": 4818941,
+      "video": {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 720,
+        "height": 1280,
+        "r_frame_rate": "24/1"
+      },
+      "audio": {
+        "index": 1,
+        "codec_name": "aac",
+        "codec_type": "audio",
+        "sample_rate": "44100",
+        "channels": 2,
+        "r_frame_rate": "0/0"
+      },
+      "dimensions_match": true,
+      "duration_plausible": true,
+      "audio_expected": false,
+      "audio_present": true
+    },
+    {
+      "variant": 7,
+      "scene": 1,
+      "path": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/08_电视_扩展七案例/技术记录（不用看）/clips/variant-07/scene-01.mp4",
+      "exists": true,
+      "ok": true,
+      "duration": 10.041667,
+      "size_bytes": 4979523,
+      "video": {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 720,
+        "height": 1280,
+        "r_frame_rate": "24/1"
+      },
+      "audio": {
+        "index": 1,
+        "codec_name": "aac",
+        "codec_type": "audio",
+        "sample_rate": "44100",
+        "channels": 2,
+        "r_frame_rate": "0/0"
+      },
+      "dimensions_match": true,
+      "duration_plausible": true,
+      "audio_expected": false,
+      "audio_present": true
+    }
+  ]
+}
