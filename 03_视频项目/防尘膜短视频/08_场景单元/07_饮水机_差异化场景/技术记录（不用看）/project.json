@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "script_source": "user-approved seven-dimension differentiation batch",
+  "script": "Three visibly different water-dispenser protection scenes demonstrate one-piece pre-taped masking film in completed, fully covered states.",
+  "variants": 3,
+  "aspect_ratio": "9:16",
+  "fps": 24,
+  "image_provider": "tokendance",
+  "image_model": "seedream-5.0-lite",
+  "image_width": 1440,
+  "image_height": 2560,
+  "video_provider": "nanyao",
+  "video_model": "grok-imagine-video-1.5-fast",
+  "video_protocol": "nanyao:videos",
+  "video_resolution": "720p",
+  "video_width": 720,
+  "video_height": 1280,
+  "video_generation_duration_seconds": 10,
+  "asset_bank": true,
+  "experiment": "water-dispenser-seven-dimension-batch-v1",
+  "created_at": "2026-07-17T00:00:00Z",
+  "scenes": [],
+  "variant_scenes": [
+    {
+      "variant": 1,
+      "scenes": [
+        {
+          "id": 1,
+          "duration_seconds": 10,
+          "generation_duration_seconds": 10,
+          "variation_dimensions": {
+            "object_type": "water dispenser",
+            "object_form": "tall narrow floor-standing white dispenser",
+            "environment": "cool modern office break room",
+            "coverage_state": "fully covered to the floor by a straight clear curtain",
+            "shot_scale": "symmetrical full-body shot",
+            "camera_motion": "slow right-to-left lateral slider",
+            "person_or_work_state": "no person; completed protection state"
+          },
+          "reference_images": [
+            "../../05_饮水机_墙面固定_完整膜返工/技术记录（不用看）/approved-candidates/饮水机完整膜基准.png"
+          ],
+          "keyframe_prompt": "Use the reference only as the exact same-width yellow tape and intact film geometry; create a different appliance shape and office setting. Photorealistic vertical commercial photograph of a tall narrow white floor-standing water dispenser against a cool light-blue painted wall in a modern office break room. Stainless counter edge, stacked paper cups and a covered coffee machine sit far in the background. A single finite yellow masking-tape strip is adhered to the wall 15 centimeters above the dispenser. One straight intact transparent PE sheet begins exactly at both tape endpoints and is permanently bonded across the tape's entire lower edge. It hangs to the floor as one continuous clear curtain in front of and completely around the full dispenser, including control panel, taps, side edges and lower cabinet. No person. Symmetrical full-body framing, cool daylight, generous wall context. No tape overhang, gap, second tape, hole, slit, flap, duplicate sheet, exposed appliance, text, logo or watermark.",
+          "video_prompt": "Preserve the cool office break room, tall narrow dispenser and approved intact tape-film geometry. Use a slow right-to-left lateral slider with mild background parallax. The single transparent curtain remains fully connected to the yellow tape and covers the complete dispenser down to the floor. Only fine surface shimmer is allowed. No person enters; no water flow, tear, split, extra tape, duplicate layer, exposed dispenser, installation, transformation, text or logo.",
+          "negative_prompt": "broken plastic, tape wider than film, second tape, uncovered dispenser, water flow"
+        }
+      ]
+    },
+    {
+      "variant": 2,
+      "scenes": [
+        {
+          "id": 1,
+          "duration_seconds": 10,
+          "generation_duration_seconds": 10,
+          "variation_dimensions": {
+            "object_type": "water dispenser",
+            "object_form": "compact countertop dispenser",
+            "environment": "small renovated apartment kitchen",
+            "coverage_state": "fully covered from wall tape to below the countertop front edge",
+            "shot_scale": "three-quarter medium-close shot",
+            "camera_motion": "slow forward push-in",
+            "person_or_work_state": "painter standing at frame left inspecting the tape line without contact"
+          },
+          "reference_images": [
+            "../../05_饮水机_墙面固定_完整膜返工/技术记录（不用看）/approved-candidates/饮水机完整膜基准.png"
+          ],
+          "keyframe_prompt": "Use the reference only for the strict integrated tape-and-film connection; replace the floor appliance with a visibly compact countertop form and change the environment. Photorealistic vertical commercial photograph of a small white countertop water dispenser on a pale stone counter in an apartment kitchen under repainting. A smooth off-white backsplash wall rises behind it. One finite yellow masking-tape strip is adhered to the backsplash 12 centimeters above the appliance. Exactly one transparent PE film sheet is permanently bonded along the tape's full lower edge, with square left and right endpoints aligned exactly. The intact clear sheet passes in front of the complete countertop dispenser and continues below the counter's front edge, protecting both appliance and immediate work surface as one continuous layer. A professional European painter stands at far frame left, looking at the tape line without touching or blocking it. Three-quarter medium-close view, warm daylight, visible cabinet and paint tray context. No tear, opening, doubled film, extra tape, tape overhang, exposed appliance, text, logo or watermark.",
+          "video_prompt": "Keep the renovated apartment kitchen, compact countertop dispenser, painter and approved continuous tape-film structure unchanged. Perform a slow forward push-in toward the protected appliance. The painter briefly looks from the yellow tape line to the covered counter and remains still without contact. The single clear sheet stays connected endpoint-to-endpoint and continues below the counter edge; the entire dispenser remains behind it. No rip, second layer, extra tape, hand contact, water flow, exposed surface, speech, text or logo.",
+          "negative_prompt": "floor-standing appliance, torn film, hands touching tape, duplicate tape, uncovered counter"
+        }
+      ]
+    },
+    {
+      "variant": 3,
+      "scenes": [
+        {
+          "id": 1,
+          "duration_seconds": 10,
+          "generation_duration_seconds": 10,
+          "variation_dimensions": {
+            "object_type": "water dispenser",
+            "object_form": "wide black-and-silver bottom-loading floor dispenser",
+            "environment": "clean clinic corridor renovation zone",
+            "coverage_state": "fully covered with broad side margins and gathered floor edge",
+            "shot_scale": "low-angle wide environmental shot",
+            "camera_motion": "gentle upward pedestal move",
+            "person_or_work_state": "worker standing at frame right presenting the protected appliance"
+          },
+          "reference_images": [
+            "../../05_饮水机_墙面固定_完整膜返工/技术记录（不用看）/approved-candidates/饮水机完整膜基准.png"
+          ],
+          "keyframe_prompt": "Use the reference only as the exact geometry rule for one finite yellow tape strip bonded to one intact film sheet; create a wide appliance and clearly different clinic environment. Photorealistic vertical commercial photograph of a wide black-and-silver bottom-loading floor water dispenser in a clean clinic corridor renovation zone, against a smooth white wall with a covered rolling cart and blue door softly visible in the distance. One finite yellow masking-tape strip is fixed to the wall 18 centimeters above the dispenser. One broad transparent PE film sheet has exactly the same width and is continuously bonded to the entire tape lower edge. It falls as one unbroken layer over the full top, control panel, taps, wide side edges and bottom-loading cabinet, ending in a lightly gathered but continuous floor edge. A professional worker in white painter clothing stands at far frame right and presents beside the appliance with an open palm without touching or blocking it. Low-angle wide environmental composition. No split, seam, opening, double flap, additional tape, tape overhang, exposed cabinet, text, logo or watermark.",
+          "video_prompt": "Preserve the clinic corridor, wide bottom-loading dispenser, standing worker and exact one-piece tape-film installation. Use a gentle upward pedestal move from the gathered floor edge to the yellow tape line. The worker makes one small open-palm presentation gesture beside the covered appliance. The broad transparent sheet remains a single continuous layer with full side margins and stable endpoint alignment. No tear, second flap, loose tape, water flow, contact, uncovered cabinet, camera orbit, speech, text or logo.",
+          "negative_prompt": "narrow dispenser, ripped film, extra tape, presenter occlusion, open cabinet, water stream"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "script_source": "user-approved seven-dimension differentiation batch",
+  "script": "Three visibly different television protection scenes demonstrate one-piece pre-taped masking film in completed, fully covered states.",
+  "variants": 3,
+  "aspect_ratio": "9:16",
+  "fps": 24,
+  "image_provider": "tokendance",
+  "image_model": "seedream-5.0-lite",
+  "image_width": 1440,
+  "image_height": 2560,
+  "video_provider": "nanyao",
+  "video_model": "grok-imagine-video-1.5-fast",
+  "video_protocol": "nanyao:videos",
+  "video_resolution": "720p",
+  "video_width": 720,
+  "video_height": 1280,
+  "video_generation_duration_seconds": 10,
+  "asset_bank": true,
+  "experiment": "television-seven-dimension-batch-v1",
+  "created_at": "2026-07-17T00:00:00Z",
+  "scenes": [],
+  "variant_scenes": [
+    {
+      "variant": 1,
+      "scenes": [
+        {
+          "id": 1,
+          "duration_seconds": 10,
+          "generation_duration_seconds": 10,
+          "variation_dimensions": {
+            "object_type": "television",
+            "object_form": "65-inch ultra-thin wall-mounted flat panel",
+            "environment": "bright Scandinavian living room under repainting",
+            "coverage_state": "fully covered by a taut rectangular clear film curtain",
+            "shot_scale": "wide full-wall shot",
+            "camera_motion": "slow left-to-right lateral slider",
+            "person_or_work_state": "no person; completed protection state"
+          },
+          "reference_images": [
+            "../../04_电视_墙面固定_完整膜返工/技术记录（不用看）/approved-candidates/电视完整膜基准.png"
+          ],
+          "keyframe_prompt": "Use the reference only as the exact geometry standard for one integrated yellow tape and one intact transparent film sheet; create a clearly different setting and television. Photorealistic vertical commercial photograph of a 65-inch ultra-thin wall-mounted flat-panel television on a smooth pale-gray plaster wall in a bright Scandinavian living room being repainted. Include an oak console, covered sofa edge and folded canvas drop cloth in the wider background. One finite straight yellow masking-tape strip is adhered to the wall 12 centimeters above the television. Its square endpoints align exactly with the left and right vertical edges of one single transparent PE sheet permanently bonded along the tape's full lower edge. No tape extends beyond the film. The unbroken clear sheet hangs as one taut rectangular curtain in front of and completely beyond all four edges of the television, proven by soft reflections across the whole black screen and bezel. No hole, slit, split, flap, doubled layer, missing corner or detached tape. No person or hands. Wide full-wall composition, front-facing eye level, bright cool daylight, clean realistic renovation advertising, no text, logo or watermark.",
+          "video_prompt": "Maintain the approved Scandinavian living-room keyframe and exact integrated product geometry. The 65-inch television stays fully behind one continuous clear film sheet; the yellow wall tape stays bonded across the complete film top edge with aligned endpoints. Execute a slow left-to-right lateral slider move that reveals mild parallax between the oak console and pale wall. Only tiny natural surface shimmer may occur in the film; no tear, opening, doubled flap, loose tape, uncovered television, person, installation action, transformation, flicker, text or logo.",
+          "negative_prompt": "broken film, split plastic, extra tape, exposed screen, tape on television, duplicate sheet"
+        }
+      ]
+    },
+    {
+      "variant": 2,
+      "scenes": [
+        {
+          "id": 1,
+          "duration_seconds": 10,
+          "generation_duration_seconds": 10,
+          "variation_dimensions": {
+            "object_type": "television",
+            "object_form": "43-inch compact wall-mounted flat panel",
+            "environment": "warm boutique-hotel bedroom renovation",
+            "coverage_state": "fully covered with softly draped side and lower margins",
+            "shot_scale": "three-quarter medium shot from the right",
+            "camera_motion": "slow rightward dolly with restrained parallax",
+            "person_or_work_state": "professional painter kneeling at frame left and visually inspecting without touching"
+          },
+          "reference_images": [
+            "../../04_电视_墙面固定_完整膜返工/技术记录（不用看）/approved-candidates/电视完整膜基准.png"
+          ],
+          "keyframe_prompt": "Use the reference only for the non-negotiable same-width tape-and-film connection; change the television size, room, camera angle and human state. Photorealistic vertical commercial photograph in a warm boutique-hotel bedroom under renovation. A compact 43-inch black television is wall mounted above a narrow walnut desk on a smooth cream wall. One finite yellow masking-tape strip is fixed to the wall 10 centimeters above it. One intact transparent PE film sheet begins exactly at both tape endpoints and is permanently connected across the tape's full lower edge. The film is one continuous layer in front of the television, with soft side and lower margins covering 100 percent of screen and bezel. A professional European male painter in clean white workwear kneels at far frame left, looking toward the protected lower edge without touching the film or tape; his body never blocks the product. Three-quarter medium view from the right, warm practical bedside lighting plus soft daylight. No hole, opening, split, flap, second sheet, extra tape, exposed television, text, logo or watermark.",
+          "video_prompt": "Preserve the boutique-hotel bedroom, compact television, kneeling painter and the approved one-piece tape-film structure. Move the camera slowly to the right for restrained parallax across the walnut desk. The painter only shifts his gaze from the lower film margin to the yellow tape and gives one small satisfied nod; he never touches the product. The transparent sheet remains one intact layer covering the complete television, and both film edges remain aligned with the tape endpoints. No tear, flap, second layer, tape movement, installation, exposed screen, body occlusion, lip movement, text or logo.",
+          "negative_prompt": "hands touching film, torn plastic, extra tape, person blocking product, exposed television"
+        }
+      ]
+    },
+    {
+      "variant": 3,
+      "scenes": [
+        {
+          "id": 1,
+          "duration_seconds": 10,
+          "generation_duration_seconds": 10,
+          "variation_dimensions": {
+            "object_type": "television",
+            "object_form": "75-inch wide wall-mounted flat panel",
+            "environment": "industrial loft media room with smooth white mounting panel",
+            "coverage_state": "fully covered with broad transparent margins and lightly tensioned lower edge",
+            "shot_scale": "low-angle wide shot",
+            "camera_motion": "gentle upward tilt from console to tape line",
+            "person_or_work_state": "standing painter at far right pointing beside the protected area"
+          },
+          "reference_images": [
+            "../../04_电视_墙面固定_完整膜返工/技术记录（不用看）/approved-candidates/电视完整膜基准.png"
+          ],
+          "keyframe_prompt": "Use the reference solely as the exact integrated product geometry; make the object, environment, framing and worker state visibly different. Photorealistic vertical commercial photograph of a very wide 75-inch wall-mounted flat-panel television centered on a large smooth white mounting panel set into an industrial loft media room with dark brick visible at both sides and a black metal console below. A single finite yellow masking-tape strip is adhered horizontally to the white panel 15 centimeters above the television. Exactly one broad intact transparent PE film sheet is bonded continuously to the tape's entire lower edge; film and tape have identical left and right endpoints. The clear sheet passes in front of the entire wide television and extends beyond both side edges and below the bottom bezel as one readable layer. A professional European painter stands at the far right outside the film boundary and points beside, not at or through, the protected area. Low-angle wide composition emphasizing the broad rectangular coverage. No broken plastic, seam, opening, duplicated sheet, tape overhang, person occlusion, text, logo or watermark.",
+          "video_prompt": "Keep the industrial loft, 75-inch television, standing painter and full-width one-piece film installation unchanged. Begin low on the black metal console and perform a gentle upward camera tilt ending on the straight yellow tape line. The painter makes one restrained open-palm presentation gesture beside the film boundary without touching it. Throughout the tilt the television remains fully behind one continuous transparent sheet with broad margins; tape and film endpoints stay aligned. No split, hole, double flap, extra tape, exposed bezel, strong wind, installation, speech, text or logo.",
+          "negative_prompt": "camera orbit, broken film, tape overhang, presenter blocking television, extra plastic layer"
+        }
+      ]
+    }
+  ]
+}
