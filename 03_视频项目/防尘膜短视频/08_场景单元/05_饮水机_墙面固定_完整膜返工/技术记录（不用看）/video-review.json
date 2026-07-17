@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "criteria_version": "product-video-v1",
+  "sample_seconds": [1, 3, 5, 7, 9],
+  "reviews": {
+    "v01-s01": {
+      "approved": true,
+      "video_sha256": "5648059071b9699284eb5cc40b7a0827b7483972beed3609de8385b3a51d633e",
+      "checks": {
+        "continuous_film_no_holes": true,
+        "full_object_coverage": true,
+        "tape_film_continuity": true,
+        "single_sheet_readability": true,
+        "stable_structure_all_samples": true
+      },
+      "notes": "APPROVE: all five samples retain one intact continuous sheet, complete water-dispenser coverage, and stable full-width tape-to-film geometry."
+    },
+    "v02-s01": {
+      "approved": true,
+      "video_sha256": "c26cb92054b1aae718d9b1735871372b8916e5b6efb4574056a07c106913c305",
+      "checks": {
+        "continuous_film_no_holes": true,
+        "full_object_coverage": true,
+        "tape_film_continuity": true,
+        "single_sheet_readability": true,
+        "stable_structure_all_samples": true
+      },
+      "notes": "APPROVE: all five samples preserve a single readable film layer, full object coverage, and continuous aligned tape endpoints without structural drift."
+    },
+    "v03-s01": {
+      "approved": true,
+      "video_sha256": "37e2a2623a8a191732ee49b29d4a53d03a9390d7242d54b9b3f188922f4ba0e1",
+      "checks": {
+        "continuous_film_no_holes": true,
+        "full_object_coverage": true,
+        "tape_film_continuity": true,
+        "single_sheet_readability": true,
+        "stable_structure_all_samples": true
+      },
+      "notes": "APPROVE: all five samples keep one intact sheet over the full dispenser with no holes, extra tape, detached edges, or geometry jump."
+    }
+  },
+  "reviewer": "codex-visual-review",
+  "reviewed_at": "2026-07-17T06:41:39Z"
+}
