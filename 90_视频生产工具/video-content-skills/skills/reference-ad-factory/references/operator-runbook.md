@@ -4,7 +4,7 @@ This is the cold-start path for an AI agent or human operator with no conversati
 
 ```bash
 REPO=/absolute/path/to/puhui-ai-content-production
-PROJECT="$REPO/03_视频项目/pre-taped-masking-film"
+PROJECT="$REPO/03_视频项目/防尘膜短视频"
 FACTORY="$REPO/90_视频生产工具/video-content-skills/skills/reference-ad-factory"
 PRODUCER="$REPO/90_视频生产工具/video-content-skills/skills/video-batch-producer"
 ```
@@ -12,7 +12,7 @@ PRODUCER="$REPO/90_视频生产工具/video-content-skills/skills/video-batch-pr
 ## Inputs and prerequisites
 
 - Python 3.11+, FFmpeg and ffprobe.
-- Reference video under `PROJECT/00_input/reference_videos/`.
+- Reference video under `PROJECT/01_原始资料/reference_videos/`.
 - Product reference images and approved product facts.
 - TokenDance image credential and nanyao video credential available through environment
   variables or macOS Keychain. Nanyao image inputs must be public HTTP(S) URLs.
@@ -43,14 +43,14 @@ python3 "$FACTORY/scripts/search_tiktok_hooks.py" \
   --max-requests 2 --max-cost-usd 0.002
 ```
 
-The key is read from `TIKHUB_API_KEY` or macOS Keychain service `video-content-skills/tikhub` only after all gates pass. Review candidates manually and record permission before moving an authorized reference into `00_input/reference_videos/`.
+The key is read from `TIKHUB_API_KEY` or macOS Keychain service `video-content-skills/tikhub` only after all gates pass. Review candidates manually and record permission before moving an authorized reference into `01_原始资料/reference_videos/`.
 
 ### 1. Analyze once, reuse by hash
 
 ```bash
 python3 "$REPO/90_视频生产工具/video-content-skills/skills/reference-video-analyzer/scripts/analyze_reference.py" \
-  --input "$PROJECT/00_input/reference_videos/reference-01.mp4" \
-  --output-dir "$PROJECT/01_analysis/reference-01"
+  --input "$PROJECT/01_原始资料/reference_videos/reference-01.mp4" \
+  --output-dir "$PROJECT/02_参考片拆解/reference-01"
 ```
 
 Matching source SHA-256 should return `status: reused`. Do not repeat transcript, OCR or shot extraction when the reference hash is unchanged.
@@ -81,7 +81,7 @@ Hard rules:
 
 ```bash
 python3 "$PRODUCER/scripts/run_pipeline.py" \
-  --project "$PROJECT/03_generation/phase2-v2-unique" \
+  --project "$PROJECT/04_AI生成工程/phase2-v2-unique" \
   --max-workers 4 --retries 1
 ```
 
@@ -91,7 +91,7 @@ Record new images, new video jobs, generated seconds, resolution, native-audio j
 
 ```bash
 python3 "$PRODUCER/scripts/run_pipeline.py" \
-  --project "$PROJECT/03_generation/phase2-v2-unique" \
+  --project "$PROJECT/04_AI生成工程/phase2-v2-unique" \
   --execute --cost-authorized --keyframes-only \
   --max-image-jobs 25 --max-workers 4 --retries 1
 ```
@@ -102,20 +102,20 @@ Review all keyframes. Reject wrong integrated-product geometry, wrong action ord
 
 ```bash
 python3 "$PRODUCER/scripts/run_pipeline.py" \
-  --project "$PROJECT/03_generation/phase2-v2-unique" \
+  --project "$PROJECT/04_AI生成工程/phase2-v2-unique" \
   --execute --cost-authorized \
   --max-image-jobs 0 --max-video-jobs 25 --max-paid-video-seconds 250 \
   --max-workers 4 --retries 1
 
 python3 "$PRODUCER/scripts/verify_project.py" \
-  --project "$PROJECT/03_generation/phase2-v2-unique"
+  --project "$PROJECT/04_AI生成工程/phase2-v2-unique"
 ```
 
 Review motion in every clip. Reject reversed order, detached tape and film, impossible hand movement, identity changes, frozen output or unintended speech. Retry only failed clips. For example:
 
 ```bash
 python3 "$PRODUCER/scripts/run_pipeline.py" \
-  --project "$PROJECT/03_generation/phase2-v2-unique" \
+  --project "$PROJECT/04_AI生成工程/phase2-v2-unique" \
   --execute --cost-authorized --force-clips \
   --task v01-s02 --task v01-s03 \
   --max-image-jobs 0 --max-video-jobs 2 --max-paid-video-seconds 20 \
@@ -128,10 +128,10 @@ python3 "$PRODUCER/scripts/run_pipeline.py" \
 
 ```bash
 python3 "$FACTORY/scripts/assemble_variants.py" \
-  --manifest "$PROJECT/02_plan/phase2-v2/batch-manifest.json" --dry-run
+  --manifest "$PROJECT/03_脚本与方案/phase2-v2/batch-manifest.json" --dry-run
 
 python3 "$FACTORY/scripts/assemble_variants.py" \
-  --manifest "$PROJECT/02_plan/phase2-v2/batch-manifest.json" --force
+  --manifest "$PROJECT/03_脚本与方案/phase2-v2/batch-manifest.json" --force
 ```
 
 Verify all five outputs with ffprobe and human playback. Required release checks:

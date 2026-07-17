@@ -28,7 +28,7 @@ Both upstream licenses permit use, modification, and redistribution when their c
 ## Nanyao Grok video adapter
 
 - Service: <https://api.nanyaoai.top/>
-- Local source document: `99_研发与临时文件/技术调研/nanyao-grok-video-api/source/nanyaoapi-grok-video-api(2).docx`
+- Local source document: `99_研发归档/技术调研/nanyao-grok-video-api/source/nanyaoapi-grok-video-api(2).docx`
 - Reused code: none. The adapter is an original standard-library HTTP implementation.
 - Data flow: video prompts and public generated-keyframe URLs are sent to nanyao. The
   returned object-storage URL is downloaded without forwarding the API key. Credentials

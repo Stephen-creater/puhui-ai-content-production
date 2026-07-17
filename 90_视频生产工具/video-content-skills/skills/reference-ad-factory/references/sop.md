@@ -54,15 +54,15 @@ Record which hooks, shots, prompts, models, and retries passed. Promote reusable
 
 ```text
 project/
-├── 00_input/
+├── 01_原始资料/
 │   ├── reference_videos/
 │   └── product_images/
-├── 01_analysis/
-├── 02_plan/
+├── 02_参考片拆解/
+├── 03_脚本与方案/
 │   └── variants/
-├── 03_generation/
-├── 04_postproduction/
-├── 05_deliverables/
-├── 06_reports/
-└── 99_tests/
+├── 04_AI生成工程/
+├── 05_后期制作/
+├── 06_成片/
+├── 07_验收报告/
+└── 08_场景单元/
 ```

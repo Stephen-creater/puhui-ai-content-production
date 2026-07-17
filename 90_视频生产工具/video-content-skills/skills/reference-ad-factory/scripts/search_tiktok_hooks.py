@@ -138,7 +138,7 @@ def write_outputs(output_dir: Path, candidates: list[dict[str, Any]], summary: d
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--query", action="append", required=True, help="Repeat for multiple searches")
-    parser.add_argument("--output-dir", type=Path, default=Path("work/tikhub-hook-search/latest"))
+    parser.add_argument("--output-dir", type=Path, default=Path(".work/tikhub-hook-search/latest"))
     parser.add_argument("--region", default="US")
     parser.add_argument("--count", type=int, default=20)
     parser.add_argument("--sort-type", type=int, default=1, help="TikHub/TikTok sort mode; 1 is most liked")

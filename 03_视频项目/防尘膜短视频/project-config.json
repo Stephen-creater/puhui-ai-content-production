@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "project_name": "pre-taped-masking-film",
+  "reference_videos": [
+    "01_原始资料/reference_videos/customer-reference-01.mp4"
+  ],
+  "product_images": [
+    "01_原始资料/product_images/operation-reference-01.png",
+    "01_原始资料/product_images/operation-reference-02.png"
+  ],
+  "variant_count": 5,
+  "language": "en",
+  "aspect_ratio": "9:16",
+  "duration_policy": {
+    "minimum_seconds": 20,
+    "recommended_maximum_seconds": 60
+  },
+  "git_policy": {
+    "track": ["plans", "scripts", "keyframes", "reports", "skills"],
+    "local_only": ["videos", "audio", "presentations", "provider_metadata", "credentials"]
+  },
+  "status": "phase2_five_variants_verified"
+}

@@ -56,7 +56,7 @@ def main() -> None:
 
     project = args.project.expanduser().resolve()
     config = read_json(project / "project-config.json")
-    template_path = (args.template_dna or project / "02_plan/template-dna.json").expanduser().resolve()
+    template_path = (args.template_dna or project / "03_脚本与方案/template-dna.json").expanduser().resolve()
     template = read_json(template_path)
     count = args.variants or int(config.get("variant_count", 3))
     if count < 1:
@@ -69,7 +69,7 @@ def main() -> None:
     if duration_target > 60:
         print("Warning: target duration exceeds the recommended 60-second maximum")
 
-    output = project / "02_plan/production-plan.json"
+    output = project / "03_脚本与方案/production-plan.json"
     if output.exists() and not args.force and not args.dry_run:
         raise SystemExit(f"Production plan already exists: {output}; pass --force to replace it")
 

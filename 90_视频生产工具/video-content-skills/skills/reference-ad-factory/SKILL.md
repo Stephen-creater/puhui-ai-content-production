@@ -52,7 +52,7 @@ The script copies inputs into a standard local project. Heavy media remains igno
    ```
 
 6. Write a finished script and shot plan for every variant. Vary the declared strategy; do not rely on model randomness as the only difference.
-   Store the authored content in `02_plan/phase2/variant-content.json`, then compile and validate it:
+   Store the authored content in `03_脚本与方案/phase2/variant-content.json`, then compile and validate it:
 
    ```bash
    python3 scripts/compile_variants.py \
@@ -69,10 +69,10 @@ The script copies inputs into a standard local project. Heavy media remains igno
 
    ```bash
    python3 scripts/assemble_variants.py \
-     --manifest /absolute/path/project/02_plan/phase2/batch-manifest.json \
+     --manifest /absolute/path/project/03_脚本与方案/phase2/batch-manifest.json \
      --dry-run
    python3 scripts/assemble_variants.py \
-     --manifest /absolute/path/project/02_plan/phase2/batch-manifest.json
+     --manifest /absolute/path/project/03_脚本与方案/phase2/batch-manifest.json
    ```
 10. Apply [references/quality-gates.md](references/quality-gates.md). Retry only failed assets and retain successful generations.
 

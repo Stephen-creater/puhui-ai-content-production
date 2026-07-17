@@ -6,11 +6,12 @@
     "03_视频项目",
     "90_视频生产工具",
     "91_Agent协作工具",
-    "99_研发与临时文件"
+    "99_研发归档"
   ],
-  "canonical_local_scratch": "work",
+  "canonical_local_scratch": ".work",
   "forbidden_duplicate_paths": [
-    "99_研发与临时文件/work"
+    "99_研发归档/work",
+    "99_研发归档/.work"
   ],
   "allowed_root_files": [
     ".gitattributes",
@@ -21,7 +22,7 @@
   ],
   "readme_scan_excludes": [
     ".git",
-    "work",
-    "99_研发与临时文件/技术调研/research"
+    ".work",
+    "99_研发归档/技术调研/research"
   ]
 }

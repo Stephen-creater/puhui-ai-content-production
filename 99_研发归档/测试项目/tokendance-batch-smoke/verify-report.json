@@ -1,0 +1,42 @@
+{
+  "project": "/Users/a1-6/Downloads/浦汇未来/.work/tokendance-batch-smoke",
+  "ok": true,
+  "outputs": [
+    {
+      "variant": 1,
+      "path": "/Users/a1-6/Downloads/浦汇未来/.work/tokendance-batch-smoke/output/variant-01.mp4",
+      "exists": true,
+      "ok": true,
+      "duration": 5.041667,
+      "size_bytes": 966403,
+      "video": {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 720,
+        "height": 1280,
+        "r_frame_rate": "24/1"
+      },
+      "dimensions_match": true,
+      "duration_plausible": true
+    },
+    {
+      "variant": 2,
+      "path": "/Users/a1-6/Downloads/浦汇未来/.work/tokendance-batch-smoke/output/variant-02.mp4",
+      "exists": true,
+      "ok": true,
+      "duration": 5.041667,
+      "size_bytes": 1066613,
+      "video": {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 720,
+        "height": 1280,
+        "r_frame_rate": "24/1"
+      },
+      "dimensions_match": true,
+      "duration_plausible": true
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-07-14T06:47:50.451543+00:00",
+  "script_source": "user-provided storyboard",
+  "script": "20秒一体式Pre-taped Masking Film产品广告：欧美油漆工展示产品，先按压黄色美纹胶固定，再向下展开透明PE薄膜，固定末端并手撕截断，喷漆打磨时保护家具，完工后撕除薄膜，不伤漆面不留残胶。",
+  "variants": 1,
+  "aspect_ratio": "9:16",
+  "provider": "tokendance",
+  "image_model": "seedream-5.0-lite",
+  "video_model": "kling-3.0",
+  "video_protocol": "kling:image2video",
+  "kling_mode": "pro",
+  "generate_audio": "off",
+  "video_resolution": "1080p",
+  "image_width": 1440,
+  "image_height": 2560,
+  "video_width": 1080,
+  "video_height": 1920,
+  "fps": 24,
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "装修喷漆，最麻烦的往往是后续清理。",
+      "duration_seconds": 3,
+      "generation_duration_seconds": 4,
+      "reference_images": [
+        "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/01_原始资料/product_images/operation-reference-01.png",
+        "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/01_原始资料/product_images/operation-reference-02.png"
+      ],
+      "keyframe_prompt": "生成一张9:16竖屏写实商业产品演示图。场景是正在装修的现代厨房，白色吊柜、浅灰色瓷砖墙、深灰色台面。一名38岁欧美男性油漆工，短棕发、浅棕色短胡须，穿灰色T恤、深蓝色工装背带裤和透明防护眼镜。他面向镜头，在胸前横向展示一卷一体式Pre-taped Masking Film，用手指向黄色美纹胶与透明折叠PE薄膜的永久连接边。严格参考输入图中产品结构：白色卷芯，顶部黄色胶带与透明薄膜不可分离。中景，正面平视，柔和自然光，人物与产品边缘清晰，手指数量正确，无文字无Logo无水印。",
+      "video_prompt": "同一名欧美油漆工在厨房中稳定地向镜头展示一体式防尘膜卷，只做一个动作：用右手食指指向黄色胶带与透明PE薄膜的连接处。产品不变形，黄色胶带与透明薄膜始终连接。镜头轻微缓慢推进，人物无口型对话，无字幕。",
+      "negative_prompt": "黄色胶带与薄膜分离，独立胶带卷，蓝色胶带，不透明薄膜，产品变形，多余手指，畸形手，人物换脸，服装变化，文字，Logo，水印"
+    },
+    {
+      "id": 2,
+      "narration": "先把顶部黄色胶边贴好，并逐段按压牢固。",
+      "duration_seconds": 3,
+      "generation_duration_seconds": 4,
+      "reference_images": [
+        "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/01_原始资料/product_images/operation-reference-01.png",
+        "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/01_原始资料/product_images/operation-reference-02.png",
+        "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/04_AI生成工程/visual-bank-v1/keyframes/variant-01/scene-01.png"
+      ],
+      "keyframe_prompt": "生成9:16竖屏写实产品操作特写。与参考图完全相同的一体式Pre-taped Masking Film。白色吊柜下沿，同一名欧美油漆工的双手从左向右按压黄色美纹胶，一只手定位，另一只手用拇指压实胶边。透明PE薄膜仍然折叠收拢在黄色胶带下方，尚未向下展开。手部特写，参考用户两张操作图的产品比例和手部位置，黄色胶带平直贴合柜体，手部结构正确，中性自然光，无独立胶带卷，无文字无水印。",
+      "video_prompt": "产品操作特写，严格按照先贴胶后拉膜的顺序。同一名油漆工只做一个连续动作：用拇指从左向右缓慢按压黄色胶边，让胶带牢固贴在白色吊柜下沿。透明PE薄膜始终折叠收拢，不向下展开。固定近景，真实手部动作，产品结构不变。",
+      "negative_prompt": "先拉薄膜，胶带未固定，黄色胶带与薄膜分离，独立胶带卷，蓝色胶带，额外手指，手部粘连，产品漂浮，文字，Logo，水印"
+    },
+    {
+      "id": 3,
+      "narration": "固定完成后，再匀速向下展开透明PE薄膜。",
+      "duration_seconds": 4,
+      "generation_duration_seconds": 4,
+      "reference_images": [
+        "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/01_原始资料/product_images/operation-reference-01.png",
+        "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/01_原始资料/product_images/operation-reference-02.png",
+        "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/04_AI生成工程/visual-bank-v1/keyframes/variant-01/scene-01.png"
+      ],
+      "keyframe_prompt": "生成9:16竖屏写实厨房施工中近景。吊柜下沿的黄色美纹胶已经完整压实固定，与透明PE薄膜永久连接。同一名欧美男性油漆工，灰色T恤、深蓝色工装背带裤、透明防护眼镜，一手稳定膜卷，另一手握住透明薄膜下沿向下展开，薄膜正在覆盖浅灰色瓷砖墙和深灰色台面。薄膜透明，有真实折痕和反光，但不遮挡胶带位置。侧面平视，人物和厨房与第一张参考帧保持一致，无文字无水印。",
+      "video_prompt": "黄色胶带已经牢固贴在吊柜下沿。同一名油漆工只做一个动作：双手握住透明PE薄膜下沿，匀速垂直向下展开，直到薄膜覆盖瓷砖墙和台面。黄色胶带始终保持固定，薄膜与胶带不分离。镜头轻微向下跟随，真实薄膜物理运动。",
+      "negative_prompt": "胶带未固定，先拉膜后贴胶，胶带脱落，薄膜与胶带分离，薄膜不透明，手部畸形，人物换脸，柜体变形，文字，Logo，水印"
+    },
+    {
+      "id": 4,
+      "narration": "拉到合适范围，固定末端，直接手撕截断。",
+      "duration_seconds": 3,
+      "generation_duration_seconds": 4,
+      "reference_images": [
+        "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/01_原始资料/product_images/operation-reference-01.png",
+        "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/01_原始资料/product_images/operation-reference-02.png",
+        "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/04_AI生成工程/visual-bank-v1/keyframes/variant-01/scene-01.png"
+      ],
+      "keyframe_prompt": "生成9:16竖屏写实产品施工近景。透明PE薄膜已经完整覆盖厨房台面和瓷砖墙，顶部黄色胶带平直固定。同一名欧美油漆工在右侧拉紧膜材末端，一只手用拇指按压末端黄色胶边，另一只手准备沿白色膜卷边缘手撕截断。黄色胶带与透明膜仍是一体结构，无剪刀，手部清楚，产品边缘清晰，无文字无水印。",
+      "video_prompt": "同一名油漆工完成两个连续的简单动作：先用拇指压实末端黄色胶边，再用双手沿膜卷边缘直接撕断透明膜。不使用剪刀。透明膜保持对台面和瓷砖墙的完整覆盖，黄色胶带不与膜分离。固定近景，真实手部物理动作。",
+      "negative_prompt": "剪刀，刀具，胶带与膜分离，薄膜脱落，家具未覆盖，额外手指，手部粘连，产品变形，文字，Logo，水印"
+    },
+    {
+      "id": 5,
+      "narration": "喷漆和打磨产生的灰尘、漆雾，只会落在膜面。",
+      "duration_seconds": 4,
+      "generation_duration_seconds": 4,
+      "reference_images": [
+        "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/01_原始资料/product_images/operation-reference-01.png",
+        "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/01_原始资料/product_images/operation-reference-02.png",
+        "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/04_AI生成工程/visual-bank-v1/keyframes/variant-01/scene-01.png"
+      ],
+      "keyframe_prompt": "生成9:16竖屏写实厨房装修施工中景。白色吊柜下方和深灰色台面已被透明PE防尘膜完整覆盖，顶部黄色胶带清晰固定。同一名欧美男性油漆工戴透明防护眼镜，穿灰色T恤和深蓝色工装背带裤，在安全距离使用小型喷漆枪对柜门施工。少量灰尘和漆雾颗粒落在透明膜外表面，台面和瓷砖保持干净。真实施工环境，无夸张烟雾，中性自然光，无文字无水印。",
+      "video_prompt": "同一名油漆工用小型喷漆枪水平缓慢移动一次，进行真实室内喷漆施工。少量漆雾和灰尘自然落在透明PE膜外表面，下方台面和瓷砖不受污染。防尘膜和黄色胶带始终牢固，广角中景，摄像机稳定，物理运动真实。",
+      "negative_prompt": "大量爆炸式漆雾，家具已被污染，薄膜破裂，胶带脱落，人物换脸，喷漆枪变形，多余手指，文字，Logo，水印"
+    },
+    {
+      "id": 6,
+      "narration": "完工轻轻撕下，不伤漆面、不留残胶，脏污一次带走。",
+      "duration_seconds": 3,
+      "generation_duration_seconds": 4,
+      "reference_images": [
+        "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/01_原始资料/product_images/operation-reference-01.png",
+        "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/01_原始资料/product_images/operation-reference-02.png",
+        "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/04_AI生成工程/visual-bank-v1/keyframes/variant-01/scene-01.png"
+      ],
+      "keyframe_prompt": "生成9:16竖屏写实装修完工画面。同一名欧美男性油漆工，短棕发、浅棕色短胡须，灰色T恤、深蓝色工装背带裤、透明防护眼镜。他从白色吊柜下沿的黄色胶边处轻轻撕除一体式透明防尘膜，黄色胶带与透明PE膜一起离开，膜面带有灰尘和少量干燥漆雾。人物将脏污薄膜向内折叠收拢，下方深灰色台面和浅灰色瓷砖墙完全干净，柜体漆面完整，没有残胶。中近景，真实手部，自然光，无文字无水印。",
+      "video_prompt": "同一名油漆工只做一个清晰动作：从黄色胶边一端开始，缓慢连续撕下整张脏污的透明PE防尘膜，并向内折叠收拢。黄色胶带与透明膜一起移除，柜体漆面不损伤，没有残胶，镜头最后露出干净的台面和瓷砖墙。摄像机稳定，真实薄膜物理运动。",
+      "negative_prompt": "柜体漆面破损，黄色残胶，胶带留在柜体，薄膜与胶带分离，脏污落到台面，人物换脸，手部畸形，文字，Logo，水印"
+    }
+  ]
+}

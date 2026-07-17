@@ -31,7 +31,7 @@ def main() -> None:
     args = parser.parse_args()
 
     project = args.project.expanduser().resolve()
-    plan_dir = project / "02_plan"
+    plan_dir = project / "03_脚本与方案"
     content_path = (args.content or plan_dir / "phase2/variant-content.json").expanduser().resolve()
     intake = load(plan_dir / "intake.json")
     product = load(plan_dir / "product-brief.json")
@@ -85,7 +85,7 @@ def main() -> None:
             "duration_seconds": duration,
             "voiceover_path": voices.get(variant_id),
             "verified_claims": {fact_id: facts[fact_id] for fact_id in source.get("claim_fact_ids", [])},
-            "output": f"05_deliverables/phase2/{variant_id}.mp4",
+            "output": f"06_成片/phase2/{variant_id}.mp4",
         })
 
     manifest = {

@@ -12,15 +12,15 @@ from pathlib import Path
 
 
 DIRECTORIES = [
-    "00_input/reference_videos",
-    "00_input/product_images",
-    "01_analysis",
-    "02_plan/variants",
-    "03_generation",
-    "04_postproduction",
-    "05_deliverables",
-    "06_reports",
-    "99_tests",
+    "01_原始资料/reference_videos",
+    "01_原始资料/product_images",
+    "02_参考片拆解",
+    "03_脚本与方案/variants",
+    "04_AI生成工程",
+    "05_后期制作",
+    "06_成片",
+    "07_验收报告",
+    "08_场景单元",
 ]
 
 
@@ -68,8 +68,8 @@ def main() -> None:
     for relative in DIRECTORIES:
         (project / relative).mkdir(parents=True, exist_ok=True)
 
-    references = copy_inputs(args.reference_video, project / "00_input/reference_videos", "reference")
-    images = copy_inputs(args.product_image, project / "00_input/product_images", "product")
+    references = copy_inputs(args.reference_video, project / "01_原始资料/reference_videos", "reference")
+    images = copy_inputs(args.product_image, project / "01_原始资料/product_images", "product")
     config = {
         "schema_version": 1,
         "project_name": safe_name(args.project_name),
@@ -88,7 +88,7 @@ def main() -> None:
     }
     config_path.write_text(json.dumps(config, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
-    brief_path = project / "02_plan/product-brief.template.json"
+    brief_path = project / "03_脚本与方案/product-brief.template.json"
     if args.force or not brief_path.exists():
         brief = {
             "product_name": "",

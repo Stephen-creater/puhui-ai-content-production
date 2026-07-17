@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "verified_at": "2026-07-14",
+  "overall_ok": true,
+  "source_manifest": "03_脚本与方案/phase2/batch-manifest.json",
+  "checks": {
+    "variant_count": 5,
+    "duration_policy": "20-60 seconds",
+    "all_durations_pass": true,
+    "resolution": "1080x1920",
+    "frame_rate": "24/1",
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "audio_sample_rate": 48000,
+    "audio_channels": 2,
+    "captions_visible_and_inside_safe_area": true,
+    "voice": "Alex (alex), ElevenLabs eleven_v3",
+    "product_is_integrated_tape_and_clear_pe_film": true,
+    "yellow_tape_is_pressed_before_film_is_pulled": true,
+    "dirty_covering_is_removed_with_the_mess": true,
+    "no_unapproved_claims_detected": true
+  },
+  "variants": [
+    {
+      "variant_id": "variant-01",
+      "strategy": "pain-result",
+      "duration_seconds": 35.8,
+      "size_bytes": 28153000,
+      "integrated_loudness_lufs": -16.3,
+      "true_peak_dbfs": -3.9,
+      "visual_review": "pass"
+    },
+    {
+      "variant_id": "variant-02",
+      "strategy": "efficiency",
+      "duration_seconds": 35.8,
+      "size_bytes": 28750807,
+      "integrated_loudness_lufs": -16.3,
+      "true_peak_dbfs": -3.9,
+      "visual_review": "pass"
+    },
+    {
+      "variant_id": "variant-03",
+      "strategy": "product-structure",
+      "duration_seconds": 35.8,
+      "size_bytes": 27903676,
+      "integrated_loudness_lufs": -16.3,
+      "true_peak_dbfs": -3.5,
+      "visual_review": "pass"
+    },
+    {
+      "variant_id": "variant-04",
+      "strategy": "professional-recommendation",
+      "duration_seconds": 35.8,
+      "size_bytes": 28715154,
+      "integrated_loudness_lufs": -16.5,
+      "true_peak_dbfs": -2.4,
+      "visual_review": "pass"
+    },
+    {
+      "variant_id": "variant-05",
+      "strategy": "before-after",
+      "duration_seconds": 35.8,
+      "size_bytes": 28247480,
+      "integrated_loudness_lufs": -16.2,
+      "true_peak_dbfs": -4.4,
+      "visual_review": "pass"
+    }
+  ]
+}

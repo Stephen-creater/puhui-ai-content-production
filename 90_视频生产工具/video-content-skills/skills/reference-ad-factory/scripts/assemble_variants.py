@@ -292,7 +292,7 @@ def assemble_variant(manifest: dict[str, Any], project: Path, variant: dict[str,
     output.parent.mkdir(parents=True, exist_ok=True)
     if output.exists() and not force:
         return {"variant_id": variant["variant_id"], "output": str(output), "status": "reused", "seconds": 0}
-    work = project / "04_postproduction/phase2/work"
+    work = project / "05_后期制作/phase2/work"
     work.mkdir(parents=True, exist_ok=True)
     caption_backend = select_caption_backend(ffmpeg_filter_names())
     ass_path = work / f"{variant['variant_id']}.ass"
@@ -410,7 +410,7 @@ def main() -> None:
         raise SystemExit("Cannot assemble while visual assets are missing")
     results = [assemble_variant(manifest, project, item, args.force) for item in manifest["variants"]]
     report = {"ok": True, "results": results, "total_wall_seconds": round(sum(item.get("wall_seconds", 0) for item in results), 3)}
-    report_path = project / "06_reports/phase2-assembly-report.json"
+    report_path = project / "07_验收报告/phase2-assembly-report.json"
     report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(report, ensure_ascii=False, indent=2))
 

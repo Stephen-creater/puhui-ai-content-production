@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "assets": {
+    "product": "04_AI生成工程/visual-bank-v1/clips/variant-01/scene-01.mp4",
+    "tape": "04_AI生成工程/visual-bank-v1/clips/variant-01/scene-02.mp4",
+    "pull": "04_AI生成工程/visual-bank-v1/clips/variant-01/scene-03.mp4",
+    "tear": "04_AI生成工程/visual-bank-v1/clips/variant-01/scene-04.mp4",
+    "paint": "04_AI生成工程/visual-bank-v1/clips/variant-01/scene-05.mp4",
+    "peel": "04_AI生成工程/visual-bank-v1/clips/variant-01/scene-06.mp4",
+    "presenter": "04_AI生成工程/native-audio-cta/clips/variant-01/scene-01.mp4",
+    "hook-efficiency": "04_AI生成工程/phase2-hooks/clips/variant-01/scene-01.mp4",
+    "hook-structure": "04_AI生成工程/phase2-hooks/clips/variant-01/scene-02.mp4",
+    "hook-before-after": "04_AI生成工程/phase2-hooks/clips/variant-01/scene-03.mp4"
+  },
+  "voices": {
+    "variant-01": "05_后期制作/phase2/voice/variant-01.mp3",
+    "variant-02": "05_后期制作/phase2/voice/variant-02.mp3",
+    "variant-03": "05_后期制作/phase2/voice/variant-03.mp3",
+    "variant-04": "05_后期制作/phase2/voice/variant-04.mp3",
+    "variant-05": "05_后期制作/phase2/voice/variant-05.mp3"
+  },
+  "variants": [
+    {
+      "variant_id": "variant-01",
+      "strategy": "pain-result",
+      "claim_fact_ids": ["F1", "F2", "F3", "F4", "F5", "F6", "F7"],
+      "voiceover_start_seconds": 0,
+      "voiceover_target_seconds": 27.8,
+      "voiceover_text": "Painting or sanding? Skip hours of cleanup. Pre-taped masking film combines yellow tape and clear PE film in one roll. First press the yellow tape firmly along the cabinet edge. Then pull the film down to cover the tile and countertop. Fix the far edge, pull tight, and tear by hand. Paint and dust stay on the film. Peel it away with the mess and leave far less cleanup behind.",
+      "scenes": [
+        {"asset": "paint", "source_start_seconds": 0, "duration_seconds": 1.5, "title": "SKIP THE CLEANUP", "caption": "Painting or sanding?", "use_source_audio": false},
+        {"asset": "peel", "source_start_seconds": 2.5, "duration_seconds": 1.5, "title": "SKIP THE CLEANUP", "caption": "Skip hours of cleanup.", "use_source_audio": false},
+        {"asset": "product", "duration_seconds": 5, "title": "TAPE + FILM IN ONE", "caption": "Yellow tape and clear PE film in one roll.", "use_source_audio": false},
+        {"asset": "tape", "duration_seconds": 4, "title": "TAPE FIRST", "caption": "Press the yellow tape firmly first.", "use_source_audio": false},
+        {"asset": "pull", "duration_seconds": 4, "title": "PULL DOWN TO COVER", "caption": "Then pull the clear film down.", "use_source_audio": false},
+        {"asset": "tear", "duration_seconds": 4.2, "title": "TEAR BY HAND", "caption": "Fix, pull tight, and tear by hand.", "use_source_audio": false},
+        {"asset": "paint", "duration_seconds": 3.2, "title": "PAINT STAYS ON FILM", "caption": "Paint and dust stay on the film.", "use_source_audio": false},
+        {"asset": "peel", "duration_seconds": 4.4, "title": "PEEL CLEAN", "caption": "Remove the mess with the film.", "use_source_audio": false},
+        {"asset": "presenter", "duration_seconds": 8, "title": "LESS CLEANUP", "caption": "Try pre-taped masking film.", "use_source_audio": true}
+      ]
+    },
+    {
+      "variant_id": "variant-02",
+      "strategy": "efficiency",
+      "claim_fact_ids": ["F1", "F2", "F3", "F4", "F5", "F6", "F7"],
+      "voiceover_start_seconds": 0,
+      "voiceover_target_seconds": 27.8,
+      "voiceover_text": "Mask the work area with fewer separate steps. Start by pressing the built-in yellow tape firmly along the cabinet edge. Once it is secure, pull the clear PE film down to cover the tile and countertop. Fix the far edge and tear by hand. The film catches paint and dust, then peels away with the mess, leaving far less cleanup after the job.",
+      "scenes": [
+        {"asset": "hook-efficiency", "duration_seconds": 3, "title": "MASK FASTER", "caption": "Fewer separate masking steps.", "use_source_audio": false},
+        {"asset": "tape", "duration_seconds": 4, "title": "PRESS ONCE", "caption": "Secure the built-in yellow tape first.", "use_source_audio": false},
+        {"asset": "pull", "duration_seconds": 4, "title": "COVER MORE", "caption": "Pull the clear film down smoothly.", "use_source_audio": false},
+        {"asset": "tear", "duration_seconds": 4.2, "title": "NO SCISSORS", "caption": "Fix the edge and tear by hand.", "use_source_audio": false},
+        {"asset": "product", "duration_seconds": 5, "title": "ONE INTEGRATED ROLL", "caption": "Tape and film stay connected.", "use_source_audio": false},
+        {"asset": "paint", "duration_seconds": 3.2, "title": "KEEP WORK MOVING", "caption": "Paint and dust collect on the film.", "use_source_audio": false},
+        {"asset": "peel", "duration_seconds": 4.4, "title": "CLEAN UP FASTER", "caption": "Peel away the dirty film.", "use_source_audio": false},
+        {"asset": "presenter", "duration_seconds": 8, "title": "FASTER MASKING", "caption": "Spend less time on cleanup.", "use_source_audio": true}
+      ]
+    },
+    {
+      "variant_id": "variant-03",
+      "strategy": "product-structure",
+      "claim_fact_ids": ["F1", "F2", "F3", "F4", "F5", "F6", "F7"],
+      "voiceover_start_seconds": 0,
+      "voiceover_target_seconds": 27.8,
+      "voiceover_text": "One roll does two jobs. The yellow masking tape and clear PE film are permanently connected, so the product stays together while you work. Press the yellow tape along the cabinet edge first. Then pull the film down, cover the surface, fix the far edge, and tear by hand. Paint and dust land on the film, and the dirty covering peels away when the job is done.",
+      "scenes": [
+        {"asset": "hook-structure", "duration_seconds": 3, "title": "TWO PARTS. ONE ROLL.", "caption": "Yellow tape permanently joined to clear film.", "use_source_audio": false},
+        {"asset": "product", "duration_seconds": 5, "title": "INTEGRATED DESIGN", "caption": "The tape and film stay connected.", "use_source_audio": false},
+        {"asset": "tape", "duration_seconds": 4, "title": "TAPE FIRST", "caption": "Press the yellow edge firmly.", "use_source_audio": false},
+        {"asset": "pull", "duration_seconds": 4, "title": "FILM SECOND", "caption": "Pull the clear PE film down.", "use_source_audio": false},
+        {"asset": "tear", "duration_seconds": 4.2, "title": "HAND TEAR", "caption": "Fix the far edge and tear by hand.", "use_source_audio": false},
+        {"asset": "paint", "duration_seconds": 3.2, "title": "SURFACE BARRIER", "caption": "Paint and dust collect on the film.", "use_source_audio": false},
+        {"asset": "peel", "duration_seconds": 4.4, "title": "REMOVE TOGETHER", "caption": "Tape, film, and mess come away together.", "use_source_audio": false},
+        {"asset": "presenter", "duration_seconds": 8, "title": "ONE SMARTER ROLL", "caption": "Try the integrated masking system.", "use_source_audio": true}
+      ]
+    },
+    {
+      "variant_id": "variant-04",
+      "strategy": "professional-recommendation",
+      "claim_fact_ids": ["F1", "F2", "F3", "F4", "F5", "F6", "F7"],
+      "voiceover_start_seconds": 8,
+      "voiceover_target_seconds": 27.8,
+      "voiceover_text": "Here is the working sequence. Keep the clear film folded and press the yellow tape firmly along the cabinet edge first. After the tape is secure, pull the film down to cover the tile and countertop. Fix the far edge and tear by hand. The film protects the work area from paint and dust, then peels away with the dirt when the job is finished.",
+      "scenes": [
+        {"asset": "presenter", "duration_seconds": 8, "title": "A PAINTER'S PICK", "caption": "One roll for faster masking.", "use_source_audio": true},
+        {"asset": "product", "duration_seconds": 5, "title": "INTEGRATED ROLL", "caption": "Yellow tape plus clear PE film.", "use_source_audio": false},
+        {"asset": "tape", "duration_seconds": 4, "title": "MY FIRST STEP", "caption": "Press the yellow tape firmly.", "use_source_audio": false},
+        {"asset": "pull", "duration_seconds": 4, "title": "THEN COVER", "caption": "Pull the clear film down.", "use_source_audio": false},
+        {"asset": "tear", "duration_seconds": 4.2, "title": "TEAR BY HAND", "caption": "No scissors needed.", "use_source_audio": false},
+        {"asset": "paint", "duration_seconds": 3.2, "title": "READY TO WORK", "caption": "Paint and dust stay on the film.", "use_source_audio": false},
+        {"asset": "peel", "duration_seconds": 4.4, "title": "PEEL AWAY", "caption": "Remove the dirty covering.", "use_source_audio": false},
+        {"asset": "peel", "source_start_seconds": 1, "duration_seconds": 3, "title": "PRO RESULT", "caption": "A cleaner finish with less cleanup.", "use_source_audio": false}
+      ]
+    },
+    {
+      "variant_id": "variant-05",
+      "strategy": "before-after",
+      "claim_fact_ids": ["F1", "F2", "F3", "F4", "F5", "F6", "F7"],
+      "voiceover_start_seconds": 0,
+      "voiceover_target_seconds": 27.8,
+      "voiceover_text": "Before masking, paint and sanding dust can reach the countertop and tile. After using pre-taped masking film, the mess leaves with the covering. Press the connected yellow tape first, then pull the clear PE film down. Fix the far edge and tear by hand. Work over the protected surface, then peel the film away to reveal the clean area underneath.",
+      "scenes": [
+        {"asset": "hook-before-after", "duration_seconds": 3, "title": "MESS IN. CLEAN OUT.", "caption": "See the surface before and after removal.", "use_source_audio": false},
+        {"asset": "tape", "duration_seconds": 4, "title": "START WITH THE EDGE", "caption": "Press the connected yellow tape first.", "use_source_audio": false},
+        {"asset": "pull", "duration_seconds": 4, "title": "COVER THE SURFACE", "caption": "Pull the clear PE film down.", "use_source_audio": false},
+        {"asset": "tear", "duration_seconds": 4.2, "title": "LOCK THE COVERAGE", "caption": "Fix the far edge and tear by hand.", "use_source_audio": false},
+        {"asset": "paint", "duration_seconds": 3.2, "title": "BEFORE REMOVAL", "caption": "Paint and dust sit on the film.", "use_source_audio": false},
+        {"asset": "peel", "duration_seconds": 4.4, "title": "AFTER REMOVAL", "caption": "Peel away the dirty covering.", "use_source_audio": false},
+        {"asset": "product", "duration_seconds": 5, "title": "THE DIFFERENCE", "caption": "Tape and film work as one.", "use_source_audio": false},
+        {"asset": "presenter", "duration_seconds": 8, "title": "PROTECT. PEEL. DONE.", "caption": "Try it on your next project.", "use_source_audio": true}
+      ]
+    }
+  ]
+}

@@ -14,7 +14,7 @@ Convert a user-owned or authorized reference video into evidence and a reusable 
    ```bash
    python3 scripts/analyze_reference.py \
      --input /absolute/path/reference.mp4 \
-     --output-dir /absolute/path/project/01_analysis/reference-01
+     --output-dir /absolute/path/project/02_参考片拆解/reference-01
    ```
 
    Add `--transcript-file /absolute/path/transcript.txt` when a transcript already exists.

@@ -22,7 +22,7 @@ def valid_manifest() -> dict:
         "visual_policy": {
             "reuse_existing_clips": False,
             "unique_asset_per_scene": True,
-            "required_path_fragment": "03_generation/phase2-v2-unique/",
+            "required_path_fragment": "04_AI生成工程/phase2-v2-unique/",
         },
         "audio_policy": {
             "voice_speed_mode": "natural",
@@ -31,8 +31,8 @@ def valid_manifest() -> dict:
             "max_spoken_wpm": 260,
         },
         "assets": {
-            "v01-s01": "03_generation/phase2-v2-unique/clips/variant-01/scene-01.mp4",
-            "v01-s02": "03_generation/phase2-v2-unique/clips/variant-01/scene-02.mp4",
+            "v01-s01": "04_AI生成工程/phase2-v2-unique/clips/variant-01/scene-01.mp4",
+            "v01-s02": "04_AI生成工程/phase2-v2-unique/clips/variant-01/scene-02.mp4",
         },
         "variants": [
             {
@@ -44,14 +44,14 @@ def valid_manifest() -> dict:
                         "duration_seconds": 4.0,
                         "caption": "Painting or sanding?",
                         "spoken_text": "Painting or sanding?",
-                        "voiceover_path": "04_postproduction/phase2-v2/voice/variant-01/scene-01.mp3",
+                        "voiceover_path": "05_后期制作/phase2-v2/voice/variant-01/scene-01.mp3",
                     },
                     {
                         "asset": "v01-s02",
                         "duration_seconds": 4.0,
                         "caption": "Press the yellow tape first.",
                         "spoken_text": "Press the yellow tape first.",
-                        "voiceover_path": "04_postproduction/phase2-v2/voice/variant-01/scene-02.mp3",
+                        "voiceover_path": "05_后期制作/phase2-v2/voice/variant-01/scene-02.mp3",
                     },
                 ],
             }
@@ -79,7 +79,7 @@ class NaturalVoiceUniqueVisualsTest(unittest.TestCase):
 
     def test_rejects_old_visual_bank_paths(self) -> None:
         manifest = valid_manifest()
-        manifest["assets"]["v01-s01"] = "03_generation/visual-bank-v1/clips/variant-01/scene-01.mp4"
+        manifest["assets"]["v01-s01"] = "04_AI生成工程/visual-bank-v1/clips/variant-01/scene-01.mp4"
         with self.assertRaisesRegex(ValueError, "outside required generation root"):
             MODULE.validate_production_contract(manifest)
 
