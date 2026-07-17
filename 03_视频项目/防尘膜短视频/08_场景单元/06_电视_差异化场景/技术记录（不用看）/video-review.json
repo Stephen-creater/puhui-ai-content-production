@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "criteria_version": "product-video-v1",
+  "sample_seconds": [1, 3, 5, 7, 9],
+  "reviews": {
+    "v01-s01": {
+      "approved": true,
+      "video_sha256": "e1cbb570af138da14ef24c8185c9ded84e2c9005570140ac3b2f8a9d6961889b",
+      "checks": {"continuous_film_no_holes": true, "full_object_coverage": true, "tape_film_continuity": true, "single_sheet_readability": true, "stable_structure_all_samples": true, "differentiated_scene_retained": true},
+      "notes": "APPROVE: all five samples retain full television coverage, aligned tape-film geometry, the Scandinavian room and lateral camera treatment."
+    },
+    "v02-s01": {
+      "approved": true,
+      "video_sha256": "c3db73e0a1871d0c6ec6e6918d7d6b3fef82e941b093320cfe58808bea9c58b7",
+      "checks": {"continuous_film_no_holes": true, "full_object_coverage": true, "tape_film_continuity": true, "single_sheet_readability": true, "stable_structure_all_samples": true, "differentiated_scene_retained": true},
+      "notes": "APPROVE: the compact television stays fully covered; the warm hotel room, kneeling painter and rightward motion remain visually distinct."
+    },
+    "v03-s01": {
+      "approved": false,
+      "video_sha256": "93ae4e3521b49c08de0e3073cdcfb5313fe8e52aabcf823bb6722e7fcd8bb870",
+      "checks": {"continuous_film_no_holes": false, "full_object_coverage": false, "tape_film_continuity": false, "single_sheet_readability": false, "stable_structure_all_samples": false, "differentiated_scene_retained": true},
+      "notes": "REJECT: the transparent film progressively disappears after about 5 seconds; by 7-9 seconds the television is largely exposed even though the differentiated loft scene remains."
+    }
+  },
+  "reviewer": "codex-visual-review",
+  "reviewed_at": "2026-07-17T07:22:06Z"
+}
