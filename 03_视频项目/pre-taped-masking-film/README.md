@@ -34,11 +34,13 @@
 - Phase 2 性能记录：[`phase2-performance-report.json`](06_reports/phase2-performance-report.json)
 - 无上下文冷启动审计：[`phase2-cold-start-audit.md`](06_reports/phase2-cold-start-audit.md)
 - 人工/AI 操作手册：[`operator-runbook.md`](../../90_视频生产工具/video-content-skills/skills/reference-ad-factory/references/operator-runbook.md)
-- 覆盖完成态素材首轮验证：[`evaluation.md`](99_tests/coverage-complete-baseline-v1/evaluation.md)
+- 覆盖完成态错误基线（0/3）：[`evaluation.md`](99_tests/coverage-complete-baseline-v1/evaluation.md)
+- 墙面固定的电视覆盖验证（3/3）：[`evaluation.md`](99_tests/coverage-complete-wall-anchor-v2/evaluation.md)
 
 ## 边界
 
 - 黄色美纹胶与透明 PE 膜永久连接，不得分离。
 - 施工顺序必须为先压黄色胶，再向下展开薄膜。
+- 提示词必须写明黄色胶带的真实承载面；保护壁挂电视时，胶带贴在电视上方墙面，不是电视边框。
 - 成片不少于 20 秒，通常不超过 60 秒。
 - 大视频、音频、PPT 和供应商响应元数据不进入 GitHub。
