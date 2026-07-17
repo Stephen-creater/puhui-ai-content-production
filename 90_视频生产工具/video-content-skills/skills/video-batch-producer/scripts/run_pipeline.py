@@ -51,6 +51,15 @@ KEYFRAME_REVIEW_CRITERIA = (
     "single_integrated_product",
     "no_visual_artifacts",
 )
+DIFFERENTIATION_FIELDS = (
+    "object_type",
+    "object_form",
+    "environment",
+    "coverage_state",
+    "shot_scale",
+    "camera_motion",
+    "person_or_work_state",
+)
 
 
 class AmbiguousSubmissionError(RuntimeError):
@@ -437,6 +446,56 @@ def scenes_for_variant(project: dict[str, Any], variant: int) -> list[dict[str, 
     raise ValueError(f"missing scene plan for variant {variant}")
 
 
+def validate_differentiated_variants(project: dict[str, Any]) -> None:
+    """Reject batches that disguise repeated prompts as distinct video cases."""
+    variants = int(project["variants"])
+    if variants <= 1:
+        return
+    if "variant_scenes" not in project:
+        raise ValueError(
+            "multi-variant projects require variant_scenes with one independent prompt plan per output"
+        )
+
+    keyframe_prompts: dict[str, str] = {}
+    video_prompts: dict[str, str] = {}
+    combinations: dict[tuple[str, ...], str] = {}
+    errors: list[str] = []
+    for variant in range(1, variants + 1):
+        for scene in scenes_for_variant(project, variant):
+            key = f"v{variant:02d}-s{int(scene['id']):02d}"
+            dimensions = scene.get("variation_dimensions")
+            if not isinstance(dimensions, dict):
+                errors.append(f"{key}: missing variation_dimensions")
+                continue
+            missing = [field for field in DIFFERENTIATION_FIELDS if not str(dimensions.get(field, "")).strip()]
+            if missing:
+                errors.append(f"{key}: missing dimensions: {', '.join(missing)}")
+                continue
+
+            keyframe_prompt = " ".join(str(scene.get("keyframe_prompt", "")).lower().split())
+            video_prompt = " ".join(str(scene.get("video_prompt", "")).lower().split())
+            if not keyframe_prompt:
+                errors.append(f"{key}: empty keyframe_prompt")
+            elif keyframe_prompt in keyframe_prompts:
+                errors.append(f"{key}: duplicate keyframe_prompt with {keyframe_prompts[keyframe_prompt]}")
+            else:
+                keyframe_prompts[keyframe_prompt] = key
+            if not video_prompt:
+                errors.append(f"{key}: empty video_prompt")
+            elif video_prompt in video_prompts:
+                errors.append(f"{key}: duplicate video_prompt with {video_prompts[video_prompt]}")
+            else:
+                video_prompts[video_prompt] = key
+
+            combination = tuple(str(dimensions[field]).strip().lower() for field in DIFFERENTIATION_FIELDS)
+            if combination in combinations:
+                errors.append(f"{key}: duplicate seven-dimension combination with {combinations[combination]}")
+            else:
+                combinations[combination] = key
+    if errors:
+        raise ValueError("differentiation gate failed: " + "; ".join(errors))
+
+
 def scene_for_task(project: dict[str, Any], task: dict[str, Any]) -> dict[str, Any]:
     for scene in scenes_for_variant(project, int(task["variant"])):
         if int(scene["id"]) == int(task["scene"]):
@@ -500,6 +559,10 @@ def main() -> int:
     if not project_path.is_file():
         parser.error(f"missing {project_path}")
     project = load_json(project_path)
+    try:
+        validate_differentiated_variants(project)
+    except ValueError as exc:
+        parser.error(str(exc))
     for variant in range(1, int(project["variants"]) + 1):
         for scene in scenes_for_variant(project, variant):
             resolved_references = []

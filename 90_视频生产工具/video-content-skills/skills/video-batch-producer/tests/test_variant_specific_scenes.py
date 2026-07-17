@@ -24,13 +24,41 @@ PROJECT = {
         {
             "variant": 1,
             "scenes": [
-                {"id": 1, "duration_seconds": 4, "keyframe_prompt": "unique kitchen hook", "video_prompt": "move left"}
+                {
+                    "id": 1,
+                    "duration_seconds": 4,
+                    "keyframe_prompt": "unique kitchen hook",
+                    "video_prompt": "move left",
+                    "variation_dimensions": {
+                        "object_type": "television",
+                        "object_form": "wall mounted flat panel",
+                        "environment": "living room",
+                        "coverage_state": "fully covered",
+                        "shot_scale": "wide",
+                        "camera_motion": "slide left",
+                        "person_or_work_state": "no person",
+                    },
+                }
             ],
         },
         {
             "variant": 2,
             "scenes": [
-                {"id": 1, "duration_seconds": 5, "keyframe_prompt": "unique bathroom hook", "video_prompt": "move right"}
+                {
+                    "id": 1,
+                    "duration_seconds": 5,
+                    "keyframe_prompt": "unique bathroom hook",
+                    "video_prompt": "move right",
+                    "variation_dimensions": {
+                        "object_type": "water dispenser",
+                        "object_form": "countertop compact",
+                        "environment": "break room",
+                        "coverage_state": "fully covered",
+                        "shot_scale": "medium",
+                        "camera_motion": "slide right",
+                        "person_or_work_state": "painter inspecting",
+                    },
+                }
             ],
         },
     ],
@@ -58,6 +86,34 @@ class VariantSpecificScenesTest(unittest.TestCase):
 
     def test_reports_duration_for_every_variant(self) -> None:
         self.assertEqual(MODULE.expected_variant_durations(PROJECT), {"variant-01": 4, "variant-02": 5})
+
+    def test_accepts_unique_prompts_and_seven_dimension_combinations(self) -> None:
+        MODULE.validate_differentiated_variants(PROJECT)
+
+    def test_rejects_shared_prompt_plan_for_multiple_outputs(self) -> None:
+        broken = {"variants": 2, "scenes": PROJECT["variant_scenes"][0]["scenes"]}
+        with self.assertRaisesRegex(ValueError, "require variant_scenes"):
+            MODULE.validate_differentiated_variants(broken)
+
+    def test_rejects_duplicate_prompts_even_with_different_labels(self) -> None:
+        broken = json.loads(json.dumps(PROJECT))
+        broken["variant_scenes"][1]["scenes"][0]["video_prompt"] = "move left"
+        with self.assertRaisesRegex(ValueError, "duplicate video_prompt"):
+            MODULE.validate_differentiated_variants(broken)
+
+    def test_rejects_duplicate_seven_dimension_combination(self) -> None:
+        broken = json.loads(json.dumps(PROJECT))
+        broken["variant_scenes"][1]["scenes"][0]["variation_dimensions"] = dict(
+            broken["variant_scenes"][0]["scenes"][0]["variation_dimensions"]
+        )
+        with self.assertRaisesRegex(ValueError, "duplicate seven-dimension combination"):
+            MODULE.validate_differentiated_variants(broken)
+
+    def test_rejects_missing_dimension(self) -> None:
+        broken = json.loads(json.dumps(PROJECT))
+        del broken["variant_scenes"][1]["scenes"][0]["variation_dimensions"]["camera_motion"]
+        with self.assertRaisesRegex(ValueError, "missing dimensions: camera_motion"):
+            MODULE.validate_differentiated_variants(broken)
 
     def test_filters_paid_work_to_explicit_retry_tasks(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

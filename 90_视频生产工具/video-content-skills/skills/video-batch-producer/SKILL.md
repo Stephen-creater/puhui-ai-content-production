@@ -33,6 +33,11 @@ Turn a finished script into batch short-video outputs. Keep the workflow agent-n
    ```
 
 2. Read `project.json`. Improve `keyframe_prompt` and `video_prompt` using the script's actual meaning. Preserve the JSON schema. Do not invent product claims. Add absolute local paths or URLs under a scene's optional `reference_images` array when product, character, or style references exist.
+   For two or more outputs, use `variant_scenes`; every generated clip must have its
+   own `keyframe_prompt`, `video_prompt`, and `variation_dimensions`. Record all seven
+   fields: `object_type`, `object_form`, `environment`, `coverage_state`, `shot_scale`,
+   `camera_motion`, and `person_or_work_state`. The runner rejects repeated prompts,
+   missing fields, and duplicate seven-field combinations before loading any API key.
    When the model's minimum generation length exceeds the edited shot length, keep
    `duration_seconds` as the final timeline duration and add
    `generation_duration_seconds` for the paid model request. Concatenation trims each
