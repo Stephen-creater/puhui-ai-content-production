@@ -16,8 +16,9 @@ Turn a finished script into batch short-video outputs. Keep the workflow agent-n
   `20–60` seconds for normal short-form delivery. Do not force every video to 20
   seconds. Exceed 60 seconds only when the script's information or user direction
   clearly requires it, and state the reason in the plan.
-- `TOKENDANCE_API_KEY` only when executing paid generation. On macOS, the runner
-  also reads Keychain service `video-content-skills/tokendance` for the current user.
+- `TOKENDANCE_API_KEY` for paid keyframe generation and `NANYAO_API_KEY` for paid
+  video generation. On macOS, the runner also reads Keychain services
+  `video-content-skills/tokendance` and `video-content-skills/nanyao`.
 
 ## Workflow
 
@@ -63,7 +64,7 @@ Turn a finished script into batch short-video outputs. Keep the workflow agent-n
    python3 scripts/run_pipeline.py \
      --project /absolute/path/work/project-name \
      --execute --cost-authorized \
-     --max-image-jobs 0 --max-video-jobs 8 --max-paid-video-seconds 40 \
+     --max-image-jobs 0 --max-video-jobs 8 --max-paid-video-seconds 80 \
      --max-workers 2
    ```
 
@@ -98,26 +99,24 @@ Never delete successful generations during retry. Re-running with `--execute` re
 
 ## Provider and model selection
 
-The default provider is TokenDance (`tokendance.space`), using its OpenAI-compatible
-image endpoint and Ark-compatible Seedance asynchronous video endpoint behind one API key.
+The pipeline deliberately separates providers: TokenDance generates keyframes and
+nanyao (`api.nanyaoai.top`) generates Grok video clips.
 
 - Default image model: `seedream-5.0-lite`
-- Default video model: `seedance-2.0-mini`
+- Default video model: `grok-imagine-video-1.5-fast`
 - Default vertical dimensions: keyframes `1440x2560`, video `720x1280`
-- Default scene source duration: `5` seconds. Final edited shot lengths may be shorter.
+- Default paid source duration: `10` seconds, the longest Fast duration. Final edited
+  shot lengths remain independent and concatenation trims each source clip to
+  `duration_seconds`.
 - Default final-duration band: `20–60` seconds, determined by the script rather than a fixed runtime.
 
 Read [references/models.md](references/models.md) before changing a model. Validate keyframe and dimension support rather than assuming compatibility.
 
-For higher-quality final ads, set `video_model` to `seedance-2.0` and
-`video_resolution` to `1080p`. If Seedance rejects an AI-generated presenter frame with
-`InputImageSensitiveContentDetected.PrivacyInformation`, switch the project to
-`video_model: kling-3.0` and `video_protocol: kling:image2video`; preserve completed clips.
-
-For Kling 3.0 dialogue shots, set scene-level `generate_audio: true` and put the
-speaker plus exact short dialogue in `video_prompt`. Keep each spoken generation within
-3–15 seconds. Use native dialogue for visible speaking shots; use one consistent
-voiceover track in post for B-roll when cross-scene voice continuity matters.
+Fast accepts only `6` or `10` seconds. Override `generation_duration_seconds` only
+when a six-second source is intentional. Preview accepts `1–15` seconds but exactly
+one public reference image and is not the production default. Nanyao's supplied API
+document does not promise controlled native dialogue, so use the established Alex
+voiceover and subtitle post-production path for deterministic speech.
 
 ## Safety and quality gates
 
@@ -125,7 +124,10 @@ voiceover track in post for B-roll when cross-scene voice continuity matters.
 - Treat API generation as paid and network-mutating.
 - Every paid invocation requires numeric ceilings for each nonzero stage: `--max-image-jobs`, `--max-video-jobs`, and `--max-paid-video-seconds`. Copy the exact dry-run counts; the runner refuses missing or exceeded caps before loading the API key.
 - Authorization applies to one reviewed delta only. Dry-run again and obtain renewed approval before expanding task selectors, retry count, model, resolution, or generated seconds.
-- Send only prompts and generated keyframes to TokenDance and its routed model provider.
+- Send image prompts and references only to TokenDance; send video prompts and public
+  generated-keyframe URLs only to nanyao. Nanyao rejects base64, local, and private URLs.
+- A paid nanyao submission that times out or returns HTTP 5xx is ambiguous. Do not
+  resubmit blindly; inspect the provider task log first.
 - Use only assets the user owns or is permitted to process.
 - Reject misleading product claims, unauthorized face/voice cloning, and copyrighted source reuse without permission.
 - Require human review for product shape, text, hands/faces, continuity, branding, and factual accuracy.
@@ -133,7 +135,7 @@ voiceover track in post for B-roll when cross-scene voice continuity matters.
 ## Implementation provenance
 
 The original provider flow was adapted from the MIT-licensed official
-`togethercomputer/skills` repository; the active TokenDance adapter uses only Python's
-standard library. The project-manifest and FFmpeg assembly approach is adapted from the
+`togethercomputer/skills` repository; the active TokenDance image adapter and nanyao
+video adapter use only Python's standard library. The project-manifest and FFmpeg assembly approach is adapted from the
 MIT-licensed `michaelboeding/skills` video producer. Read
 [references/THIRD_PARTY_NOTICES.md](references/THIRD_PARTY_NOTICES.md) for provenance.

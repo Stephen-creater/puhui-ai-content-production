@@ -57,6 +57,15 @@ class RepositoryHygieneTest(unittest.TestCase):
             errors = MODULE.check_repository(root, CONTRACT)
             self.assertIn("forbidden duplicate path exists: 91_tools/work", errors)
 
+    def test_accepts_explicitly_ignored_local_root(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = self.make_valid_root(directory)
+            (root / "local-media").mkdir()
+            self.assertEqual(
+                MODULE.check_repository(root, CONTRACT, ignored_roots={"local-media"}),
+                [],
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

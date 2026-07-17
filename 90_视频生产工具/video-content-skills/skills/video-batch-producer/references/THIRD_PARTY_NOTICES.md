@@ -16,11 +16,20 @@
 
 Both upstream licenses permit use, modification, and redistribution when their copyright and license notices are retained. This file records provenance; generated media remains subject to the selected model provider's terms and the user's source-asset rights.
 
-## TokenDance adapter
+## TokenDance image adapter
 
 - Service documentation: https://tokendance.space/docs/multi-protocol
 - Model catalogue/API: https://tokendance.space/models and `/gateway/v1/models`
 - Reused code: none. The adapter is an original standard-library HTTP implementation.
-- Data flow: prompts and generated keyframes are sent to TokenDance, which routes them
-  to the selected image/video model provider. API keys are read from environment or
+- Data flow: image prompts and optional image references are sent to TokenDance, which
+  routes them to the selected image model provider. API keys are read from environment or
   macOS Keychain and are never written to project files.
+
+## Nanyao Grok video adapter
+
+- Service: <https://api.nanyaoai.top/>
+- Local source document: `99_研发与临时文件/技术调研/nanyao-grok-video-api/source/nanyaoapi-grok-video-api(2).docx`
+- Reused code: none. The adapter is an original standard-library HTTP implementation.
+- Data flow: video prompts and public generated-keyframe URLs are sent to nanyao. The
+  returned object-storage URL is downloaded without forwarding the API key. Credentials
+  are read from `NANYAO_API_KEY` or macOS Keychain and are never written to project files.

@@ -24,6 +24,11 @@
 work/
 **/04_postproduction/**/work/
 
+# Legacy local media mounts. Keep them visible to the operator but outside the repo.
+/AI全媒体运营/
+/成品/
+/素材/
+
 # Provider response metadata can contain signed URLs, request headers, or access identifiers.
 **/*.source.json
 **/*.job.json

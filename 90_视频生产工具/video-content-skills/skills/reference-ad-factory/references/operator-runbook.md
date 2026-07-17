@@ -14,7 +14,8 @@ PRODUCER="$REPO/90_视频生产工具/video-content-skills/skills/video-batch-pr
 - Python 3.11+, FFmpeg and ffprobe.
 - Reference video under `PROJECT/00_input/reference_videos/`.
 - Product reference images and approved product facts.
-- TokenDance credential available through the existing environment or macOS Keychain integration.
+- TokenDance image credential and nanyao video credential available through environment
+  variables or macOS Keychain. Nanyao image inputs must be public HTTP(S) URLs.
 - Paid generation explicitly authorized by the user.
 - Heavy audio and video files are local artifacts and may be Git-ignored.
 
@@ -103,7 +104,7 @@ Review all keyframes. Reject wrong integrated-product geometry, wrong action ord
 python3 "$PRODUCER/scripts/run_pipeline.py" \
   --project "$PROJECT/03_generation/phase2-v2-unique" \
   --execute --cost-authorized \
-  --max-image-jobs 0 --max-video-jobs 25 --max-paid-video-seconds 125 \
+  --max-image-jobs 0 --max-video-jobs 25 --max-paid-video-seconds 250 \
   --max-workers 4 --retries 1
 
 python3 "$PRODUCER/scripts/verify_project.py" \
@@ -117,7 +118,7 @@ python3 "$PRODUCER/scripts/run_pipeline.py" \
   --project "$PROJECT/03_generation/phase2-v2-unique" \
   --execute --cost-authorized --force-clips \
   --task v01-s02 --task v01-s03 \
-  --max-image-jobs 0 --max-video-jobs 2 --max-paid-video-seconds 10 \
+  --max-image-jobs 0 --max-video-jobs 2 --max-paid-video-seconds 20 \
   --max-workers 2 --retries 1
 ```
 
@@ -145,6 +146,11 @@ Verify all five outputs with ffprobe and human playback. Required release checks
 ## Failure and resume policy
 
 - Rerun without `--force` to resume only missing paid assets.
+- Grok Fast source clips default to 10 seconds even when final scene windows are shorter;
+  the assembler trims them. Copy this generated duration, not final edit duration, into
+  `--max-paid-video-seconds`.
+- Never blindly retry an ambiguous nanyao submission timeout or HTTP 5xx. Check the
+  provider task log first because the paid job may already exist.
 - Treat every authorization as single-use for the reviewed dry-run delta. Re-preview and renew approval whenever task count, generated seconds, retry ceiling, model or resolution changes.
 - Copy the dry-run numbers into the hard caps. Paid execution is blocked before API-key loading when a required cap is absent or too low.
 - Keep successful generations; move rejected outputs into a local review folder instead of deleting the evidence.

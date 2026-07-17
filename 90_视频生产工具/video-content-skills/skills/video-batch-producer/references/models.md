@@ -1,8 +1,9 @@
-# TokenDance MVP model choices
+# Production model choices
 
-Current model availability must be checked at `https://tokendance.space/gateway/v1/models`.
+Provider capabilities and prices may change. Check the live TokenDance model list for
+images and the nanyao console for Grok video before authorizing a paid batch.
 
-## Images
+## Images: TokenDance
 
 | Use | Model | Notes |
 |---|---|---|
@@ -13,20 +14,26 @@ Validated dimensions are `1440x2560` for 9:16, `2560x1440` for 16:9, and
 `2048x2048` for 1:1. The endpoint may return JPEG bytes even when the local filename
 uses `.png`; downstream FFmpeg detects content rather than relying on the suffix.
 
-## Videos
+## Videos: nanyao Grok
 
-| Model | Duration | Useful dimensions | Keyframes |
+| Model | Duration | Input | Production status |
 |---|---:|---|---|
-| `seedance-2.0-mini` | 5s validated | 720p, 9:16 validated | First, first+last, references |
-| `seedance-2.0-fast` | Provider dependent | 720p documented | First, first+last, references |
-| `kling-3.0` | 3–15s described | 16:9, 9:16, 1:1 | First and optional last |
-| `happyhorse-1.0-i2v` | 3–15s described | 720p/1080p | First |
+| `grok-imagine-video-1.5-fast` | exactly 6s or 10s | text-only or multiple public image URLs | default; 10s |
+| `grok-imagine-video-1.5-preview` | any integer 1–15s | exactly one public image URL | optional; not default |
 
-The default Seedance submission endpoint is `/gateway/ark/v3/generations/tasks`; poll
-the same path with `/{task_id}`. Completed responses expose `content.video_url`.
-Kling image-to-video uses `/gateway/kling/v1/image2video`; poll with `/{task_id}` and
-read `data.task_result.videos[0].url`. In live testing, Kling 3.0 accepted the same
-AI-generated realistic presenter frames that Seedance rejected as possible real-person
-privacy content. Treat this as provider behavior, not proof of future policy stability.
-Do not change only the model name. Check protocol, duration, dimensions, keyframe roles,
-audio behavior, and current pricing first.
+The Fast adapter posts to `POST /v1/videos`, polls `GET /v1/videos/{id}` every
+12 seconds, and downloads the completed response's top-level `url` directly. Do not
+call `/v1/videos/{id}/content`: the updated provider document replaced that path with
+a direct object-storage URL. The URL needs no API key and is retained for about three
+days, so download it promptly.
+
+Reference images must be publicly reachable HTTP(S) URLs. Base64/data URLs, local
+paths, localhost, private IPs, and intranet URLs are rejected. The TokenDance keyframe
+response URL is recorded beside each generated image and used as the nanyao source.
+Regenerate the keyframe if that public URL has expired.
+
+Fast is documented at CNY 0.6 per job for both 6 and 10 seconds. The runner therefore
+defaults to 10 seconds and trims each clip to the final `duration_seconds` during
+assembly. Treat this price as a planning estimate and verify the console before paid
+execution. The supplied nanyao API document does not guarantee controlled native
+dialogue; retain the separate voiceover/subtitle post-production path.

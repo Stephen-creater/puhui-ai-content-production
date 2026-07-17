@@ -47,12 +47,13 @@ def group_units(units: list[str], target: int) -> list[str]:
     return ["".join(group).strip() for group in groups if group]
 
 
-def build_scene(index: int, text: str, duration: int) -> dict:
+def build_scene(index: int, text: str, duration: int, generation_duration: int = 10) -> dict:
     clean = re.sub(r"\s+", " ", text).strip()
     return {
         "id": index,
         "narration": clean,
         "duration_seconds": duration,
+        "generation_duration_seconds": generation_duration,
         "keyframe_prompt": (
             "Vertical cinematic advertising keyframe, one coherent scene, realistic lighting, "
             f"clear subject, no embedded text, no watermark. Story beat: {clean}"
@@ -75,12 +76,24 @@ def main() -> int:
     parser.add_argument("--scene-duration", type=int, default=5)
     parser.add_argument("--aspect-ratio", choices=ASPECTS, default="9:16")
     parser.add_argument("--image-model", default="seedream-5.0-lite")
-    parser.add_argument("--video-model", default="seedance-2.0-mini")
+    parser.add_argument(
+        "--video-model",
+        choices=("grok-imagine-video-1.5-fast", "grok-imagine-video-1.5-preview"),
+        default="grok-imagine-video-1.5-fast",
+    )
+    parser.add_argument("--generation-duration", type=int)
     parser.add_argument("--video-resolution", choices=VIDEO_DIMS, default="720p")
     args = parser.parse_args()
 
     if args.variants < 1 or args.scenes < 1 or args.scene_duration < 1:
         parser.error("variants, scenes, and scene-duration must be positive")
+    generation_duration = args.generation_duration
+    if generation_duration is None:
+        generation_duration = 15 if args.video_model.endswith("-preview") else 10
+    if args.video_model.endswith("-fast") and generation_duration not in (6, 10):
+        parser.error("Fast generation-duration must be 6 or 10")
+    if args.video_model.endswith("-preview") and not 1 <= generation_duration <= 15:
+        parser.error("Preview generation-duration must be between 1 and 15")
 
     script, source = read_script(args.script)
     if not script:
@@ -94,7 +107,6 @@ def main() -> int:
     units = group_units(split_units(script), args.scenes)
     dims = dict(ASPECTS[args.aspect_ratio])
     dims["video_width"], dims["video_height"] = VIDEO_DIMS[args.video_resolution][args.aspect_ratio]
-    video_protocol = "kling:image2video" if args.video_model.startswith("kling") else "seedance:generations"
     project = {
         "schema_version": 1,
         "created_at": datetime.now(timezone.utc).isoformat(),
@@ -102,14 +114,20 @@ def main() -> int:
         "script": script,
         "variants": args.variants,
         "aspect_ratio": args.aspect_ratio,
-        "provider": "tokendance",
+        "provider": "mixed",
+        "image_provider": "tokendance",
+        "video_provider": "nanyao",
         "image_model": args.image_model,
         "video_model": args.video_model,
-        "video_protocol": video_protocol,
+        "video_protocol": "nanyao:videos",
+        "video_generation_duration_seconds": generation_duration,
         "video_resolution": args.video_resolution,
         **dims,
         "fps": 24,
-        "scenes": [build_scene(index + 1, text, args.scene_duration) for index, text in enumerate(units)],
+        "scenes": [
+            build_scene(index + 1, text, args.scene_duration, generation_duration)
+            for index, text in enumerate(units)
+        ],
     }
     total_jobs = args.variants * len(project["scenes"])
     expected_duration = sum(scene["duration_seconds"] for scene in project["scenes"])

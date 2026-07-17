@@ -33,7 +33,24 @@ def tracked_files(root: Path) -> list[str]:
     return [line for line in result.stdout.splitlines() if line]
 
 
-def check_repository(root: Path, contract: dict, tracked: Iterable[str] = ()) -> list[str]:
+def ignored_root_entries(root: Path) -> set[str]:
+    entries = [entry.name for entry in root.iterdir()]
+    result = subprocess.run(
+        ["git", "check-ignore", "--stdin"],
+        cwd=root,
+        input="\n".join(entries) + "\n",
+        capture_output=True,
+        text=True,
+    )
+    return {Path(line).parts[0] for line in result.stdout.splitlines() if line}
+
+
+def check_repository(
+    root: Path,
+    contract: dict,
+    tracked: Iterable[str] = (),
+    ignored_roots: Iterable[str] = (),
+) -> list[str]:
     errors: list[str] = []
     required_roots = contract["required_roots"]
     scratch = contract["canonical_local_scratch"]
@@ -59,6 +76,7 @@ def check_repository(root: Path, contract: dict, tracked: Iterable[str] = ()) ->
         *required_roots,
         scratch,
         *contract["allowed_root_files"],
+        *ignored_roots,
         ".git",
         ".DS_Store",
     }
@@ -90,7 +108,12 @@ def check_repository(root: Path, contract: dict, tracked: Iterable[str] = ()) ->
 
 def main() -> int:
     contract = load_contract()
-    errors = check_repository(REPO_ROOT, contract, tracked_files(REPO_ROOT))
+    errors = check_repository(
+        REPO_ROOT,
+        contract,
+        tracked_files(REPO_ROOT),
+        ignored_root_entries(REPO_ROOT),
+    )
     if errors:
         print("repository hygiene: FAIL", file=sys.stderr)
         for error in errors:

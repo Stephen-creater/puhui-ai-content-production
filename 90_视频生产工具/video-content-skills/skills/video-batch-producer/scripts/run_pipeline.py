@@ -34,28 +34,52 @@ def utc_now() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
-GATEWAY = "https://tokendance.space/gateway"
+TOKENDANCE_GATEWAY = "https://tokendance.space/gateway"
+NANYAO_BASE_URL = "https://api.nanyaoai.top"
+DEFAULT_NANYAO_VIDEO_MODEL = "grok-imagine-video-1.5-fast"
+DEFAULT_NANYAO_FAST_DURATION = 10
+NANYAO_FAST_DURATIONS = {6, 10}
+NANYAO_FAST_PRICE_CNY = 0.6
 
 
-def require_api_key() -> str:
-    if key := os.environ.get("TOKENDANCE_API_KEY"):
+class AmbiguousSubmissionError(RuntimeError):
+    """A paid submission may have reached the provider; never retry it blindly."""
+
+
+def require_key(env_name: str, keychain_service: str) -> str:
+    if key := os.environ.get(env_name):
         return key
     result = subprocess.run(
         ["security", "find-generic-password", "-a", getpass.getuser(),
-         "-s", "video-content-skills/tokendance", "-w"],
+         "-s", keychain_service, "-w"],
         capture_output=True, text=True,
     )
     if result.returncode == 0 and result.stdout.strip():
         return result.stdout.strip()
     raise RuntimeError(
-        "TOKENDANCE_API_KEY is not set and no macOS Keychain item exists for "
-        "service video-content-skills/tokendance"
+        f"{env_name} is not set and no macOS Keychain item exists for "
+        f"service {keychain_service}"
     )
 
 
-def api_json(path: str, key: str, payload: dict[str, Any] | None = None, timeout: int = 300) -> dict[str, Any]:
+def require_tokendance_api_key() -> str:
+    return require_key("TOKENDANCE_API_KEY", "video-content-skills/tokendance")
+
+
+def require_nanyao_api_key() -> str:
+    return require_key("NANYAO_API_KEY", "video-content-skills/nanyao")
+
+
+def provider_api_json(
+    base_url: str,
+    provider: str,
+    path: str,
+    key: str,
+    payload: dict[str, Any] | None = None,
+    timeout: int = 300,
+) -> dict[str, Any]:
     request = urllib.request.Request(
-        f"{GATEWAY}{path}",
+        f"{base_url}{path}",
         data=json.dumps(payload).encode("utf-8") if payload is not None else None,
         headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
         method="POST" if payload is not None else "GET",
@@ -65,7 +89,27 @@ def api_json(path: str, key: str, payload: dict[str, Any] | None = None, timeout
             return json.load(response)
     except urllib.error.HTTPError as exc:
         body = exc.read().decode("utf-8", "replace")[:2000]
-        raise RuntimeError(f"TokenDance HTTP {exc.code} for {path}: {body}") from exc
+        message = f"{provider} HTTP {exc.code} for {path}: {body}"
+        if provider == "nanyao" and path == "/v1/videos" and payload is not None and exc.code >= 500:
+            raise AmbiguousSubmissionError(message) from exc
+        raise RuntimeError(message) from exc
+    except (urllib.error.URLError, TimeoutError) as exc:
+        message = f"{provider} network error for {path}: {exc}"
+        if provider == "nanyao" and path == "/v1/videos" and payload is not None:
+            raise AmbiguousSubmissionError(message) from exc
+        raise RuntimeError(message) from exc
+
+
+def tokendance_api_json(
+    path: str, key: str, payload: dict[str, Any] | None = None, timeout: int = 300
+) -> dict[str, Any]:
+    return provider_api_json(TOKENDANCE_GATEWAY, "TokenDance", path, key, payload, timeout)
+
+
+def nanyao_api_json(
+    path: str, key: str, payload: dict[str, Any] | None = None, timeout: int = 300
+) -> dict[str, Any]:
+    return provider_api_json(NANYAO_BASE_URL, "nanyao", path, key, payload, timeout)
 
 
 def dimensions(project: dict[str, Any]) -> tuple[int, int, int, int]:
@@ -119,7 +163,7 @@ def generate_keyframe(
     }
     if scene.get("reference_images"):
         payload["image"] = [reference_image_value(value) for value in scene["reference_images"]]
-    response = api_json("/v1/images/generations", key, payload)
+    response = tokendance_api_json("/v1/images/generations", key, payload)
     item = response["data"][0]
     source_url = item.get("url")
     if not source_url:
@@ -131,37 +175,53 @@ def generate_keyframe(
     return source_url
 
 
-def poll_video(key: str, job_id: str, timeout: int, interval: int = 10) -> tuple[str, dict[str, Any]]:
+def video_model_for_project(project: dict[str, Any]) -> str:
+    """Map legacy Seedance/Kling manifests onto the new Grok Fast default."""
+    model = str(project.get("video_model", ""))
+    return model if model.startswith("grok-imagine-video-") else DEFAULT_NANYAO_VIDEO_MODEL
+
+
+def generation_duration(project: dict[str, Any], scene: dict[str, Any]) -> int:
+    model = video_model_for_project(project)
+    declared_model = str(project.get("video_model", ""))
+    configured = scene.get(
+        "generation_duration_seconds",
+        project.get("video_generation_duration_seconds"),
+    )
+    if declared_model and not declared_model.startswith("grok-imagine-video-"):
+        configured = DEFAULT_NANYAO_FAST_DURATION
+    if configured is None:
+        configured = 15 if model == "grok-imagine-video-1.5-preview" else DEFAULT_NANYAO_FAST_DURATION
+    duration = int(configured)
+    if model == DEFAULT_NANYAO_VIDEO_MODEL and duration not in NANYAO_FAST_DURATIONS:
+        raise ValueError(f"{DEFAULT_NANYAO_VIDEO_MODEL} duration must be 6 or 10, got {duration}")
+    if model == "grok-imagine-video-1.5-preview" and duration not in range(1, 16):
+        raise ValueError("grok-imagine-video-1.5-preview duration must be 1-15")
+    return duration
+
+
+def poll_nanyao_video(
+    key: str, job_id: str, timeout: int, interval: int = 12
+) -> tuple[str, dict[str, Any]]:
     deadline = time.monotonic() + timeout
     while time.monotonic() < deadline:
-        status = api_json(f"/ark/v3/generations/tasks/{job_id}", key)
+        status = nanyao_api_json(f"/v1/videos/{job_id}", key)
         state = str(status.get("status", "")).lower()
-        if state in {"succeeded", "completed", "success", "done"}:
-            video_url = (status.get("content") or {}).get("video_url")
-            if not video_url:
-                raise RuntimeError(f"video job {job_id} completed without content.video_url")
+        if state == "completed":
+            video_url = status.get("url")
+            if not isinstance(video_url, str) or not video_url.startswith(("http://", "https://")):
+                raise RuntimeError(f"nanyao video job {job_id} completed without a public top-level url")
             return video_url, status
-        if state in {"failed", "cancelled", "canceled", "error"}:
-            raise RuntimeError(f"video job {job_id} {state}: {status.get('error')}")
+        if state == "failed":
+            raise RuntimeError(f"nanyao video job {job_id} failed: {status.get('error')}")
         time.sleep(interval)
-    raise TimeoutError(f"video job {job_id} did not finish within {timeout}s")
+    raise TimeoutError(f"nanyao video job {job_id} did not finish within {timeout}s")
 
 
-def poll_kling_video(key: str, job_id: str, timeout: int, interval: int = 10) -> tuple[str, dict[str, Any]]:
-    deadline = time.monotonic() + timeout
-    while time.monotonic() < deadline:
-        status = api_json(f"/kling/v1/image2video/{job_id}", key)
-        data = status.get("data") or {}
-        state = str(data.get("task_status", "")).lower()
-        if state in {"succeed", "succeeded", "completed", "success"}:
-            videos = (data.get("task_result") or {}).get("videos") or []
-            if not videos or not videos[0].get("url"):
-                raise RuntimeError(f"Kling video job {job_id} completed without data.task_result.videos[0].url")
-            return videos[0]["url"], status
-        if state in {"failed", "cancelled", "canceled", "error"}:
-            raise RuntimeError(f"Kling video job {job_id} {state}: {data.get('task_status_msg')}")
-        time.sleep(interval)
-    raise TimeoutError(f"Kling video job {job_id} did not finish within {timeout}s")
+def download_url(url: str, output: Path, timeout: int = 180) -> None:
+    """Download a provider result URL without forwarding API credentials."""
+    with urllib.request.urlopen(url, timeout=timeout) as response:
+        output.write_bytes(response.read())
 
 
 def generate_clip(
@@ -173,56 +233,53 @@ def generate_clip(
         source_url = load_json(source_path).get("url")
     if not source_url:
         raise RuntimeError(f"missing source URL metadata for {keyframe}; regenerate its keyframe")
-    resolution = str(project.get("video_resolution", "720p"))
-    generation_duration = int(scene.get("generation_duration_seconds", scene["duration_seconds"]))
-    prompt = (
-        f"{scene['video_prompt']} Avoid: {scene.get('negative_prompt', '')} "
-        f"--resolution {resolution} --duration {generation_duration} --ratio {project['aspect_ratio']}"
-    )
-    protocol = str(project.get("video_protocol", "seedance:generations"))
-    if protocol == "kling:image2video":
-        audio_setting = scene.get("generate_audio", project.get("generate_audio", False))
-        sound = "on" if audio_setting is True or str(audio_setting).lower() in {"1", "true", "on", "yes"} else "off"
-        payload: dict[str, Any] = {
-            "model_name": project["video_model"],
-            "image": source_url,
-            "prompt": f"{scene['video_prompt']} Avoid: {scene.get('negative_prompt', '')}",
-            "duration": str(generation_duration),
-            "mode": str(project.get("kling_mode", "pro")),
-            "aspect_ratio": project["aspect_ratio"],
-            "sound": sound,
-        }
+    if not source_url.startswith(("http://", "https://")):
+        raise RuntimeError(
+            "nanyao requires a public HTTP(S) keyframe URL; regenerate the keyframe "
+            "or provide a public reference image URL"
+        )
+    model = video_model_for_project(project)
+    duration = generation_duration(project, scene)
+    payload: dict[str, Any] = {
+        "model": model,
+        "prompt": f"{scene['video_prompt']} Avoid: {scene.get('negative_prompt', '')}",
+        "duration": duration,
+        "size": f"{int(project['video_width'])}x{int(project['video_height'])}",
+    }
+    if model == "grok-imagine-video-1.5-preview":
+        payload["image"] = source_url
     else:
-        payload = {
-            "model": project["video_model"],
-            "content": [
-                {"type": "text", "text": prompt},
-                {"type": "image_url", "image_url": {"url": source_url}, "role": "first_frame"},
-            ],
-        }
+        payload["images"] = [source_url]
     job_path = output.with_suffix(output.suffix + ".job.json")
     job_id = None
     if job_path.exists():
         saved_job = load_json(job_path)
-        job_id = saved_job.get("id") or saved_job.get("taskId") or saved_job.get("task_id")
+        if saved_job.get("provider") == "nanyao" and saved_job.get("model") == model:
+            job_id = saved_job.get("id")
     if not job_id:
-        submit_path = "/kling/v1/image2video" if protocol == "kling:image2video" else "/ark/v3/generations/tasks"
-        job = api_json(submit_path, key, payload)
-        job_id = job.get("id") or job.get("taskId") or job.get("task_id")
+        job = nanyao_api_json("/v1/videos", key, payload)
+        job_id = job.get("id")
         if not job_id:
-            raise RuntimeError("TokenDance video submission did not include id")
-        save_json(job_path, {"id": job_id, "protocol": protocol, "submitted_at": utc_now()})
-    if protocol == "kling:image2video":
-        url, status = poll_kling_video(key, job_id, timeout)
-        usage = {}
-        state = (status.get("data") or {}).get("task_status")
-    else:
-        url, status = poll_video(key, job_id, timeout)
-        usage = status.get("usage") or {}
-        state = status.get("status")
-    with urllib.request.urlopen(url, timeout=120) as response:
-        output.write_bytes(response.read())
-    save_json(job_path, {"id": job_id, "protocol": protocol, "status": state, "usage": usage, "completed_at": utc_now()})
+            raise RuntimeError("nanyao video submission did not include id")
+        save_json(job_path, {
+            "id": job_id,
+            "provider": "nanyao",
+            "model": model,
+            "duration": duration,
+            "submitted_at": utc_now(),
+        })
+    url, status = poll_nanyao_video(key, job_id, timeout)
+    download_url(url, output)
+    usage = status.get("usage") or {}
+    save_json(job_path, {
+        "id": job_id,
+        "provider": "nanyao",
+        "model": model,
+        "duration": duration,
+        "status": status.get("status"),
+        "usage": usage,
+        "completed_at": utc_now(),
+    })
     return usage
 
 
@@ -406,20 +463,22 @@ def main() -> int:
     keyframes_needed = sum(task["needs_keyframe"] for task in tasks)
     clips_needed = 0 if args.keyframes_only else sum(task["needs_clip"] for task in tasks)
     generated_seconds = 0
-    native_audio_jobs = 0
+    requested_native_audio_jobs = 0
     for task in tasks:
         if not task["needs_clip"] or args.keyframes_only:
             continue
         scene = scene_for_task(project, task)
-        generated_seconds += int(scene.get("generation_duration_seconds", scene["duration_seconds"]))
+        generated_seconds += generation_duration(project, scene)
         audio_setting = scene.get("generate_audio", project.get("generate_audio", False))
         if audio_setting is True or str(audio_setting).lower() in {"1", "true", "on", "yes"}:
-            native_audio_jobs += 1
+            requested_native_audio_jobs += 1
     summary = {
         "mode": "execute" if args.execute else "dry-run",
         "project": str(root),
         "image_model": project["image_model"],
-        "video_model": project["video_model"],
+        "image_provider": "tokendance",
+        "video_provider": "nanyao",
+        "video_model": video_model_for_project(project),
         "image_dimensions": f"{project['image_width']}x{project['image_height']}",
         "video_resolution": project.get("video_resolution", "720p"),
         "video_dimensions": f"{project['video_width']}x{project['video_height']}",
@@ -433,11 +492,14 @@ def main() -> int:
             "max_video_jobs": args.max_video_jobs,
             "max_paid_video_seconds": args.max_paid_video_seconds,
         },
-        "native_audio_jobs": native_audio_jobs,
+        "native_audio_jobs": 0,
+        "requested_native_audio_jobs": requested_native_audio_jobs,
         "retry_ceiling_per_task": args.retries,
         "max_workers": args.max_workers,
         "selected_tasks": [task_key(task) for task in tasks] if args.tasks else [],
-        "pricing_status": "not_exposed_by_provider_model_catalog",
+        "pricing_status": "documented_flat_rate_verify_in_console",
+        "estimated_video_cost_cny": round(clips_needed * NANYAO_FAST_PRICE_CNY, 2)
+        if video_model_for_project(project) == DEFAULT_NANYAO_VIDEO_MODEL else None,
         "asset_bank": bool(project.get("asset_bank")),
         "final_videos": 0 if project.get("asset_bank") else project["variants"],
         "expected_duration_seconds_by_variant": expected_variant_durations(project),
@@ -466,7 +528,8 @@ def main() -> int:
     if args.max_workers < 1:
         parser.error("max-workers must be positive")
     try:
-        api_key = require_api_key()
+        image_api_key = require_tokendance_api_key() if keyframes_needed else None
+        video_api_key = require_nanyao_api_key() if clips_needed else None
     except RuntimeError as exc:
         print(json.dumps({"status": "configuration_error", "error": str(exc)}, ensure_ascii=False), file=sys.stderr)
         return 2
@@ -484,17 +547,21 @@ def main() -> int:
         for attempt in range(1, attempts + 1):
             try:
                 if task["needs_keyframe"]:
-                    source_url = generate_keyframe(project, scene, task["variant"], keyframe, api_key)
+                    assert image_api_key is not None
+                    source_url = generate_keyframe(project, scene, task["variant"], keyframe, image_api_key)
                     task["needs_keyframe"] = False
                 else:
                     source_url = None
                 usage = None
                 if task["needs_clip"] and not args.keyframes_only:
-                    usage = generate_clip(project, scene, keyframe, clip, args.timeout, api_key, source_url)
+                    assert video_api_key is not None
+                    usage = generate_clip(project, scene, keyframe, clip, args.timeout, video_api_key, source_url)
                     task["needs_clip"] = False
                 return {**task, "status": "completed", "usage": usage, "completed_at": utc_now()}
             except Exception as exc:  # Preserve partial paid outputs and retry the missing stage.
                 last_error = str(exc)
+                if isinstance(exc, AmbiguousSubmissionError):
+                    break
                 if attempt < attempts:
                     time.sleep(min(10, 2 * attempt))
         return {**task, "status": "failed", "error": last_error, "completed_at": utc_now()}
