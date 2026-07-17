@@ -4,6 +4,8 @@
 from __future__ import annotations
 
 import importlib.util
+import hashlib
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -90,6 +92,42 @@ class VariantSpecificScenesTest(unittest.TestCase):
 
     def test_paid_caps_accept_exact_authorized_delta(self) -> None:
         MODULE.validate_paid_caps(1, 2, 10, 1, 2, 10)
+
+    def test_video_generation_requires_keyframe_review_file(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            keyframe, _ = MODULE.task_paths(root, 1, 1, create=True)
+            keyframe.write_bytes(b"approved image")
+            task = MODULE.planned_tasks(PROJECT, root, False)[0]
+            with self.assertRaisesRegex(ValueError, "missing keyframe-review.json"):
+                MODULE.validate_keyframe_reviews(root, [task])
+
+    def test_keyframe_review_is_bound_to_current_image_hash(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            keyframe, _ = MODULE.task_paths(root, 1, 1, create=True)
+            keyframe.write_bytes(b"approved image")
+            review = {
+                "reviews": {
+                    "v01-s01": {
+                        "approved": True,
+                        "image_sha256": hashlib.sha256(b"approved image").hexdigest(),
+                        "checks": {name: True for name in MODULE.KEYFRAME_REVIEW_CRITERIA},
+                    }
+                }
+            }
+            (root / "keyframe-review.json").write_text(json.dumps(review), encoding="utf-8")
+            task = MODULE.planned_tasks(PROJECT, root, False)[0]
+            MODULE.validate_keyframe_reviews(root, [task])
+            keyframe.write_bytes(b"changed after review")
+            with self.assertRaisesRegex(ValueError, "changed after review"):
+                MODULE.validate_keyframe_reviews(root, [task])
+
+    def test_combined_keyframe_and_video_run_is_blocked(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            tasks = MODULE.planned_tasks(PROJECT, Path(directory), False)
+            with self.assertRaisesRegex(ValueError, "--keyframes-only"):
+                MODULE.validate_keyframe_reviews(Path(directory), tasks)
 
 
 if __name__ == "__main__":

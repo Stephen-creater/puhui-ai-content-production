@@ -53,8 +53,22 @@ Turn a finished script into batch short-video outputs. Keep the workflow agent-n
      --max-image-jobs 8 --max-workers 1
    ```
 
-   Inspect every keyframe. Do not submit video jobs until product structure, character
-   continuity, hand anatomy, and action order pass visual review.
+   Inspect every keyframe at full resolution. For protective-film products, reject any
+   hole, tear, split, missing coverage, detached tape edge, tape longer than the film,
+   or film that does not connect continuously to the full lower edge of the tape.
+   Record each decision before submitting video jobs:
+
+   ```bash
+   python3 scripts/review_keyframe.py \
+     --project /absolute/path/work/project-name \
+     --task v01-s01 --approve \
+     --notes "One intact sheet; full coverage; tape and film connected edge-to-edge"
+   ```
+
+   Use `--reject` for a failed image, regenerate only that keyframe, inspect it again,
+   then record a new decision. The review stores the image SHA-256. Video generation
+   is blocked if any review is missing, rejected, incomplete, or refers to an older
+   version of the image.
 
 5. Show the user the planned counts: keyframes, video jobs, variants, model names, and script-derived expected final duration. Reject plans under 20 seconds. Flag plans over 60 seconds and explain why the script needs the extra time. Obtain approval before paid generation unless the user already explicitly authorized execution and cost.
 
@@ -131,6 +145,8 @@ voiceover and subtitle post-production path for deterministic speech.
 - Use only assets the user owns or is permitted to process.
 - Reject misleading product claims, unauthorized face/voice cloning, and copyrighted source reuse without permission.
 - Require human review for product shape, text, hands/faces, continuity, branding, and factual accuracy.
+- Keyframe review is a hard code gate, not a prose reminder. Generate and review
+  keyframes in a separate invocation; a combined keyframe-plus-video paid run is refused.
 
 ## Implementation provenance
 

@@ -7,6 +7,7 @@ import argparse
 import base64
 import concurrent.futures
 import getpass
+import hashlib
 import json
 import mimetypes
 import os
@@ -41,6 +42,15 @@ DEFAULT_NANYAO_FAST_DURATION = 10
 NANYAO_FAST_DURATIONS = {6, 10}
 NANYAO_FAST_PRICE_CNY = 0.6
 PROVIDER_USER_AGENT = "video-content-skills/1.0"
+KEYFRAME_REVIEW_FILE = "keyframe-review.json"
+KEYFRAME_REVIEW_CRITERIA = (
+    "continuous_film_no_holes",
+    "full_object_coverage",
+    "tape_film_continuity",
+    "tape_on_valid_surface",
+    "single_integrated_product",
+    "no_visual_artifacts",
+)
 
 
 class AmbiguousSubmissionError(RuntimeError):
@@ -363,6 +373,50 @@ def task_key(task: dict[str, Any]) -> str:
     return f"v{int(task['variant']):02d}-s{int(task['scene']):02d}"
 
 
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def validate_keyframe_reviews(root: Path, tasks: list[dict[str, Any]]) -> None:
+    """Require a current, explicit visual approval before any video submission."""
+    video_tasks = [task for task in tasks if task["needs_clip"]]
+    if not video_tasks:
+        return
+    if any(task["needs_keyframe"] for task in video_tasks):
+        raise ValueError(
+            "video generation is blocked until missing keyframes are generated with "
+            "--keyframes-only and reviewed"
+        )
+    review_path = root / KEYFRAME_REVIEW_FILE
+    if not review_path.is_file():
+        raise ValueError(f"missing {KEYFRAME_REVIEW_FILE}; review every keyframe before video generation")
+    document = load_json(review_path)
+    reviews = document.get("reviews", {})
+    errors: list[str] = []
+    for task in video_tasks:
+        key = task_key(task)
+        keyframe = Path(task["keyframe"])
+        record = reviews.get(key)
+        if not isinstance(record, dict) or record.get("approved") is not True:
+            errors.append(f"{key}: not approved")
+            continue
+        recorded_hash = record.get("image_sha256")
+        current_hash = sha256_file(keyframe)
+        if recorded_hash != current_hash:
+            errors.append(f"{key}: keyframe changed after review")
+            continue
+        checks = record.get("checks", {})
+        missing_checks = [name for name in KEYFRAME_REVIEW_CRITERIA if checks.get(name) is not True]
+        if missing_checks:
+            errors.append(f"{key}: failed or missing checks: {', '.join(missing_checks)}")
+    if errors:
+        raise ValueError("keyframe review gate failed: " + "; ".join(errors))
+
+
 def filter_tasks(tasks: list[dict[str, Any]], selectors: list[str] | None) -> list[dict[str, Any]]:
     if not selectors:
         return tasks
@@ -508,6 +562,7 @@ def main() -> int:
         "asset_bank": bool(project.get("asset_bank")),
         "final_videos": 0 if project.get("asset_bank") else project["variants"],
         "expected_duration_seconds_by_variant": expected_variant_durations(project),
+        "keyframe_review_file": KEYFRAME_REVIEW_FILE,
     }
     print(json.dumps(summary, ensure_ascii=False, indent=2))
     if not args.execute:
@@ -527,8 +582,10 @@ def main() -> int:
             args.max_video_jobs,
             args.max_paid_video_seconds,
         )
+        if clips_needed:
+            validate_keyframe_reviews(root, tasks)
     except ValueError as exc:
-        print(json.dumps({"status": "cost_cap_required", "error": str(exc)}, ensure_ascii=False), file=sys.stderr)
+        print(json.dumps({"status": "safety_gate_blocked", "error": str(exc)}, ensure_ascii=False), file=sys.stderr)
         return 2
     if args.max_workers < 1:
         parser.error("max-workers must be positive")
