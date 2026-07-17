@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-07-16T00:00:00Z",
+  "experiment": "water-dispenser-wall-anchor-intact-film-v2",
+  "asset_bank": true,
+  "script_source": "user rejection of torn film in prior batch",
+  "script": "A freestanding water dispenser is fully protected by one intact transparent pre-taped masking film sheet whose integrated yellow tape is continuously adhered to the wall above it.",
+  "variants": 3,
+  "aspect_ratio": "9:16",
+  "provider": "mixed",
+  "image_provider": "tokendance",
+  "video_provider": "nanyao",
+  "image_model": "seedream-5.0-lite",
+  "video_model": "grok-imagine-video-1.5-fast",
+  "video_protocol": "nanyao:videos",
+  "video_generation_duration_seconds": 10,
+  "video_resolution": "720p",
+  "image_width": 1440,
+  "image_height": 2560,
+  "video_width": 720,
+  "video_height": 1280,
+  "fps": 24,
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "",
+      "duration_seconds": 10,
+      "generation_duration_seconds": 10,
+      "reference_images": [
+        "../../../01_原始资料/product_images/operation-reference-01.png",
+        "rejected-keyframes/round-01/variant-01/scene-01.png",
+        "../../04_电视_墙面固定_完整膜返工/技术记录（不用看）/approved-candidates/电视完整膜基准.png"
+      ],
+      "keyframe_prompt": "Use the second reference image for the front-facing freestanding water-dispenser content and the third reference image only as the exact geometry standard for the integrated tape and film. Replace the television from the geometry reference with the water dispenser. Photorealistic vertical commercial photograph. Keep a clear 15-centimeter band of bare wall between the dispenser top and one integrated yellow tape-and-film top edge. Copy the third reference's clean finite yellow tape strip with perfectly square flat left and right endpoints and its exact same-width rectangular film connection. At the upper-left corner, the film's left vertical edge begins at exactly the tape's left endpoint. At the upper-right corner, the film's right vertical edge begins at exactly the tape's right endpoint. No yellow tape exists outside the film rectangle. The entire film top edge is visibly bonded continuously behind the entire tape from endpoint to endpoint. The transparent sheet passes in front of the complete dispenser, proven by soft plastic reflections and a slight clear haze across the control panel, taps, white front and black lower cabinet. The appliance is behind the film, never in front of it. The unbroken film rectangle covers 100 percent of the dispenser top, front, left edge, right edge and lower cabinet, with transparent side margins and one continuous bottom edge near the floor. No curl, notch, fold, gap, torn tape end, hole, tear, slit, opening, split, missing section, flap, folded-back corner, doubled sheet, or deep dark fold. Exactly one integrated tape-and-film product. Symmetrical eye-level medium shot showing full appliance and both tape ends, neutral daylight, stable geometry, no person, hands, roll, text, logo, or watermark.",
+      "video_prompt": "Preserve the approved keyframe exactly. The one finite yellow tape strip stays fixed to the wall above the water dispenser. The entire lower edge of the tape remains continuously bonded to the single intact transparent PE film sheet. The film remains an unbroken rectangular curtain with no holes, tears, slits, openings, missing areas, separated flaps, folded-back corners, or duplicated layers. It continuously covers the complete dispenser from top to near the floor with transparent margins on both sides. Only a very slow subtle camera push-in and extremely small surface shimmer in the intact film. No part of the dispenser becomes uncovered. No tape or film endpoint changes. No water flow, installation, pulling, tearing, removal, transformation, strong wind, object movement, camera orbit, flicker, text, logo, or watermark.",
+      "negative_prompt": "hole in film, torn plastic, ripped film, slit, opening, split sheet, missing film, exposed dispenser part, uncovered appliance edge, separated flap, folded-back corner, deep fold resembling hole, two plastic sheets, detached film, tape disconnected from film, tape longer than film, film narrower than tape, tape gap, broken yellow tape, yellow tape on dispenser, side tape, bottom tape, multiple tape strips, person, hands, film roll, installation, pulling, tearing, removing, water pouring, opaque cloth, deformation, melting, strong wind, text, logo, watermark"
+    }
+  ]
+}
