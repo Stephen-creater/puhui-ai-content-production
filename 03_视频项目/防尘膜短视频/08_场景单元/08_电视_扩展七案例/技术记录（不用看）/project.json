@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "script_source": "user-approved television strategy ledger cases 04-10",
+  "script": "Seven independently prompted television-protection asset-bank clips, each using a distinct seven-dimension strategy combination.",
+  "variants": 7,
+  "aspect_ratio": "9:16",
+  "fps": 24,
+  "image_provider": "tokendance",
+  "image_model": "seedream-5.0-lite",
+  "image_width": 1440,
+  "image_height": 2560,
+  "video_provider": "nanyao",
+  "video_model": "grok-imagine-video-1.5-fast",
+  "video_protocol": "nanyao:videos",
+  "video_resolution": "720p",
+  "video_width": 720,
+  "video_height": 1280,
+  "video_generation_duration_seconds": 10,
+  "asset_bank": true,
+  "experiment": "television-seven-dimension-expansion-v1",
+  "created_at": "2026-07-17T00:00:00Z",
+  "scenes": [],
+  "variant_scenes": [
+    {
+      "variant": 1,
+      "ledger_case": 4,
+      "scenes": [{
+        "id": 1,
+        "duration_seconds": 10,
+        "generation_duration_seconds": 10,
+        "variation_dimensions": {
+          "object_type": "television",
+          "object_form": "55-inch flat-panel television on a black wheeled mobile stand",
+          "environment": "modern corporate conference room under renovation",
+          "coverage_state": "one wall-mounted transparent sheet reaches the floor and fully covers television, stand column and wheeled base",
+          "shot_scale": "front-left three-quarter full-height shot",
+          "camera_motion": "slow diagonal push-in toward the television",
+          "person_or_work_state": "two workers remain in the distant background sorting tools"
+        },
+        "reference_images": ["../../04_电视_墙面固定_完整膜返工/技术记录（不用看）/approved-candidates/电视完整膜基准.png"],
+        "keyframe_prompt": "Use the reference only as the exact geometry standard for one integrated yellow tape and one intact transparent film sheet. Create a photorealistic vertical commercial image in a modern corporate conference room under renovation. A 55-inch flat-panel television sits on a black wheeled mobile stand close to a smooth light-gray wall. One finite straight yellow masking-tape strip is adhered to the wall above and wider than the television and stand. Exactly one same-width clear PE film sheet is permanently bonded along the tape's full lower edge and hangs continuously to the floor in front of the television, screen, bezel, central stand column and entire wheeled base. Both workers are small and distant in the background and do not approach or block the protected area. Front-left three-quarter full-height composition, cool white office lighting. No hole, slit, fold opening, second sheet, extra tape, exposed base, text, logo or watermark.",
+        "video_prompt": "Preserve the approved conference-room keyframe and exact one-piece tape-film geometry. Perform a slow diagonal push-in from the front-left, with mild parallax across conference chairs. The two distant workers make only small tool-sorting movements and never approach. The mobile television, stand column and wheeled base remain completely behind one continuous film sheet bonded to the same yellow tape and reaching the floor. No wheel movement, film tear, split, shrinkage, extra tape, exposed screen or base, text or logo.",
+        "negative_prompt": "moving television stand, worker approaching product, uncovered wheeled base, torn film, double film, extra tape, exposed screen, text, logo, watermark"
+      }]
+    },
+    {
+      "variant": 2,
+      "ledger_case": 5,
+      "scenes": [{
+        "id": 1,
+        "duration_seconds": 10,
+        "generation_duration_seconds": 10,
+        "variation_dimensions": {
+          "object_type": "television",
+          "object_form": "32-inch small ultra-thin wall-mounted television",
+          "environment": "bright apartment kitchen dining area under remodeling",
+          "coverage_state": "narrow clear sheet fully covers the small television and extends over the front edge of the sideboard",
+          "shot_scale": "front medium close shot",
+          "camera_motion": "slow downward tilt from yellow tape to sideboard edge",
+          "person_or_work_state": "professional European female painter checks a distant wall at rear right without touching the film"
+        },
+        "reference_images": ["../../04_电视_墙面固定_完整膜返工/技术记录（不用看）/approved-candidates/电视完整膜基准.png"],
+        "keyframe_prompt": "Use the reference only for the exact continuous same-width connection between one yellow tape strip and one intact transparent film sheet. Photorealistic 9:16 commercial image in a bright apartment kitchen dining area under remodeling. A small 32-inch ultra-thin television is wall mounted above a pale-oak sideboard on a white wall. One finite straight yellow masking-tape strip is adhered about 10 centimeters above the television. One same-width clear PE sheet is permanently bonded across the tape's entire lower edge, remains in front of the screen and bezel, and continues down over the sideboard front edge as one readable layer. A professional European female painter stands at rear right checking a distant wall, never touching or blocking the product. Front medium-close composition, clean daylight. No opening, missing corner, second plastic sheet, extra tape, exposed television or sideboard edge, text, logo or watermark.",
+        "video_prompt": "Keep the approved apartment-kitchen geometry unchanged. Begin on the finite yellow tape and execute a slow downward tilt ending at the covered pale-oak sideboard edge. The female painter at rear right only turns her gaze toward the distant wall and never approaches. The 32-inch television and sideboard edge remain behind the same single continuous transparent sheet; tape and film endpoints stay aligned. No film shrinkage, branch, second layer, hand contact, extra tape, exposed screen, speech, text or logo.",
+        "negative_prompt": "large television, painter touching film, uncovered sideboard, shrinking film, second sheet, extra tape, exposed screen, text, logo, watermark"
+      }]
+    },
+    {
+      "variant": 3,
+      "ledger_case": 6,
+      "scenes": [{
+        "id": 1,
+        "duration_seconds": 10,
+        "generation_duration_seconds": 10,
+        "variation_dimensions": {
+          "object_type": "television",
+          "object_form": "85-inch oversized wall-mounted boardroom display",
+          "environment": "high-rise executive boardroom renovation",
+          "coverage_state": "ultra-wide rectangular clear sheet fully covers display, bezel and lower interface area",
+          "shot_scale": "centered symmetrical ultra-wide room shot",
+          "camera_motion": "very slow axial push-in",
+          "person_or_work_state": "no person; furniture moved aside and protection completed"
+        },
+        "reference_images": ["../../04_电视_墙面固定_完整膜返工/技术记录（不用看）/approved-candidates/电视完整膜基准.png"],
+        "keyframe_prompt": "Use the reference solely as the non-negotiable one-piece tape-and-film geometry. Create a photorealistic vertical commercial image of a high-rise executive boardroom under renovation. An oversized 85-inch black display is centered on a smooth dark-gray feature wall, while chairs are moved to both sides. One finite ultra-wide straight yellow masking-tape strip is adhered 18 centimeters above the display. Exactly one same-width transparent PE sheet is bonded continuously along the tape's full lower edge and forms a complete rectangular curtain in front of the entire display, every bezel edge and the lower interface zone. The film has straight readable side boundaries and aligned endpoints. No people. Centered symmetrical ultra-wide room view with soft city daylight. No missing film corner, tape overhang, double layer, exposed display, screen content, text, logo or watermark.",
+        "video_prompt": "Maintain the approved executive-boardroom composition, 85-inch display and complete rectangular tape-film installation. Move very slowly forward along the room centerline so table edges create symmetrical parallax. No person enters. The entire display and lower interface zone remain behind one unbroken transparent sheet, and the finite yellow tape remains identical in width to the film top edge. No screen activation, disappearing film, lengthening tape, second layer, exposed bezel, text or logo.",
+        "negative_prompt": "screen turns on, film disappears, tape longer than film, double film, person enters, exposed display, exposed interface, text, logo, watermark"
+      }]
+    },
+    {
+      "variant": 4,
+      "ledger_case": 7,
+      "scenes": [{
+        "id": 1,
+        "duration_seconds": 10,
+        "generation_duration_seconds": 10,
+        "variation_dimensions": {
+          "object_type": "television",
+          "object_form": "50-inch tabletop flat-panel television with central pedestal base",
+          "environment": "school multimedia classroom being repainted",
+          "coverage_state": "one clear wall-hung sheet fully covers television, pedestal and wooden lectern top",
+          "shot_scale": "front-right environmental medium shot",
+          "camera_motion": "slow lateral slide from front-right toward rear-left",
+          "person_or_work_state": "distant professional painter holds a roller and remains nearly still"
+        },
+        "reference_images": ["../../04_电视_墙面固定_完整膜返工/技术记录（不用看）/approved-candidates/电视完整膜基准.png"],
+        "keyframe_prompt": "Use the reference only as the exact continuous tape-to-film construction standard. Photorealistic 9:16 renovation advertising image in a school multimedia classroom being repainted. A 50-inch tabletop flat-panel television with a clearly visible central pedestal stands on a wooden lectern beside a white wall and blackboard. One finite yellow masking-tape strip wider than the television and lectern top is adhered horizontally to the wall. One same-width intact transparent PE sheet is permanently bonded along the tape's complete lower edge and hangs as one continuous layer in front of the entire television, central pedestal and lectern top. A professional European painter stands far away holding a roller and does not approach. Front-right environmental medium view, soft classroom daylight. No opening, missing base coverage, second film, extra tape, contact, text, logo or watermark.",
+        "video_prompt": "Preserve the approved classroom, tabletop television, central pedestal, lectern and single integrated film. Slide the camera slowly from front-right toward rear-left, creating light desk parallax. The distant painter stays in place and only makes a tiny grip adjustment on the roller. The television, pedestal and lectern top remain completely behind the same film sheet and its endpoints remain aligned with the yellow tape. No walking, roller contact, exposed pedestal, exposed lectern, second sheet, extra tape, text or logo.",
+        "negative_prompt": "walking worker, roller touching film, exposed pedestal, uncovered lectern, double film, extra tape, text, logo, watermark"
+      }]
+    },
+    {
+      "variant": 5,
+      "ledger_case": 8,
+      "scenes": [{
+        "id": 1,
+        "duration_seconds": 10,
+        "generation_duration_seconds": 10,
+        "variation_dimensions": {
+          "object_type": "television",
+          "object_form": "21-inch vintage CRT television with convex screen and deep cabinet",
+          "environment": "old brick-wall apartment living room under renovation",
+          "coverage_state": "one clear sheet from brick-wall tape fully covers convex screen, deep body and cabinet front",
+          "shot_scale": "low-angle close shot",
+          "camera_motion": "extremely slow straight push-in",
+          "person_or_work_state": "no person; completed protection with tools resting in background"
+        },
+        "reference_images": ["../../04_电视_墙面固定_完整膜返工/技术记录（不用看）/approved-candidates/电视完整膜基准.png"],
+        "keyframe_prompt": "Use the reference only for the exact one-piece tape-and-film relationship; make the television unmistakably vintage. Photorealistic vertical commercial photograph in an old brick-wall apartment living room under renovation. A 21-inch vintage CRT television with a convex dark screen, thick side body and deep cabinet sits on a dark wooden low cabinet. One finite straight yellow masking-tape strip is adhered to the brick wall above. One same-width transparent PE sheet is permanently bonded across the tape's entire lower edge and hangs continuously in front of and beyond the CRT top, convex screen, thick sides and cabinet front. The entire bulky television is visibly behind one sheet. No people; tools rest far behind. Low-angle close composition, warm window light. No opening, duplicate sheet, extra tape, transformation into flat panel, text, logo or watermark.",
+        "video_prompt": "Keep the approved vintage apartment, convex-screen CRT, deep cabinet and one-piece protective sheet unchanged. Execute an extremely slow straight push-in toward the CRT front. Only soft reflections move across the transparent film; the convex screen, thick sides and deep body remain completely behind that same sheet. No person enters and tools stay still. No television transformation, screen activation, film penetration, second layer, extra tape, text or logo.",
+        "negative_prompt": "CRT becomes flat panel, screen turns on, film intersects television, exposed thick body, double film, extra tape, person, text, logo, watermark"
+      }]
+    },
+    {
+      "variant": 6,
+      "ledger_case": 9,
+      "scenes": [{
+        "id": 1,
+        "duration_seconds": 10,
+        "generation_duration_seconds": 10,
+        "variation_dimensions": {
+          "object_type": "television",
+          "object_form": "48-inch outdoor weatherproof wall-mounted television",
+          "environment": "covered patio lounge being repainted",
+          "coverage_state": "lightly tensioned wind-resistant clear sheet fully covers television with straight sides and stable lower edge",
+          "shot_scale": "left-side environmental medium-long shot",
+          "camera_motion": "smooth left-to-right tracking move along patio edge",
+          "person_or_work_state": "professional European painter at frame right inspects a distant wall corner"
+        },
+        "reference_images": ["../../04_电视_墙面固定_完整膜返工/技术记录（不用看）/approved-candidates/电视完整膜基准.png"],
+        "keyframe_prompt": "Use the reference solely as the exact continuous same-width tape-and-film geometry. Photorealistic 9:16 commercial image in a covered patio lounge being repainted. A 48-inch weatherproof black television is wall mounted on a light exterior wall with softly blurred greenery behind. One finite straight yellow masking-tape strip is adhered about 12 centimeters above the television. Exactly one same-width transparent PE sheet is permanently bonded along the tape's entire lower edge and held in a lightly tensioned wind-resistant state, fully covering screen and bezel with straight side boundaries and a stable lower edge. A professional European painter stands at far right inspecting a distant wall corner and never touches the product. Left environmental medium-long view, overcast soft light. No wind-lifted edge, tear, extra tape, exposed screen, rain, text, logo or watermark.",
+        "video_prompt": "Preserve the approved covered patio, weatherproof television, distant painter and lightly tensioned one-piece film. Track smoothly from left to right along the patio edge so background plants show mild parallax. The film may show only minute surface vibration; its lower edge never lifts and its full top edge remains bonded to the finite yellow tape. The painter continues inspecting the distant corner. No strong wind, rain, detachment, extra tape, exposed screen, person approaching, text or logo.",
+        "negative_prompt": "strong wind lifting film, detached sheet, rain, loose tape, extra tape, worker approaches, exposed screen, text, logo, watermark"
+      }]
+    },
+    {
+      "variant": 7,
+      "ledger_case": 10,
+      "scenes": [{
+        "id": 1,
+        "duration_seconds": 10,
+        "generation_duration_seconds": 10,
+        "variation_dimensions": {
+          "object_type": "television",
+          "object_form": "55-inch flat-panel television recessed inside a built-in wall cabinet niche",
+          "environment": "luxury living-room built-in cabinetry under renovation",
+          "coverage_state": "one transparent curtain bonded to niche header seals the entire television niche opening",
+          "shot_scale": "front-right wide medium shot",
+          "camera_motion": "slow pullback from tape connection detail to full built-in wall",
+          "person_or_work_state": "professional European painter kneels at lower right and presents without touching"
+        },
+        "reference_images": ["../../04_电视_墙面固定_完整膜返工/技术记录（不用看）/approved-candidates/电视完整膜基准.png"],
+        "keyframe_prompt": "Use the reference only as the strict construction standard for one finite yellow tape strip permanently bonded to one same-width intact film sheet. Photorealistic vertical commercial image of luxury living-room built-in cabinetry under renovation. A 55-inch flat-panel television is recessed inside a warm wood niche. A straight yellow masking-tape strip exactly matching the niche opening width is adhered to the horizontal cabinet header above the opening. One same-width transparent PE sheet is bonded continuously along the tape's full lower edge and forms a complete clear curtain sealing the entire niche opening; the television and all niche interior edges are behind it. A professional European painter kneels at lower right outside the film boundary and makes a restrained presentation gesture without touching. Front-right wide medium composition, warm interior light. No missing corner, floating tape, film on the screen surface, exposed niche, second sheet, extra tape, text, logo or watermark.",
+        "video_prompt": "Maintain the approved built-in cabinet, recessed television, kneeling painter and fully sealed transparent niche curtain. Start near the yellow tape-to-header connection and slowly pull back to reveal the complete built-in wall. The painter makes one small open-palm gesture outside the film boundary and never touches it. The single film sheet continues sealing the entire niche opening and the television never moves in front of the film. No screen-contact film, floating tape, exposed niche, second layer, extra tape, speech, text or logo.",
+        "negative_prompt": "film stuck directly to screen, floating tape, exposed niche opening, television in front of film, double film, extra tape, person touching, text, logo, watermark"
+      }]
+    }
+  ]
+}
