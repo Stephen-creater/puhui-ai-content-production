@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import importlib.util
+import io
 import tempfile
 import unittest
 from pathlib import Path
@@ -18,6 +19,20 @@ SPEC.loader.exec_module(MODULE)
 
 
 class NanyaoAdapterTest(unittest.TestCase):
+    def test_provider_requests_use_non_default_user_agent(self) -> None:
+        captured_request = None
+
+        def fake_urlopen(request, timeout):
+            nonlocal captured_request
+            captured_request = request
+            return io.BytesIO(b'{"status":"completed"}')
+
+        with mock.patch.object(MODULE.urllib.request, "urlopen", side_effect=fake_urlopen):
+            result = MODULE.nanyao_api_json("/v1/videos/task-1", "secret")
+
+        self.assertEqual(result["status"], "completed")
+        self.assertEqual(captured_request.get_header("User-agent"), MODULE.PROVIDER_USER_AGENT)
+
     def test_legacy_seedance_manifest_migrates_to_grok_fast(self) -> None:
         project = {"video_model": "seedance-2.0-mini"}
         self.assertEqual(MODULE.video_model_for_project(project), MODULE.DEFAULT_NANYAO_VIDEO_MODEL)

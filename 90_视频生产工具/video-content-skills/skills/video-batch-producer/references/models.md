@@ -27,6 +27,12 @@ call `/v1/videos/{id}/content`: the updated provider document replaced that path
 a direct object-storage URL. The URL needs no API key and is retained for about three
 days, so download it promptly.
 
+The adapter must send an explicit non-default `User-Agent`. Cloudflare can reject
+Python `urllib`'s default identity with `403 / 1010` even when the same key, endpoint,
+and network return `200` through curl. A `403 / 1010` response without a task ID is a
+transport rejection, not a completed paid generation; fix connectivity or headers
+before resubmitting.
+
 Reference images must be publicly reachable HTTP(S) URLs. Base64/data URLs, local
 paths, localhost, private IPs, and intranet URLs are rejected. The TokenDance keyframe
 response URL is recorded beside each generated image and used as the nanyao source.

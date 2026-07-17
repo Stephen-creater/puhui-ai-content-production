@@ -40,6 +40,7 @@ DEFAULT_NANYAO_VIDEO_MODEL = "grok-imagine-video-1.5-fast"
 DEFAULT_NANYAO_FAST_DURATION = 10
 NANYAO_FAST_DURATIONS = {6, 10}
 NANYAO_FAST_PRICE_CNY = 0.6
+PROVIDER_USER_AGENT = "video-content-skills/1.0"
 
 
 class AmbiguousSubmissionError(RuntimeError):
@@ -81,7 +82,11 @@ def provider_api_json(
     request = urllib.request.Request(
         f"{base_url}{path}",
         data=json.dumps(payload).encode("utf-8") if payload is not None else None,
-        headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
+        headers={
+            "Authorization": f"Bearer {key}",
+            "Content-Type": "application/json",
+            "User-Agent": PROVIDER_USER_AGENT,
+        },
         method="POST" if payload is not None else "GET",
     )
     try:

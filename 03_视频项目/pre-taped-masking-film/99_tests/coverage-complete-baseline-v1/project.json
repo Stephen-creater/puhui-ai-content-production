@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-07-17T02:19:28Z",
+  "experiment": "coverage-complete-baseline-v1",
+  "asset_bank": true,
+  "script_source": "inline experiment prompt",
+  "script": "Wall-mounted television already fully protected by transparent pre-taped masking film.",
+  "variants": 3,
+  "aspect_ratio": "9:16",
+  "provider": "mixed",
+  "image_provider": "tokendance",
+  "video_provider": "nanyao",
+  "image_model": "seedream-5.0-lite",
+  "video_model": "grok-imagine-video-1.5-fast",
+  "video_protocol": "nanyao:videos",
+  "video_generation_duration_seconds": 10,
+  "video_resolution": "720p",
+  "image_width": 1440,
+  "image_height": 2560,
+  "video_width": 720,
+  "video_height": 1280,
+  "fps": 24,
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "",
+      "duration_seconds": 10,
+      "generation_duration_seconds": 10,
+      "keyframe_prompt": "Photorealistic vertical commercial keyframe. A modern 55-inch wall-mounted flat-screen television in a partially renovated contemporary living room is already completely covered by one continuous sheet of thin transparent clear PE masking film. The rectangular television silhouette remains clearly visible through the film. A narrow yellow masking-tape strip is visibly and permanently bonded to the top edge of the transparent film as one integrated pre-taped product; the tape and film are not separate. The installed film hangs naturally over the front and sides of the television, with small realistic wrinkles and loose lower corners following gravity. The product is stationary in its completed protective state. No people, no hands, no film roll, no installation action. A folded painter drop cloth and a small ladder appear softly out of focus in the background. Natural daylight, neutral colors, eye-level medium shot, realistic plastic material, clean advertising photography, no text, no logo, no watermark.",
+      "video_prompt": "Preserve the exact completed protective state, composition, television geometry, bonded yellow tape edge, and one continuous transparent PE film sheet. The television and product remain stationary. Use only a very slow subtle camera push-in. Faint indoor air causes minimal natural ripples only at the loose lower corners of the transparent film; all other film areas remain stable and obey gravity. No person enters. No installation, unrolling, pulling, taping, tearing, removal, transformation, or object movement. Keep the transparent film thin, clear, continuous, and visibly connected to the yellow masking tape for the entire shot. Photorealistic materials and stable lighting.",
+      "negative_prompt": "person, hands, painter entering frame, film roll, installation action, unrolling, pulling, tearing, removing, separate yellow tape, detached tape, duplicated film, extra plastic layers, film disappearing, film growing, opaque cloth, television deformation, moving television, melting plastic, strong wind, large film motion, flicker, jump cut, camera orbit, text, logo, watermark"
+    }
+  ]
+}

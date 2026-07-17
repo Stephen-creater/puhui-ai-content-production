@@ -34,6 +34,7 @@
 - Phase 2 性能记录：[`phase2-performance-report.json`](06_reports/phase2-performance-report.json)
 - 无上下文冷启动审计：[`phase2-cold-start-audit.md`](06_reports/phase2-cold-start-audit.md)
 - 人工/AI 操作手册：[`operator-runbook.md`](../../90_视频生产工具/video-content-skills/skills/reference-ad-factory/references/operator-runbook.md)
+- 覆盖完成态素材首轮验证：[`evaluation.md`](99_tests/coverage-complete-baseline-v1/evaluation.md)
 
 ## 边界
 
