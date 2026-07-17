@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "criteria_version": "product-keyframe-v1",
+  "reviews": {
+    "v01-s01": {
+      "approved": true,
+      "image_sha256": "5a1fe65799bc295023a3214271fca0dc2e937204ba29e1fb377d2f1808602caf",
+      "checks": {
+        "continuous_film_no_holes": true,
+        "full_object_coverage": true,
+        "tape_film_continuity": true,
+        "tape_on_valid_surface": true,
+        "single_integrated_product": true,
+        "no_visual_artifacts": true
+      },
+      "notes": "APPROVE: one intact sheet fully covers the 65-inch television; tape and film endpoints align; broad Scandinavian room composition is distinct.",
+      "reviewer": "human-visual-review",
+      "reviewed_at": "2026-07-17T07:13:07.108550+00:00"
+    },
+    "v02-s01": {
+      "approved": true,
+      "image_sha256": "0303b24d530d619f3aed59ac14065486768a84e9a52c98a21a4b053bd4db78bc",
+      "checks": {
+        "continuous_film_no_holes": true,
+        "full_object_coverage": true,
+        "tape_film_continuity": true,
+        "tape_on_valid_surface": true,
+        "single_integrated_product": true,
+        "no_visual_artifacts": true
+      },
+      "notes": "APPROVE: single continuous film covers the compact television; wall tape remains fully connected; warm hotel angle and kneeling painter are distinct.",
+      "reviewer": "human-visual-review",
+      "reviewed_at": "2026-07-17T07:13:07.199663+00:00"
+    },
+    "v03-s01": {
+      "approved": true,
+      "image_sha256": "9fbc6f466b567258e7d6339a36bc6db7522e8b1c60a3d3e55c006dd0606b9060",
+      "checks": {
+        "continuous_film_no_holes": true,
+        "full_object_coverage": true,
+        "tape_film_continuity": true,
+        "tape_on_valid_surface": true,
+        "single_integrated_product": true,
+        "no_visual_artifacts": true
+      },
+      "notes": "APPROVE: one unbroken sheet covers the wide television with aligned tape endpoints; presenter remains outside the product boundary and industrial scene is distinct.",
+      "reviewer": "human-visual-review",
+      "reviewed_at": "2026-07-17T07:13:07.293802+00:00"
+    }
+  },
+  "updated_at": "2026-07-17T07:13:07.294134+00:00"
+}

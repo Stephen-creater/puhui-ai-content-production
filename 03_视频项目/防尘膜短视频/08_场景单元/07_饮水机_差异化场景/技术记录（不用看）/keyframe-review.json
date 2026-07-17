@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "criteria_version": "product-keyframe-v1",
+  "reviews": {
+    "v01-s01": {
+      "approved": true,
+      "image_sha256": "13e513264b9feae344fecb4235e667fcb411f01f54ecf1351d125ff44088771a",
+      "checks": {
+        "continuous_film_no_holes": true,
+        "full_object_coverage": true,
+        "tape_film_continuity": true,
+        "tape_on_valid_surface": true,
+        "single_integrated_product": true,
+        "no_visual_artifacts": true
+      },
+      "notes": "APPROVE: one continuous clear curtain covers the complete tall dispenser; tape and film are same-width and connected; office scene is distinct.",
+      "reviewer": "human-visual-review",
+      "reviewed_at": "2026-07-17T07:13:07.391437+00:00"
+    },
+    "v02-s01": {
+      "approved": true,
+      "image_sha256": "f39260f4b7ce3f28bef5b2b29c23c7c2665d02c37487296fb3f48458ba1b54b4",
+      "checks": {
+        "continuous_film_no_holes": true,
+        "full_object_coverage": true,
+        "tape_film_continuity": true,
+        "tape_on_valid_surface": true,
+        "single_integrated_product": true,
+        "no_visual_artifacts": true
+      },
+      "notes": "APPROVE: one intact sheet covers the compact countertop dispenser and adjacent counter; tape is continuously connected; kitchen worker scene is distinct.",
+      "reviewer": "human-visual-review",
+      "reviewed_at": "2026-07-17T07:13:07.480084+00:00"
+    },
+    "v03-s01": {
+      "approved": true,
+      "image_sha256": "77797f056a034f2138e9d0464cc38c4f819d7f8f085291535f66d1fbf0d2b1e4",
+      "checks": {
+        "continuous_film_no_holes": true,
+        "full_object_coverage": true,
+        "tape_film_continuity": true,
+        "tape_on_valid_surface": true,
+        "single_integrated_product": true,
+        "no_visual_artifacts": true
+      },
+      "notes": "APPROVE: one unbroken sheet fully covers the clinic dispenser; tape endpoints align with film; standing presenter and low environmental framing are distinct.",
+      "reviewer": "human-visual-review",
+      "reviewed_at": "2026-07-17T07:13:07.577642+00:00"
+    }
+  },
+  "updated_at": "2026-07-17T07:13:07.577778+00:00"
+}
