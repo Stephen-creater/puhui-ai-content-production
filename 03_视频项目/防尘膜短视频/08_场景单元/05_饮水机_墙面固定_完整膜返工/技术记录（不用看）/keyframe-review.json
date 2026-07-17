@@ -3,50 +3,50 @@
   "criteria_version": "product-keyframe-v1",
   "reviews": {
     "v01-s01": {
-      "approved": false,
-      "image_sha256": "6395db7e7fe02694b7c9f7552e8e2988dd3f9eaf28abfe4c9628c48b418b968b",
+      "approved": true,
+      "image_sha256": "b0dd9eaf29ba78523b6d5020148610194a9a45048edf4cea8ac855d2584d525f",
       "checks": {
-        "continuous_film_no_holes": false,
-        "full_object_coverage": false,
-        "tape_film_continuity": false,
-        "tape_on_valid_surface": false,
-        "single_integrated_product": false,
-        "no_visual_artifacts": false
+        "continuous_film_no_holes": true,
+        "full_object_coverage": true,
+        "tape_film_continuity": true,
+        "tape_on_valid_surface": true,
+        "single_integrated_product": true,
+        "no_visual_artifacts": true
       },
-      "notes": "REJECT R3: yellow tape overhangs both film edges; film top corners pinch inward instead of forming one square continuous bonded edge.",
+      "notes": "APPROVE: one intact continuous transparent sheet fully covers the water dispenser; yellow tape and film have identical width, square endpoints, and a continuous full-width permanent bond.",
       "reviewer": "codex-visual-review",
-      "reviewed_at": "2026-07-17T05:37:56.869942+00:00"
+      "reviewed_at": "2026-07-17T06:29:29.100544+00:00"
     },
     "v02-s01": {
-      "approved": false,
-      "image_sha256": "e1160a57a7f01d3695b1d6dfa5623f691602ac15ae4da915a952480694bb2be2",
+      "approved": true,
+      "image_sha256": "b0dd9eaf29ba78523b6d5020148610194a9a45048edf4cea8ac855d2584d525f",
       "checks": {
-        "continuous_film_no_holes": false,
-        "full_object_coverage": false,
-        "tape_film_continuity": false,
-        "tape_on_valid_surface": false,
-        "single_integrated_product": false,
-        "no_visual_artifacts": false
+        "continuous_film_no_holes": true,
+        "full_object_coverage": true,
+        "tape_film_continuity": true,
+        "tape_on_valid_surface": true,
+        "single_integrated_product": true,
+        "no_visual_artifacts": true
       },
-      "notes": "REJECT R3: a second detached yellow tape strip appears above the product; main tape also overhangs both film edges.",
+      "notes": "APPROVE: same frozen approved source; intact single sheet, full appliance coverage, tape on wall, no overhang, gap, second tape, tear, slit, or missing corner.",
       "reviewer": "codex-visual-review",
-      "reviewed_at": "2026-07-17T05:37:56.898484+00:00"
+      "reviewed_at": "2026-07-17T06:29:29.129361+00:00"
     },
     "v03-s01": {
-      "approved": false,
-      "image_sha256": "db14b09280fb009ea5c2657de943d13d989d83c2bfb139c8d861db72cef897a5",
+      "approved": true,
+      "image_sha256": "b0dd9eaf29ba78523b6d5020148610194a9a45048edf4cea8ac855d2584d525f",
       "checks": {
-        "continuous_film_no_holes": false,
-        "full_object_coverage": false,
-        "tape_film_continuity": false,
-        "tape_on_valid_surface": false,
-        "single_integrated_product": false,
-        "no_visual_artifacts": false
+        "continuous_film_no_holes": true,
+        "full_object_coverage": true,
+        "tape_film_continuity": true,
+        "tape_on_valid_surface": true,
+        "single_integrated_product": true,
+        "no_visual_artifacts": true
       },
-      "notes": "REJECT R3: yellow tape overhangs both film edges; tape-to-film boundary is pinched and not continuously bonded to square endpoints.",
+      "notes": "APPROVE: same frozen approved source; film is visibly in front of and fully encloses the dispenser, with continuous tape-to-film geometry from square endpoint to square endpoint.",
       "reviewer": "codex-visual-review",
-      "reviewed_at": "2026-07-17T05:37:56.924754+00:00"
+      "reviewed_at": "2026-07-17T06:29:29.157445+00:00"
     }
   },
-  "updated_at": "2026-07-17T05:37:56.924877+00:00"
+  "updated_at": "2026-07-17T06:29:29.157624+00:00"
 }

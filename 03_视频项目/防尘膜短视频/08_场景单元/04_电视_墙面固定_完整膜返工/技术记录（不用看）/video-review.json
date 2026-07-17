@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "criteria_version": "product-video-v1",
+  "sample_seconds": [1, 3, 5, 7, 9],
+  "reviews": {
+    "v01-s01": {
+      "approved": true,
+      "video_sha256": "35f7c25b18e48aa81bbadd62a3f6bb9605b1d9b23cb0e2cd15b0491954b89627",
+      "checks": {
+        "continuous_film_no_holes": true,
+        "full_object_coverage": true,
+        "tape_film_continuity": true,
+        "single_sheet_readability": true,
+        "stable_structure_all_samples": true
+      },
+      "notes": "APPROVE: all five samples retain one intact sheet, full television coverage, aligned tape endpoints, and continuous tape-to-film geometry."
+    },
+    "v02-s01": {
+      "approved": false,
+      "video_sha256": "f0731512e91c5bd4e0c1d95faa4d647bf831a9eb57a1ee5d491743739fcad048",
+      "checks": {
+        "continuous_film_no_holes": true,
+        "full_object_coverage": true,
+        "tape_film_continuity": true,
+        "single_sheet_readability": false,
+        "stable_structure_all_samples": false
+      },
+      "notes": "REJECT: two strong full-height vertical seam-like folds persist across all five samples and read ambiguously as doubled or separated film flaps. Strict policy rejects structural ambiguity."
+    },
+    "v03-s01": {
+      "approved": true,
+      "video_sha256": "5d9f018ee710e48afdc73d7dcfb25a09d58466f62b71fbda3909344d0d1b8fc5",
+      "checks": {
+        "continuous_film_no_holes": true,
+        "full_object_coverage": true,
+        "tape_film_continuity": true,
+        "single_sheet_readability": true,
+        "stable_structure_all_samples": true
+      },
+      "notes": "APPROVE: all five samples retain one clearly readable intact sheet with complete television coverage and no structural jump."
+    }
+  },
+  "reviewer": "codex-visual-review",
+  "reviewed_at": "2026-07-17T06:29:38Z"
+}
