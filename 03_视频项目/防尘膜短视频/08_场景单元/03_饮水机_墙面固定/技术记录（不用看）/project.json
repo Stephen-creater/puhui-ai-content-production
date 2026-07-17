@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-07-16T00:00:00Z",
+  "experiment": "water-dispenser-wall-anchor-v1",
+  "asset_bank": true,
+  "script_source": "user-approved next scene unit",
+  "script": "A freestanding water dispenser is protected by transparent pre-taped masking film whose integrated yellow tape is adhered to the wall above the appliance.",
+  "variants": 3,
+  "aspect_ratio": "9:16",
+  "provider": "mixed",
+  "image_provider": "tokendance",
+  "video_provider": "nanyao",
+  "image_model": "seedream-5.0-lite",
+  "video_model": "grok-imagine-video-1.5-fast",
+  "video_protocol": "nanyao:videos",
+  "video_generation_duration_seconds": 10,
+  "video_resolution": "720p",
+  "image_width": 1440,
+  "image_height": 2560,
+  "video_width": 720,
+  "video_height": 1280,
+  "fps": 24,
+  "scenes": [
+    {
+      "id": 1,
+      "narration": "",
+      "duration_seconds": 10,
+      "generation_duration_seconds": 10,
+      "reference_images": [
+        "../../../01_原始资料/product_images/operation-reference-01.png",
+        "../../../01_原始资料/product_images/operation-reference-02.png"
+      ],
+      "keyframe_prompt": "Photorealistic vertical commercial keyframe showing the completed protective state of one integrated pre-taped masking-film product. A modern freestanding white and black floor water dispenser stands against a flat painted wall in a partially renovated break room. One straight horizontal strip of yellow painter's masking tape is firmly adhered directly onto the wall, approximately 15 centimeters above the top of the water dispenser. The yellow tape is a finite strip only slightly wider than the dispenser. The left and right ends of the yellow tape are both clearly visible in frame. A clearly visible band of bare wall separates the yellow tape from the appliance, proving that the tape is attached to the wall and not to the dispenser. Thin transparent clear PE film is permanently bonded to the entire lower edge of that same yellow tape from its left end to its right end. The film's top edge has exactly the same width as the yellow tape, with no exposed tape continuing beyond the plastic. The single connected film sheet descends continuously from the wall, bridges the visible wall gap, then drapes forward over and completely covers the top, front and both sides of the water dispenser down near the floor. The dispenser silhouette, control panel and water outlet remain visible through the transparent film. The film follows gravity with fine realistic wrinkles and slightly loose lower corners. Exactly one finite yellow tape strip, only on the wall above the dispenser; no tape touches the dispenser; no tape on side or bottom edges. No people, no hands, no roll, no installation action. Eye-level medium shot showing the complete appliance and both tape ends, natural daylight, neutral colors, realistic plastic material, clean advertising photography, no text, no logo, no watermark.",
+      "video_prompt": "Keep the exact completed wall-anchored protective installation unchanged. The single horizontal yellow masking-tape strip remains visibly adhered to the painted wall about 15 centimeters above the freestanding water dispenser, with a clear bare-wall gap between tape and appliance. The transparent PE film remains permanently connected to the tape's lower edge, descends from the wall, crosses the visible gap, and covers the complete dispenser continuously down near the floor. The tape never moves onto or touches the dispenser. No extra tape appears on either side or bottom. The dispenser, wall, tape and product remain stationary. Only a very slow subtle camera push-in. Faint indoor air produces minimal natural ripples at the loose lower film corners; all other film stays stable and follows gravity. No people, installation, unrolling, pulling, taping, tearing, removal, transformation, object movement, water flow or product structure change. Photorealistic materials and stable lighting.",
+      "negative_prompt": "yellow tape extending beyond plastic film, endless tape across wall, plastic attached to only the middle of tape, tape wider than film, film narrower than tape, yellow tape on water dispenser, tape touching appliance, tape attached to appliance, side tape, bottom tape, vertical yellow tape, multiple tape strips, floating tape, detached tape, separate plastic sheet, person, hands, painter, film roll, installation action, unrolling, pulling, tearing, removing, duplicated film, extra plastic layers, film disappearing, film growing, opaque cloth, dispenser deformation, moving appliance, water pouring, melting plastic, strong wind, large film motion, flicker, jump cut, camera orbit, text, logo, watermark"
+    }
+  ]
+}

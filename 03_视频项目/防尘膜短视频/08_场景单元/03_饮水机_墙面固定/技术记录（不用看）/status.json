@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "tasks": {
+    "v01-s01": {
+      "variant": 1,
+      "scene": 1,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/03_饮水机_墙面固定/技术记录（不用看）/keyframes/variant-01/scene-01.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/03_饮水机_墙面固定/技术记录（不用看）/clips/variant-01/scene-01.mp4",
+      "needs_keyframe": false,
+      "needs_clip": false,
+      "status": "completed",
+      "usage": {},
+      "completed_at": "2026-07-17T03:34:09.353784+00:00"
+    },
+    "v03-s01": {
+      "variant": 3,
+      "scene": 1,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/03_饮水机_墙面固定/技术记录（不用看）/keyframes/variant-03/scene-01.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/03_饮水机_墙面固定/技术记录（不用看）/clips/variant-03/scene-01.mp4",
+      "needs_keyframe": false,
+      "needs_clip": false,
+      "status": "completed",
+      "usage": {},
+      "completed_at": "2026-07-17T03:33:25.825591+00:00"
+    },
+    "v02-s01": {
+      "variant": 2,
+      "scene": 1,
+      "keyframe": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/03_饮水机_墙面固定/技术记录（不用看）/keyframes/variant-02/scene-01.png",
+      "clip": "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/03_饮水机_墙面固定/技术记录（不用看）/clips/variant-02/scene-01.mp4",
+      "needs_keyframe": false,
+      "needs_clip": false,
+      "status": "completed",
+      "usage": {},
+      "completed_at": "2026-07-17T03:34:09.191853+00:00"
+    }
+  },
+  "costs": [],
+  "updated_at": "2026-07-17T03:34:09.354851+00:00",
+  "outputs": [
+    "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/03_饮水机_墙面固定/技术记录（不用看）/clips/variant-01/scene-01.mp4",
+    "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/03_饮水机_墙面固定/技术记录（不用看）/clips/variant-02/scene-01.mp4",
+    "/Users/a1-6/Downloads/浦汇未来/03_视频项目/防尘膜短视频/08_场景单元/03_饮水机_墙面固定/技术记录（不用看）/clips/variant-03/scene-01.mp4"
+  ]
+}
