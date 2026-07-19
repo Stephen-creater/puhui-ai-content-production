@@ -18,7 +18,8 @@
     ".gitignore",
     "AGENTS.md",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "项目交接手册.md"
   ],
   "readme_scan_excludes": [
     ".git",

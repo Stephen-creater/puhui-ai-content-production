@@ -17,7 +17,7 @@ CONTRACT = {
     "required_roots": ["01_inputs", "91_tools"],
     "canonical_local_scratch": "work",
     "forbidden_duplicate_paths": ["91_tools/work"],
-    "allowed_root_files": ["README.md", "AGENTS.md"],
+    "allowed_root_files": ["README.md", "AGENTS.md", "项目交接手册.md"],
     "readme_scan_excludes": ["work"],
 }
 
@@ -28,6 +28,7 @@ class RepositoryHygieneTest(unittest.TestCase):
         for relative in ["01_inputs", "91_tools", "work"]:
             (root / relative).mkdir()
         (root / "AGENTS.md").write_text("rules\n", encoding="utf-8")
+        (root / "项目交接手册.md").write_text("handoff\n", encoding="utf-8")
         (root / "README.md").write_text(
             "`01_inputs` `91_tools` `work`\n", encoding="utf-8"
         )

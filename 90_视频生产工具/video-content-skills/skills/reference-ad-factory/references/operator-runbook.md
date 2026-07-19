@@ -29,7 +29,7 @@ TikHub is a discovery index, not a stock-footage license. Preview before spendin
 python3 "$FACTORY/scripts/search_tiktok_hooks.py" \
   --query "paint spill" \
   --query "renovation dust" \
-  --output-dir "$REPO/work/tikhub-hook-search/latest"
+  --output-dir "$REPO/.work/tikhub-hook-search/latest"
 ```
 
 After reviewing the preview, execute with caps copied from it:
@@ -38,7 +38,7 @@ After reviewing the preview, execute with caps copied from it:
 python3 "$FACTORY/scripts/search_tiktok_hooks.py" \
   --query "paint spill" \
   --query "renovation dust" \
-  --output-dir "$REPO/work/tikhub-hook-search/latest" \
+  --output-dir "$REPO/.work/tikhub-hook-search/latest" \
   --execute --cost-authorized \
   --max-requests 2 --max-cost-usd 0.002
 ```

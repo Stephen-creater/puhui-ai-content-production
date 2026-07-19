@@ -27,7 +27,7 @@ Turn a finished script into batch short-video outputs. Keep the workflow agent-n
    ```bash
    python3 scripts/plan_project.py \
      --script /absolute/path/script.txt \
-     --output /absolute/path/work/project-name \
+     --output /absolute/path/repository/.work/project-name \
      --variants 2 \
      --scenes 4
    ```
@@ -46,14 +46,14 @@ Turn a finished script into batch short-video outputs. Keep the workflow agent-n
 3. Inspect the full cost-bearing plan without calling an API:
 
    ```bash
-   python3 scripts/run_pipeline.py --project /absolute/path/work/project-name
+   python3 scripts/run_pipeline.py --project /absolute/path/repository/.work/project-name
    ```
 
 4. Generate keyframes first when product geometry, human identity, or operation order matters:
 
    ```bash
    python3 scripts/run_pipeline.py \
-     --project /absolute/path/work/project-name \
+     --project /absolute/path/repository/.work/project-name \
      --execute --cost-authorized --keyframes-only \
      --max-image-jobs 8 --max-workers 1
    ```
@@ -65,7 +65,7 @@ Turn a finished script into batch short-video outputs. Keep the workflow agent-n
 
    ```bash
    python3 scripts/review_keyframe.py \
-     --project /absolute/path/work/project-name \
+     --project /absolute/path/repository/.work/project-name \
      --task v01-s01 --approve \
      --notes "One intact sheet; full coverage; tape and film connected edge-to-edge"
    ```
@@ -81,7 +81,7 @@ Turn a finished script into batch short-video outputs. Keep the workflow agent-n
 
    ```bash
    python3 scripts/run_pipeline.py \
-     --project /absolute/path/work/project-name \
+     --project /absolute/path/repository/.work/project-name \
      --execute --cost-authorized \
      --max-image-jobs 0 --max-video-jobs 8 --max-paid-video-seconds 80 \
      --max-workers 2
@@ -90,7 +90,7 @@ Turn a finished script into batch short-video outputs. Keep the workflow agent-n
 7. Verify all deliverables:
 
    ```bash
-   python3 scripts/verify_project.py --project /absolute/path/work/project-name
+   python3 scripts/verify_project.py --project /absolute/path/repository/.work/project-name
    ```
 
 8. Open representative keyframes and final videos for visual review. Machine verification is not proof of semantic or visual quality.
