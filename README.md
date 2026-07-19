@@ -7,7 +7,7 @@
 - 当前主项目：[防尘膜短视频](03_视频项目/防尘膜短视频/README.md)
 - 当前场景测试：[场景单元总表](03_视频项目/防尘膜短视频/08_场景单元/README.md)
 - 可复用生产工具：[video-content-skills](90_视频生产工具/video-content-skills/README.md)
-- 新同事接手与现场展示：[项目交接手册](项目交接手册.md)
+- 对外项目介绍与交接：[项目交接手册](项目交接手册.md)
 - GitHub：<https://github.com/Stephen-creater/puhui-ai-content-production>
 
 ## 从哪里开始
